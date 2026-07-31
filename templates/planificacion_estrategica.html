@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}Planificación Estratégica | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="planificacion-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Planificación Estratégica</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="planificacion-title" class="fw-extrabold text-primary display-4">Direccionamiento Estratégico</h1>
+            <p class="text-secondary">Nuestros principios fundamentales, prioridades de desarrollo y metas institucionales a largo plazo.</p>
+        </div>
+
+        <!-- Misión y Visión -->
+        <div class="row g-4 mb-5">
+            <div class="col-12 col-lg-6">
+                <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100 card-hover-lift">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-compass-fill fs-3"></i>
+                        </div>
+                        <h2 class="h4 fw-bold text-primary m-0">Misión Institucional</h2>
+                    </div>
+                    <p class="text-secondary">
+                        Formar profesionales competentes, éticos y con sólida formación tecnológica, mediante un modelo educativo práctico e innovador orientado a satisfacer las demandas del desarrollo socioeconómico local y nacional.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100 card-hover-lift">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-eye-fill fs-3"></i>
+                        </div>
+                        <h2 class="h4 fw-bold text-primary m-0">Visión Institucional</h2>
+                    </div>
+                    <p class="text-secondary">
+                        Consolidarse como un referente nacional en educación superior tecnológica acreditada, destacándose por la innovación académica, la inserción laboral de sus graduados y su contribución activa al bienestar y progreso social.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valores Institucionales con Iconografía -->
+        <div class="mb-5">
+            <h2 class="h3 text-primary fw-bold text-center mb-4"><i class="bi bi-heart-pulse-fill me-2 text-success"></i>Nuestros Valores Institucionales</h2>
+            <div class="row g-4 text-center">
+                <!-- Valor 1 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2.4 col-xl-2">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                        <i class="bi bi-patch-check-fill text-success display-6 d-block mb-3"></i>
+                        <h3 class="h6 fw-bold text-primary">Excelencia</h3>
+                        <p class="small text-secondary mb-0">Búsqueda constante del más alto estándar de calidad en cada proceso.</p>
+                    </div>
+                </div>
+                <!-- Valor 2 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2.4 col-xl-2">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                        <i class="bi bi-shield-lock-fill text-primary display-6 d-block mb-3"></i>
+                        <h3 class="h6 fw-bold text-primary">Integridad</h3>
+                        <p class="small text-secondary mb-0">Actuar con honestidad, transparencia y rectitud ética en el aula y fuera de ella.</p>
+                    </div>
+                </div>
+                <!-- Valor 3 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2.4 col-xl-2">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                        <i class="bi bi-lightbulb-fill text-success display-6 d-block mb-3"></i>
+                        <h3 class="h6 fw-bold text-primary">Innovación</h3>
+                        <p class="small text-secondary mb-0">Impulsar ideas creativas y tecnologías de vanguardia para la mejora continua.</p>
+                    </div>
+                </div>
+                <!-- Valor 4 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2.4 col-xl-2">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                        <i class="bi bi-people-fill text-primary display-6 d-block mb-3"></i>
+                        <h3 class="h6 fw-bold text-primary">Inclusión</h3>
+                        <p class="small text-secondary mb-0">Respeto a la diversidad, equidad y libre acceso a la educación superior.</p>
+                    </div>
+                </div>
+                <!-- Valor 5 -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2.4 col-xl-2">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                        <i class="bi bi-globe2 text-success display-6 d-block mb-3"></i>
+                        <h3 class="h6 fw-bold text-primary">Compromiso</h3>
+                        <p class="small text-secondary mb-0">Responsabilidad social activa orientada al desarrollo sostenible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PEDI (Plan Estratégico de Desarrollo Institucional) -->
+        <div class="p-4 rounded-4 shadow-sm border border-light-subtle text-white bg-dark position-relative overflow-hidden mb-4" style="background: linear-gradient(135deg, var(--istte-blue-darker) 0%, var(--istte-blue-sky) 100%);">
+            <div class="row align-items-center gy-4">
+                <div class="col-12 col-lg-8">
+                    <span class="badge bg-success text-white py-2 px-3 fw-bold mb-3">PLAN ESTRATÉGICO</span>
+                    <h2 class="fw-bold mb-3">PEDI - Plan Estratégico de Desarrollo Institucional</h2>
+                    <p class="text-secondary-subtle small mb-4">
+                        El PEDI constituye la hoja de ruta que rige el accionar académico e institucional durante el periodo vigente. En él se plantean los objetivos institucionales de docencia, investigación, vinculación y fortalecimiento de capacidades para asegurar la máxima calidad.
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-6 col-md-4">
+                            <strong class="text-success d-block"><i class="bi bi-check-circle-fill me-1"></i> Eje 1</strong>
+                            <span class="small text-secondary-subtle">Aseguramiento Académico</span>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <strong class="text-success d-block"><i class="bi bi-check-circle-fill me-1"></i> Eje 2</strong>
+                            <span class="small text-secondary-subtle">Vinculación y Sociedad</span>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <strong class="text-success d-block"><i class="bi bi-check-circle-fill me-1"></i> Eje 3</strong>
+                            <span class="small text-secondary-subtle">Eficiencia de Gestión</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 text-lg-end">
+                    <a href="#" class="btn btn-lg btn-success text-white py-3 px-4 fw-bold shadow">
+                        <i class="bi bi-file-earmark-pdf-fill me-2"></i>Descargar PEDI Completo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

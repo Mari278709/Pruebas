@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Portal de Empleo | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="empleo-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Portal de Empleo</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="empleo-title" class="fw-extrabold text-primary display-4">Portal de Empleo</h1>
+            <p class="text-secondary">Oportunidades laborales y bolsa de trabajo para nuestros egresados.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                    <h2 class="h5 fw-bold text-primary">Bolsa de Trabajo</h2>
+                    <p class="small text-secondary mb-0">Conexión con empresas del sector tecnológico y productivo.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                    <h2 class="h5 fw-bold text-primary">Asesoría</h2>
+                    <p class="small text-secondary mb-0">Acompañamiento para la búsqueda de empleo y desarrollo profesional.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="p-4 bg-white rounded-4 shadow-sm border border-light-subtle h-100">
+                    <h2 class="h5 fw-bold text-primary">Conexiones</h2>
+                    <p class="small text-secondary mb-0">Convenios con empresas, ferias de empleo y programas de prácticas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Asociación de Graduados | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="graduados-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Asociación de Graduados</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="graduados-title" class="fw-extrabold text-primary display-4">Asociación de Graduados</h1>
+            <p class="text-secondary">Red de exalumnos, oportunidades de networking y apoyo profesional.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Networking</h2>
+                    <p class="small text-secondary mb-0">Eventos y encuentros para fortalecer la comunidad de egresados.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Apoyo</h2>
+                    <p class="small text-secondary mb-0">Asesoría profesional, actualización y acompañamiento en carrera.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

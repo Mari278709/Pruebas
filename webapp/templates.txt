@@ -1,0 +1,2 @@
+templates should remain in project root so Django can load them from DIRS = [BASE_DIR / 'templates']
+Place CSS/JS in static/webapp/css and static/webapp/js, or use STATICFILES_DIRS to include root static/.

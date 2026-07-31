@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Validación por Experiencia | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="validacion-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Validación por Experiencia</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="validacion-title" class="fw-extrabold text-primary display-4">Validación por Experiencia</h1>
+            <p class="text-secondary">Conoce cómo validar tus saberes previos para avanzar en la trayectoria académica.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-4">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Requisitos</h2>
+                    <p class="small text-secondary mb-0">Experiencia documental, certificados y evaluación académica personalizada.</p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Proceso</h2>
+                    <p class="small text-secondary mb-0">Inscripción, revisión de antecedentes y reconocimiento académico según perfil.</p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Beneficios</h2>
+                    <p class="small text-secondary mb-0">Acelera tu ingreso y avanza en tu carrera sin repetir estudios ya validados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

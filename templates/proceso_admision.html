@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Proceso de Admisión | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="adm-title">
+    <div class="container py-4">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Proceso de Admisión</li>
+            </ol>
+        </nav>
+        
+        <div class="text-center mb-5">
+            <h1 id="adm-title" class="fw-extrabold text-primary display-4">Proceso de Admisión</h1>
+            <p class="text-secondary small">Sigue los pasos y forma parte del ISTTE.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-4">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm text-center h-100">
+                    <span class="badge bg-success py-2 px-3 mb-3" style="font-size: 1rem;">Paso 1</span>
+                    <h2 class="h5 fw-bold text-primary mb-2">Inscripción en Línea</h2>
+                    <p class="small text-secondary mb-0">Llena nuestro formulario digital de postulación con tus datos básicos.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm text-center h-100">
+                    <span class="badge bg-primary py-2 px-3 mb-3" style="font-size: 1rem;">Paso 2</span>
+                    <h2 class="h5 fw-bold text-primary mb-2">Entrega de Documentos</h2>
+                    <p class="small text-secondary mb-0">Carga tu título de bachiller, cédula de identidad y foto tamaño carnet.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm text-center h-100">
+                    <span class="badge bg-success py-2 px-3 mb-3" style="font-size: 1rem;">Paso 3</span>
+                    <h2 class="h5 fw-bold text-primary mb-2">Matriculación Oficial</h2>
+                    <p class="small text-secondary mb-0">Recibe tu clave institucional de Aula Virtual y SIACAD para el inicio de clases.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Presentación Institucional | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="pres-title">
+    <div class="container py-4">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Presentación Institucional</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="pres-title" class="fw-extrabold text-primary display-4">Presentación Institucional</h1>
+            <p class="text-secondary">Mensaje de bienvenida de nuestras máximas autoridades.</p>
+        </div>
+
+        <div class="row g-5 align-items-center">
+            <!-- Foto y Perfil del Rector/a -->
+            <div class="col-12 col-md-5 col-lg-4 text-center">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm">
+                    <div class="ratio ratio-1x1 rounded-circle bg-light border border-primary border-4 overflow-hidden mx-auto mb-4" style="max-width: 250px;">
+                        <!-- Icono premium de Rector/a simulando imagen -->
+                        <div class="d-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary">
+                            <i class="bi bi-person-badge display-1"></i>
+                        </div>
+                    </div>
+                    <h2 class="h5 fw-bold text-primary mb-1">Dra. Martha Moreno</h2>
+                    <span class="badge bg-success bg-opacity-10 text-success fw-bold py-2 px-3 rounded-pill mb-3">Rectora Institucional</span>
+                    <hr class="my-3 border-light-subtle">
+                    <p class="small text-secondary m-0">"Liderando la formación tecnológica de excelencia para construir el futuro."</p>
+                </div>
+            </div>
+            
+            <!-- Mensaje de Bienvenida -->
+            <div class="col-12 col-md-7 col-lg-8">
+                <div class="p-4 rounded-4 bg-white shadow-sm border border-light-subtle h-100">
+                    <span class="text-success fw-bold text-uppercase d-block mb-2" style="font-size: 0.75rem; letter-spacing: 1px;">MENSAJE DE RECTORADO</span>
+                    <h3 class="h3 fw-bold text-primary mb-3">Bienvenidos al ISTTE</h3>
+                    <p class="text-secondary mb-4">
+                        Estimada comunidad académica, estudiantes y futuros profesionales:
+                    </p>
+                    <p class="text-secondary mb-4">
+                        Es un honor para mí darles la más cálida bienvenida al portal web del Instituto Superior Tecnológico Tecnoecuatoriano. Desde nuestra fundación, nos hemos comprometido con una misión clara: formar técnicos y tecnólogos del más alto nivel académico, con capacidad crítica, compromiso ético y destrezas prácticas reales.
+                    </p>
+                    <p class="text-secondary mb-4">
+                        En un mundo regido por la aceleración tecnológica y el cambio constante, la educación no puede limitarse a la teoría. Es por ello que en el ISTTE implementamos un modelo de aprendizaje práctico, interactivo y en constante contacto con el sector productivo. Nuestras alianzas estratégicas y proyectos de vinculación con la sociedad permiten a nuestros alumnos insertarse rápidamente en el mundo laboral.
+                    </p>
+                    <p class="text-secondary mb-4">
+                        Les invito a explorar nuestra oferta académica, conocer nuestras sedes y ser parte de esta gran comunidad de aprendizaje que impulsa el potencial humano y el progreso del país.
+                    </p>
+                    <p class="text-secondary mb-0 fw-bold text-primary">
+                        Atentamente,<br>
+                        <span class="text-success">Dra. Martha Moreno</span><br>
+                        <small class="text-secondary fw-normal">Rectora del Instituto Superior Tecnológico Tecnoecuatoriano</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

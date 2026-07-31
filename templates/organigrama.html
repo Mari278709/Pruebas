@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Organigrama | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="organigrama-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Organigrama</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="organigrama-title" class="fw-extrabold text-primary display-4">Estructura Organizacional</h1>
+            <p class="text-secondary">Conoce las instancias de liderazgo, regulación académica y gobernanza del Instituto.</p>
+        </div>
+
+        <!-- Pestañas de Navegación de Organigramas -->
+        <ul class="nav nav-pills justify-content-center mb-5 gap-2" id="organigramaTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active px-4 py-2 fw-bold" id="institucional-tab" data-bs-toggle="pill" data-bs-target="#institucional" type="button" role="tab" aria-controls="institucional" aria-selected="true">
+                    <i class="bi bi-diagram-3-fill me-2"></i>Organigrama Institucional
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link px-4 py-2 fw-bold" id="regentes-tab" data-bs-toggle="pill" data-bs-target="#regentes" type="button" role="tab" aria-controls="regentes" aria-selected="false">
+                    <i class="bi bi-people-fill me-2"></i>Organigrama de Regentes
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link px-4 py-2 fw-bold" id="cas-tab" data-bs-toggle="pill" data-bs-target="#cas" type="button" role="tab" aria-controls="cas" aria-selected="false">
+                    <i class="bi bi-shield-check me-2"></i>Organigrama CAS (Consejo Académico Superior)
+                </button>
+            </li>
+        </ul>
+
+        <!-- Contenido de las Pestañas -->
+        <div class="tab-content" id="organigramaTabsContent">
+            
+            <!-- 1. ORGANIGRAMA INSTITUCIONAL -->
+            <div class="tab-pane fade show active" id="institucional" role="tabpanel" aria-labelledby="institucional-tab">
+                <div class="row g-4 align-items-center">
+                    <div class="col-12 col-lg-5">
+                        <div class="border border-light-subtle rounded-4 bg-white shadow-sm p-4">
+                            <h2 class="h4 fw-bold text-primary mb-3">Estructura Orgánico-Funcional</h2>
+                            <p class="text-secondary small mb-4">
+                                Representa la línea ejecutiva del instituto, encargada de la toma de decisiones administrativas, académicas y la vinculación con el sector laboral.
+                            </p>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-3 d-flex gap-3 align-items-start">
+                                    <i class="bi bi-person-workspace text-success fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Rectorado</strong>
+                                        <p class="small text-secondary mb-0">Máxima autoridad ejecutiva y representación legal de la institución.</p>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex gap-3 align-items-start">
+                                    <i class="bi bi-book-half text-primary fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Vicerrectorado Académico</strong>
+                                        <p class="small text-secondary mb-0">Planificación de carreras, planes curriculares y evaluación docente.</p>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex gap-3 align-items-start">
+                                    <i class="bi bi-cash-coin text-success fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Vicerrectorado Administrativo</strong>
+                                        <p class="small text-secondary mb-0">Administración financiera, talento humano e infraestructura.</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex gap-3 align-items-start">
+                                    <i class="bi bi-link-45deg text-primary fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Coordinación de Vinculación y Prácticas</strong>
+                                        <p class="small text-secondary mb-0">Contacto con empresas y desarrollo social comunitario.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7 text-center">
+                        <div class="border border-light-subtle rounded-4 bg-white shadow-sm p-4">
+                            <h3 class="h5 text-primary fw-bold mb-3">Diagrama de la Línea de Reporte</h3>
+                            <!-- Representación visual premium con cards HTML y líneas simples -->
+                            <div class="d-flex flex-column align-items-center gap-3">
+                                <div class="p-3 border border-success border-2 rounded-3 bg-light text-center" style="width: 220px;">
+                                    <strong class="text-success text-uppercase">Rectoría</strong>
+                                </div>
+                                <div class="bg-secondary" style="width: 2px; height: 25px;"></div>
+                                <div class="d-flex flex-wrap justify-content-center gap-4">
+                                    <div class="p-3 border border-primary border-2 rounded-3 bg-light text-center" style="width: 180px;">
+                                        <strong class="text-primary">Vicerrectorado Académico</strong>
+                                    </div>
+                                    <div class="p-3 border border-primary border-2 rounded-3 bg-light text-center" style="width: 180px;">
+                                        <strong class="text-primary">Vicerrectorado Admin.</strong>
+                                    </div>
+                                </div>
+                                <div class="bg-secondary" style="width: 2px; height: 25px;"></div>
+                                <div class="p-3 border border-secondary border-2 rounded-3 bg-light text-center" style="width: 200px;">
+                                    <strong class="text-secondary">Coordinación de Vinculación</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ORGANIGRAMA DE REGENTES -->
+            <div class="tab-pane fade" id="regentes" role="tabpanel" aria-labelledby="regentes-tab">
+                <div class="row g-4 align-items-center">
+                    <div class="col-12 col-lg-5">
+                        <div class="border border-light-subtle rounded-4 bg-white shadow-sm p-4">
+                            <h2 class="h4 fw-bold text-primary mb-3">Consejo de Regentes</h2>
+                            <p class="text-secondary small mb-4">
+                                Es el órgano supremo de fiscalización, definición estratégica y salvaguarda de los valores fundacionales del Instituto.
+                            </p>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-3 d-flex gap-3 align-items-start">
+                                    <i class="bi bi-award text-success fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Presidente de Regentes</strong>
+                                        <p class="small text-secondary mb-0">Dirección y control de las políticas de largo plazo del instituto.</p>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex gap-3 align-items-start">
+                                    <i class="bi bi-person-hearts text-primary fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Delegados de la Fundación</strong>
+                                        <p class="small text-secondary mb-0">Miembros designados por la entidad promotora fundadora.</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex gap-3 align-items-start">
+                                    <i class="bi bi-people-fill text-success fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Representantes de Exalumnos</strong>
+                                        <p class="small text-secondary mb-0">Garantizan la participación y retroalimentación de los graduados.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7 text-center">
+                        <div class="border border-light-subtle rounded-4 bg-white shadow-sm p-4">
+                            <h3 class="h5 text-primary fw-bold mb-3">Diagrama de Regentes</h3>
+                            <div class="d-flex flex-column align-items-center gap-3">
+                                <div class="p-3 border border-success border-2 rounded-3 bg-light text-center" style="width: 250px;">
+                                    <strong class="text-success text-uppercase">Presidente del Consejo</strong>
+                                </div>
+                                <div class="bg-secondary" style="width: 2px; height: 25px;"></div>
+                                <div class="d-flex flex-wrap justify-content-center gap-4">
+                                    <div class="p-3 border border-primary border-2 rounded-3 bg-light text-center" style="width: 180px;">
+                                        <strong class="text-primary">Delegados de Fundadores</strong>
+                                    </div>
+                                    <div class="p-3 border border-primary border-2 rounded-3 bg-light text-center" style="width: 180px;">
+                                        <strong class="text-primary">Representantes de Exalumnos</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. ORGANIGRAMA CAS -->
+            <div class="tab-pane fade" id="cas" role="tabpanel" aria-labelledby="cas-tab">
+                <div class="row g-4 align-items-center">
+                    <div class="col-12 col-lg-5">
+                        <div class="border border-light-subtle rounded-4 bg-white shadow-sm p-4">
+                            <h2 class="h4 fw-bold text-primary mb-3">Consejo Académico Superior (CAS)</h2>
+                            <p class="text-secondary small mb-4">
+                                Órgano colegiado de cogobierno responsable de regular la actividad académica, dictaminar reglamentos y asegurar la excelencia institucional.
+                            </p>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-3 d-flex gap-3 align-items-start">
+                                    <i class="bi bi-shield-check text-success fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Presidente de CAS</strong>
+                                        <p class="small text-secondary mb-0">Coordina la formulación y aprobación de políticas académicas internas.</p>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex gap-3 align-items-start">
+                                    <i class="bi bi-people-fill text-primary fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Representantes Docentes</strong>
+                                        <p class="small text-secondary mb-0">Delegados del cuerpo docente elegidos democráticamente.</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex gap-3 align-items-start">
+                                    <i class="bi bi-mortarboard-fill text-success fs-4"></i>
+                                    <div>
+                                        <strong class="text-primary">Representantes Estudiantiles</strong>
+                                        <p class="small text-secondary mb-0">Voz y participación activa del cuerpo estudiantil en el CAS.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7 text-center">
+                        <div class="border border-light-subtle rounded-4 bg-white shadow-sm p-4">
+                            <h3 class="h5 text-primary fw-bold mb-3">Diagrama de Gobernanza CAS</h3>
+                            <div class="d-flex flex-column align-items-center gap-3">
+                                <div class="p-3 border border-success border-2 rounded-3 bg-light text-center" style="width: 240px;">
+                                    <strong class="text-success text-uppercase">Presidente CAS (Rector/a)</strong>
+                                </div>
+                                <div class="bg-secondary" style="width: 2px; height: 25px;"></div>
+                                <div class="d-flex flex-wrap justify-content-center gap-4">
+                                    <div class="p-3 border border-primary border-2 rounded-3 bg-light text-center" style="width: 180px;">
+                                        <strong class="text-primary">Delegados Docentes</strong>
+                                    </div>
+                                    <div class="p-3 border border-primary border-2 rounded-3 bg-light text-center" style="width: 180px;">
+                                        <strong class="text-primary">Delegados Estudiantiles</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

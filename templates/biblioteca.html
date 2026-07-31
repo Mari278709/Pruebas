@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Biblioteca | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="biblioteca-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Biblioteca</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="biblioteca-title" class="fw-extrabold text-primary display-4">Biblioteca</h1>
+            <p class="text-secondary">Recursos y servicios de información para estudiantes y docentes.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Catálogo</h2>
+                    <p class="small text-secondary mb-0">Acceso a libros, revistas y materiales especializados en tecnología y ciencias aplicadas.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Servicios</h2>
+                    <p class="small text-secondary mb-0">Préstamo digital, consultas bibliográficas y apoyo a investigación académica.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

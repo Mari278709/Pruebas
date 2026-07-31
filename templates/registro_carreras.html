@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Registro de Carreras | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="registro-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Formulario de Registro</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="registro-title" class="fw-extrabold text-primary display-4">Registro de Carreras</h1>
+            <p class="text-secondary">Envía tus datos para recibir asesoría y avanzar en el proceso de inscripción.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="border rounded-4 bg-white shadow-sm p-4">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="correo" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="correo" placeholder="tu@correo.com" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="programa" class="form-label">Programa de interés</label>
+                                <input type="text" class="form-control" id="programa" placeholder="Nombre de la carrera" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalidad" class="form-label">Modalidad</label>
+                                <select class="form-select" id="modalidad">
+                                    <option>Presencial</option>
+                                    <option>Semipresencial</option>
+                                    <option>Virtual</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="tel" class="form-control" id="telefono" placeholder="09XX XXX XXX">
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button type="submit" class="btn btn-explora px-5">Enviar solicitud</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

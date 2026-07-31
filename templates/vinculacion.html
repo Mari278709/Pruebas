@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Vinculación con la Sociedad | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="vinc-title">
+    <div class="container py-4">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Vinculación con la Sociedad</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="vinc-title" class="fw-extrabold text-primary display-4">Vinculación con la Sociedad</h1>
+            <p class="text-secondary">Conectamos el conocimiento académico con las necesidades reales de nuestra comunidad y el sector productivo.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Proyecto 1 -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-link-45deg fs-3"></i>
+                        </div>
+                        <h2 class="h5 fw-bold text-primary m-0">Convenios Interinstitucionales</h2>
+                    </div>
+                    <p class="small text-secondary m-0">
+                        Convenios y alianzas activas con empresas líderes tecnológicas, comerciales y del sector automotriz para la realización de prácticas preprofesionales y pasantías.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-globe2 fs-3"></i>
+                        </div>
+                        <h2 class="h5 fw-bold text-primary m-0">Proyectos Comunitarios</h2>
+                    </div>
+                    <p class="small text-secondary m-0">
+                        Iniciativas de soporte técnico, capacitación vial e inclusión digital lideradas por docentes y estudiantes para potenciar el desarrollo de sectores vulnerables.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Tecno Informativo | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="tecno-title">
+    <div class="container py-4">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tecno Informativo</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="tecno-title" class="fw-extrabold text-primary display-4">Tecno Informativo</h1>
+            <p class="text-secondary">Boletín digital de noticias, avances tecnológicos y eventos del ISTTE.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for item in news_items %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card border-0 rounded-4 shadow-sm h-100 overflow-hidden bg-white">
+                    <div class="ratio ratio-16x9 news-image-ratio">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-img-top object-fit-cover">
+                        {% elif item.video %}
+                            <video controls class="w-100 h-100">
+                                <source src="{{ item.video.url }}" type="video/mp4">
+                            </video>
+                        {% else %}
+                            <img src="{% static 'images/placeholder.png' %}" alt="placeholder" class="card-img-top object-fit-cover">
+                        {% endif %}
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-success bg-opacity-10 text-success fw-bold py-1 px-2 rounded-pill small">INSTITUCIONAL</span>
+                        </div>
+                        <h2 class="h5 text-primary fw-bold mb-2">{{ item.title }}</h2>
+                        <p class="small text-secondary mb-3">{{ item.description|truncatechars:120 }}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                            <small class="text-muted"><i class="bi bi-calendar3 me-1"></i> {{ item.created_at|date:"d M Y" }}</small>
+                            <a href="{% url 'multimedia' %}" class="btn btn-sm btn-outline-success">Leer</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <div class="alert alert-info rounded-4 d-inline-block px-5">No hay noticias publicadas en el boletín informativo en este momento.</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

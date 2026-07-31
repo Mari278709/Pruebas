@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Aviso Legal | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="aviso-title">
+    <div class="container py-4">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Aviso Legal</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="aviso-title" class="fw-extrabold text-primary display-4">Aviso Legal</h1>
+            <p class="text-secondary">Condiciones generales de uso del portal web oficial del ISTTE.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 bg-white p-4 rounded-4 shadow-sm border border-light-subtle">
+                <h2 class="h5 fw-bold text-primary mb-3">1. Datos Identificativos</h2>
+                <p class="small text-secondary mb-4">
+                    El portal web es administrado por el Instituto Superior Tecnológico Tecnoecuatoriano (ISTTE), institución de educación superior legalmente constituida en la República de Ecuador.
+                </p>
+                <h2 class="h5 fw-bold text-primary mb-3">2. Términos de Uso</h2>
+                <p class="small text-secondary mb-4">
+                    El acceso a este portal atribuye la condición de usuario e implica la aceptación total de las cláusulas aquí expuestas. El usuario se compromete a hacer un uso lícito de los contenidos, servicios y simuladores provistos.
+                </p>
+                <h2 class="h5 fw-bold text-primary mb-3">3. Propiedad Intelectual</h2>
+                <p class="small text-secondary mb-0">
+                    Todos los derechos de propiedad intelectual del diseño, código, logotipos e información institucional pertenecen al ISTTE. Queda prohibida su reproducción sin autorización previa de las autoridades competentes.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

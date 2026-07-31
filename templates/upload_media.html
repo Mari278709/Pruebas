@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Subir multimedia | ISTTE{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <div class="bg-white rounded-4 shadow-sm p-4 p-md-5">
+                <h1 class="section-title">Subir contenido multimedia</h1>
+                <p class="text-muted mb-4">Carga fotos, videos y descripciones para que la información del sitio se actualice diariamente.</p>
+
+                <div class="mb-3 d-flex justify-content-between">
+                    <a href="{% url 'index' %}" class="btn btn-contacto-nav">← Volver al inicio</a>
+                    <a href="{% url 'multimedia' %}" class="btn btn-istte-primary">Ver multimedia</a>
+                </div>
+
+                {% if success %}
+                    <div class="alert alert-success rounded-4">El contenido se guardó correctamente.</div>
+                {% endif %}
+
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="invalid-feedback d-block">{{ form.title.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="invalid-feedback d-block">{{ form.description.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Imagen</label>
+                        {{ form.image }}
+                        {% if form.image.errors %}
+                            <div class="invalid-feedback d-block">{{ form.image.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Video</label>
+                        {{ form.video }}
+                        {% if form.video.errors %}
+                            <div class="invalid-feedback d-block">{{ form.video.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-check mb-4">
+                        {{ form.published }}
+                        <label class="form-check-label">Publicar inmediatamente</label>
+                        {% if form.published.errors %}
+                            <div class="invalid-feedback d-block">{{ form.published.errors|join:', ' }}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-istte-accent btn-lg">Guardar contenido</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

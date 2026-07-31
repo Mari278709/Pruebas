@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Multimedia | ISTTE{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="row justify-content-center mb-4">
+        <div class="col-12 col-lg-10 text-center">
+            <h1 class="section-title">Contenido multimedia diario</h1>
+            <p class="text-muted mb-0">Comparte fotos, videos y documentos relevantes que se actualizan todos los días para mantener informada a la comunidad.</p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <a href="{% url 'index' %}" class="btn btn-contacto-nav">← Volver al inicio</a>
+            {% if request.user.is_staff %}
+                <a href="/admin/webapp/mediaitem/" class="btn btn-istte-primary">Acceder al panel multimedia</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for item in media_items %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <article class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                <div class="card-body p-4 d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h2 class="h5 mb-0">{{ item.title }}</h2>
+                        {% if request.user.is_staff %}
+                        <div class="admin-actions btn-group" role="group" aria-label="Acciones admin">
+                            <a class="btn btn-sm btn-outline-secondary" href="/admin/webapp/mediaitem/{{ item.id }}/change/">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" href="/admin/webapp/mediaitem/{{ item.id }}/delete/">Eliminar</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <p class="text-secondary mb-4">{{ item.description }}</p>
+
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" class="img-fluid rounded-4 mb-4" alt="{{ item.title }}">
+                    {% endif %}
+
+                    {% if item.video %}
+                        <video controls class="w-100 rounded-4 mb-4" preload="metadata">
+                            <source src="{{ item.video.url }}" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    {% endif %}
+
+                    <div class="mt-auto">
+                        <p class="small text-muted mb-1">Publicado el {{ item.created_at|date:"d M Y" }} a las {{ item.created_at|date:"H:i" }}</p>
+                        <span class="badge bg-success">Publicado</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info rounded-4">No hay contenido multimedia disponible todavía. Puedes subir nuevos archivos desde el formulario de carga.</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <a href="{% url 'upload_media' %}" class="btn btn-istte-primary btn-lg">Subir contenido multimedia</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

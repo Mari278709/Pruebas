@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Unidad de Titulación | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="titulacion-title">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Unidad de Titulación</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="titulacion-title" class="fw-extrabold text-primary display-4">Unidad de Titulación</h1>
+            <p class="text-secondary">Guía para el proceso de titulación y entrega de trabajos finales.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Cronograma</h2>
+                    <p class="small text-secondary mb-0">Etapas, fechas y requisitos para la titulación exitosa.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h2 class="h5 fw-bold text-primary">Requisitos</h2>
+                    <p class="small text-secondary mb-0">Documentación necesaria y pasos administrativos para graduarse.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

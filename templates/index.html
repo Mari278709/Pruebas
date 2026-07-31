@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block title %}Inicio | ISTTE - Instituto Superior Tecnológico Tecnoecuatoriano{% endblock %}
+ 
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-container position-relative overflow-hidden" aria-label="Introducción institucional">
+    <div class="hero-background-graphics" aria-hidden="true">
+        <div class="glow-sphere-1"></div>
+        <div class="glow-sphere-2"></div>
+        <div class="hex-grid-pattern"></div>
+    </div>
+    <div class="hero-background-overlay" aria-hidden="true"></div>
+ 
+    <div class="container position-relative z-3">
+        <div class="row align-items-center gy-5">
+            <div class="col-12 col-xl-6">
+                <span class="badge-accent-top d-inline-flex align-items-center gap-2 mb-4">BIENVENIDO AL FUTURO</span>
+ 
+                <h1 class="hero-main-title">
+                    Formamos profesionales que <span class="text-green-accent">transforman</span>
+                    <span class="text-cursive d-block">el mundo</span>
+                </h1>
+ 
+                <p class="hero-main-desc">
+                    Carreras tecnológicas innovadoras con alta empleabilidad y una formación integral que impulsa tu potencial.
+                </p>
+ 
+                <div class="hero-button-group flex-wrap">
+                    <a href="{% url 'inscripcion' %}" class="btn btn-explora d-inline-flex align-items-center gap-2" style="background-color: var(--istte-green-accent); border-color: var(--istte-green-accent);">
+                        INSCRÍBETE EN LÍNEA
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a href="{% url 'carreras' %}" class="btn btn-conoce-mas d-inline-flex align-items-center gap-2">
+                        EXPLORA NUESTRAS CARRERAS
+                        <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                </div>
+ 
+                <div class="hero-features">
+                    <div class="hero-feature-item">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Alta empleabilidad</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <i class="bi bi-patch-check"></i>
+                        <span>Educación de calidad</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <i class="bi bi-people"></i>
+                        <span>Vinculación social</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <i class="bi bi-lightbulb"></i>
+                        <span>Innovación tecnológica</span>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="col-12 col-xl-6">
+                <div class="hero-image-wrapper ms-xl-auto position-relative">
+                    <img src="{% static 'images/hero-girl.png' %}" alt="Estudiante ISTTE" class="hero-girl-image img-fluid">
+                    <div class="hero-image-backdrop"></div>
+                    <span class="hero-ring hero-ring-1"></span>
+                    <span class="hero-ring hero-ring-2"></span>
+                    <span class="hero-dot hero-dot-1"></span>
+                    <span class="hero-dot hero-dot-2"></span>
+ 
+                    <div class="hero-badge">
+                        <i class="bi bi-star-fill"></i>
+                        <div>
+                            <strong>INSTITUCIÓN ACREDITADA</strong>
+                            <small>Comprometidos con la excelencia académica</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-- SECCIÓN: Tarjetas Flotantes Superpuestas (Overlay) -->
+<section class="overlay-cards-section position-relative z-4" aria-label="Secciones rápidas">
+    <div class="cards-marquee">
+        <div class="cards-marquee-track">
+ 
+            <!-- Tarjeta 1: Oferta Académica -->
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle">
+                <div>
+                    <div class="icon-circle-overlay green-bg mx-auto mb-3" aria-hidden="true">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <h2 class="h5 fw-bold mb-2">Oferta Académica</h2>
+                    <p class="small text-muted mb-3">Carreras tecnológicas diseñadas para el mundo actual.</p>
+                </div>
+                <a href="{% url 'carreras' %}" class="card-overlay-link text-decoration-none">
+                    <span>VER CARRERAS</span>
+                    <i class="bi bi-arrow-right-short" aria-hidden="true"></i>
+                </a>
+            </article>
+ 
+            <!-- Tarjeta 2: Vinculación -->
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle">
+                <div>
+                    <div class="icon-circle-overlay blue-bg mx-auto mb-3" aria-hidden="true">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <h2 class="h5 fw-bold mb-2">Vinculación</h2>
+                    <p class="small text-muted mb-3">Proyectos y convenios que conectan con el entorno.</p>
+                </div>
+                <a href="{% url 'vinculacion' %}" class="card-overlay-link text-decoration-none">
+                    <span>CONOCE MÁS</span>
+                    <i class="bi bi-arrow-right-short" aria-hidden="true"></i>
+                </a>
+            </article>
+ 
+            <!-- Tarjeta 3: Investigación -->
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle">
+                <div>
+                    <div class="icon-circle-overlay green-bg mx-auto mb-3" aria-hidden="true">
+                        <i class="bi bi-clipboard-pulse"></i>
+                    </div>
+                    <h2 class="h5 fw-bold mb-2">Investigación</h2>
+                    <p class="small text-muted mb-3">Impulsamos la innovación y el desarrollo tecnológico.</p>
+                </div>
+                <a href="{% url 'investigacion' %}" class="card-overlay-link text-decoration-none">
+                    <span>VER PROYECTOS</span>
+                    <i class="bi bi-arrow-right-short" aria-hidden="true"></i>
+                </a>
+            </article>
+ 
+            <!-- Tarjeta 4: Noticias y Eventos -->
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle">
+                <div>
+                    <div class="icon-circle-overlay blue-bg mx-auto mb-3" aria-hidden="true">
+                        <i class="bi bi-envelope-paper-fill"></i>
+                    </div>
+                    <h2 class="h5 fw-bold mb-2">Contacto Institucional</h2>
+                    <p class="small text-muted mb-3">Escríbenos para recibir atención personalizada y resolver tus dudas.</p>
+                </div>
+                <a href="{% url 'contacto' %}" class="card-overlay-link text-decoration-none">
+                    <span>CONTACTAR</span>
+                    <i class="bi bi-arrow-right-short" aria-hidden="true"></i>
+                </a>
+            </article>
+ 
+            <!-- ===== MISMAS 4 TARJETAS REPETIDAS (necesarias para el loop continuo del marquee) ===== -->
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle" aria-hidden="true">
+                <div>
+                    <div class="icon-circle-overlay green-bg mx-auto mb-3">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <h2 class="h5 fw-bold mb-2">Oferta Académica</h2>
+                    <p class="small text-muted mb-3">Carreras tecnológicas diseñadas para el mundo actual.</p>
+                </div>
+                <a href="{% url 'carreras' %}" class="card-overlay-link text-decoration-none" tabindex="-1">
+                    <span>VER CARRERAS</span>
+                    <i class="bi bi-arrow-right-short"></i>
+                </a>
+            </article>
+ 
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle" aria-hidden="true">
+                <div>
+                    <div class="icon-circle-overlay blue-bg mx-auto mb-3">
+                        <i class="bi bi-graph-up"></i>
+                    </div>
+                    <h2 class="h5 fw-bold mb-2">Vinculación</h2>
+                    <p class="small text-muted mb-3">Proyectos y convenios que conectan con el entorno.</p>
+                </div>
+                <a href="{% url 'vinculacion' %}" class="card-overlay-link text-decoration-none" tabindex="-1">
+                    <span>CONOCE MÁS</span>
+                    <i class="bi bi-arrow-right-short"></i>
+                </a>
+            </article>
+ 
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle" aria-hidden="true">
+                <div>
+                    <div class="icon-circle-overlay green-bg mx-auto mb-3">
+                        <i class="bi bi-clipboard-pulse"></i>
+                    </div>
+                    <h2 class="h5 fw-bold mb-2">Investigación</h2>
+                    <p class="small text-muted mb-3">Impulsamos la innovación y el desarrollo tecnológico.</p>
+                </div>
+                <a href="{% url 'investigacion' %}" class="card-overlay-link text-decoration-none" tabindex="-1">
+                    <span>VER PROYECTOS</span>
+                    <i class="bi bi-arrow-right-short"></i>
+                </a>
+            </article>
+ 
+            <article class="card-overlay p-4 text-center d-flex flex-column justify-content-between h-100 shadow-sm border border-light-subtle" aria-hidden="true">
+                <div>
+                    <div class="icon-circle-overlay blue-bg mx-auto mb-3">
+                            <i class="bi bi-envelope-paper-fill"></i>
+                        </div>
+                        <h2 class="h5 fw-bold mb-2">Contacto Institucional</h2>
+                        <p class="small text-muted mb-3">Escríbenos para recibir atención personalizada y resolver tus dudas.</p>
+                    </div>
+                    <a href="{% url 'contacto' %}" class="card-overlay-link text-decoration-none" tabindex="-1">
+                        <span>CONTACTAR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN: RESEÑA Y CONTADORES -->
+<section class="py-5" style="background-color: #ffffff;" aria-label="Reseña y estadísticas institucionales">
+    <div class="container py-4">
+        <div class="row align-items-center gy-5">
+            <!-- Columna Reseña -->
+            <div class="col-12 col-lg-6">
+                <span class="badge-accent-top bg-success bg-opacity-10 text-success d-inline-flex align-items-center gap-2 mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">NUESTRA TRAYECTORIA</span>
+                <h2 class="fw-extrabold text-primary mb-3 display-5">Formando Líderes en Tecnología y Negocios</h2>
+                <p class="text-secondary mb-4">
+                    El Instituto Superior Tecnológico Tecnoecuatoriano (ISTTE) es una institución de educación superior acreditada con más de 25 años de trayectoria dedicados a formar profesionales íntegros, proactivos y altamente competitivos. Nos enfocamos en una metodología práctica que responde a las demandas reales del mercado laboral nacional y global.
+                </p>
+                <p class="text-secondary mb-4">
+                    Nuestros planes de estudio (PEDI) están diseñados bajo estrictas normas de aseguramiento de la calidad académica, garantizando que adquieras competencias avanzadas en tecnología, administración, seguridad vial e innovación.
+                </p>
+                <div class="d-flex gap-3 align-items-center">
+                    <i class="bi bi-patch-check-fill text-success fs-3"></i>
+                    <div>
+                        <strong class="text-primary d-block">Institución Acreditada por el CACES</strong>
+                        <span class="small text-secondary">Máxima calidad académica certificada.</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Columna Contadores -->
+            <div class="col-12 col-lg-6">
+                <div class="row g-4 text-center">
+                    <!-- Contador 1 -->
+                    <div class="col-6">
+                        <div class="p-4 rounded-4 shadow-sm border border-light-subtle bg-light h-100">
+                            <i class="bi bi-calendar-check-fill text-success fs-2 d-block mb-2"></i>
+                            <span class="d-block h2 fw-bold text-primary mb-1">25+</span>
+                            <span class="small text-secondary fw-semibold">Años de Trayectoria</span>
+                        </div>
+                    </div>
+                    <!-- Contador 2 -->
+                    <div class="col-6">
+                        <div class="p-4 rounded-4 shadow-sm border border-light-subtle bg-light h-100">
+                            <i class="bi bi-people-fill text-primary fs-2 d-block mb-2"></i>
+                            <span class="d-block h2 fw-bold text-primary mb-1">15K+</span>
+                            <span class="small text-secondary fw-semibold">Graduados Exitosos</span>
+                        </div>
+                    </div>
+                    <!-- Contador 3 -->
+                    <div class="col-6">
+                        <div class="p-4 rounded-4 shadow-sm border border-light-subtle bg-light h-100">
+                            <i class="bi bi-geo-alt-fill text-success fs-2 d-block mb-2"></i>
+                            <span class="d-block h2 fw-bold text-primary mb-1">5</span>
+                            <span class="small text-secondary fw-semibold">Sedes y Campus</span>
+                        </div>
+                    </div>
+                    <!-- Contador 4 -->
+                    <div class="col-6">
+                        <div class="p-4 rounded-4 shadow-sm border border-light-subtle bg-light h-100">
+                            <i class="bi bi-mortarboard-fill text-primary fs-2 d-block mb-2"></i>
+                            <span class="d-block h2 fw-bold text-primary mb-1">4+</span>
+                            <span class="small text-secondary fw-semibold">Carreras Tecnológicas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN: VIDEO INSTITUCIONAL -->
+<section class="py-5" style="background-color: #F4F7FF;" aria-label="Video institucional">
+    <div class="container py-4 text-center">
+        <span class="badge-accent-top bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center gap-2 mb-3" style="font-size: 0.8rem; letter-spacing: 1px;">CONOCE EL ISTTE</span>
+        <h2 class="fw-extrabold text-primary mb-4 display-5">Mira Nuestra Experiencia Educativa</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="video-player-wrapper position-relative rounded-4 overflow-hidden shadow-lg border border-white border-4" style="height: 480px; background: #000;">
+                    <!-- Video Embed -->
+                    <iframe class="w-100 h-100 border-0" 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            title="Video Institucional ISTTE" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN: Carrusel de Noticias -->
+<section class="news-section container py-5" aria-label="Noticias y multimedia recientes">
+    <div class="row mb-4">
+        <div class="col-12 d-flex align-items-center justify-content-between">
+            <h2 class="section-title mb-0">Carrusel de Noticias</h2>
+            <a href="{% url 'multimedia' %}" class="text-primary small fw-bold text-decoration-none">Ver todas →</a>
+        </div>
+    </div>
+
+    <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% if latest_media %}
+                {% for item in latest_media %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6">
+                            <article class="news-card card border-0 rounded-4 shadow-sm h-100 overflow-hidden bg-white">
+                                <div class="ratio ratio-16x9">
+                                    {% if item.image %}
+                                        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-img-top object-fit-cover">
+                                    {% elif item.video %}
+                                        <video controls class="w-100 h-100">
+                                            <source src="{{ item.video.url }}" type="video/mp4">
+                                        </video>
+                                    {% else %}
+                                        <img src="{% static 'images/placeholder.png' %}" alt="placeholder" class="card-img-top object-fit-cover">
+                                    {% endif %}
+                                </div>
+                                <div class="card-body p-4 text-center">
+                                    <h3 class="h4 mb-2 text-primary fw-bold">{{ item.title }}</h3>
+                                    <p class="small text-secondary mb-3">{{ item.description|truncatechars:200 }}</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                                        <small class="text-muted"><i class="bi bi-calendar3 me-1"></i> {{ item.created_at|date:"d M Y" }}</small>
+                                        <a href="{% url 'multimedia' %}" class="btn btn-sm btn-outline-primary fw-bold px-3">Leer Más</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="carousel-item active">
+                    <div class="alert alert-info rounded-4 text-center">No hay noticias publicadas aún.</div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Controles de Carrusel -->
+        {% if latest_media|length > 1 %}
+        <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true" style="background-color: var(--istte-blue-primary) !important;"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true" style="background-color: var(--istte-blue-primary) !important;"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+ 

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Becas e Incentivos | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="becas-title">
+    <div class="container py-4">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Becas e Incentivos</li>
+            </ol>
+        </nav>
+        
+        <div class="text-center mb-5">
+            <h1 id="becas-title" class="fw-extrabold text-primary display-4">Becas e Incentivos</h1>
+            <p class="text-secondary small">Apoyo financiero para que alcances tu meta profesional.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <article class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100 hover-lift">
+                    <h2 class="h5 fw-bold text-primary mb-2">Beca de Excelencia Académica</h2>
+                    <p class="small text-secondary mb-0">Otorgada automáticamente a estudiantes con promedios superiores a 9.5 en el periodo académico inmediato anterior.</p>
+                </article>
+            </div>
+            
+            <div class="col-12 col-md-6">
+                <article class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100 hover-lift">
+                    <h2 class="h5 fw-bold text-primary mb-2">Beca de Ayuda Socioeconómica</h2>
+                    <p class="small text-secondary mb-0">Descuentos en aranceles semestrales basados en un estudio de vulnerabilidad socioeconómica del estudiante.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

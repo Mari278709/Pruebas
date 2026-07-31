@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Investigación y Desarrollo | ISTTE{% endblock %}
+{% block content %}
+<section class="py-5" aria-labelledby="inv-title">
+    <div class="container py-4">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Investigación</li>
+            </ol>
+        </nav>
+
+        <div class="text-center mb-5">
+            <h1 id="inv-title" class="fw-extrabold text-primary display-4">Investigación y Desarrollo</h1>
+            <p class="text-secondary">Impulsamos la investigación aplicada y la innovación tecnológica para resolver problemas reales del entorno.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Semilleros -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-lightbulb fs-3"></i>
+                        </div>
+                        <h2 class="h5 fw-bold text-primary m-0">Semilleros de Investigación</h2>
+                    </div>
+                    <p class="small text-secondary m-0">
+                        Grupos colaborativos conformados por docentes y estudiantes para el diseño de prototipos robóticos, software libre, automatización y seguridad informática.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Publicaciones -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-file-earmark-bar-graph fs-3"></i>
+                        </div>
+                        <h2 class="h5 fw-bold text-primary m-0">Publicaciones Científicas</h2>
+                    </div>
+                    <p class="small text-secondary m-0">
+                        Registro de artículos, ponencias y manuales técnicos publicados por nuestro cuerpo docente en revistas indexadas y conferencias especializadas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
