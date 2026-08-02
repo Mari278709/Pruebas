@@ -1696,11 +1696,11 @@ html[data-theme="light"] .form-select::before {
 }
 
 html[data-theme="light"] .glass-nav {
-    background: rgba(255, 255, 255, 0.85) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    background: rgba(255, 255, 255, 0.1) !important; /* Casi transparente para efecto cristal puro */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
 }
 
 html[data-theme="light"] .form-control,
@@ -1745,12 +1745,13 @@ html[data-theme="light"] .bg-luz {
     background: transparent !important; /* Quitar overlays oscuros y luces artificiales */
 }
 
-/* Hacer que los carruseles/imágenes de fondo sigan visibles pero como una textura suave para que el degradado siga siendo protagonista */
+/* Removido el filtro que opacaba las imágenes del carrusel porque el usuario detesta el color blanco.
+   Se mantiene el brillo y los colores originales de las imágenes. */
 html[data-theme="light"] #heroCarousel,
 html[data-theme="light"] #ofertaCarousel,
 html[data-theme="light"] .collage-wrapper {
-    opacity: 0.4 !important; /* Aumentado a 40% para que se noten bien */
-    filter: brightness(110%) !important;
+    opacity: 1 !important; 
+    filter: none !important;
 }
 
 /* Color de texto en la barra de navegación y menús desplegables para máxima legibilidad */
@@ -1796,12 +1797,11 @@ html[data-theme="light"] .navbar-toggler-icon {
 
 /* Eliminar el borde forzado que no gustó */
 
-/* Fondo de cristal para el menú lateral (offcanvas) en modo claro */
 html[data-theme="light"] .offcanvas {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-left: 1px solid rgba(1, 75, 160, 0.1);
+    background: rgba(255, 255, 255, 0.25) !important; /* Cristal más transparente, no blanco lechoso */
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Asegurar que el botón de cerrar sea oscuro */
