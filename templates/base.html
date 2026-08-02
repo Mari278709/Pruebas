@@ -91,6 +91,54 @@
             border-color: rgba(24, 166, 74, 1) !important;
             box-shadow: 0 4px 30px rgba(24, 166, 74, 0.3) !important;
         }
+
+        /* =========================================
+   MODO DÍA - SOLO PARA CELULARES (≤ 767.98px)
+   ========================================= */
+        @media (max-width: 767.98px) {
+
+            /* Fondo del offcanvas (menú desplegable) en modo día */
+            [data-theme="light"] .offcanvas {
+                background-color: #ffffff !important;
+                color: #0a192f !important;
+            }
+
+            /* Todos los textos dentro del menú en modo día */
+            [data-theme="light"] .offcanvas .nav-link,
+            [data-theme="light"] .offcanvas .dropdown-item,
+            [data-theme="light"] .offcanvas .navbar-brand-text,
+            [data-theme="light"] .offcanvas .navbar-brand-subtext {
+                color: #0a192f !important;
+            }
+
+            /* Botón de cerrar (la "X") - se invierte para verse oscuro */
+            [data-theme="light"] .offcanvas .btn-close {
+                filter: invert(1);
+            }
+
+            /* Barra de navegación flotante (glass-nav) en celulares */
+            [data-theme="light"] .glass-nav {
+                background: rgba(255, 255, 255, 0.85) !important;
+                border-color: rgba(0, 0, 0, 0.08) !important;
+            }
+
+            [data-theme="light"] .glass-nav .nav-link {
+                color: #0a192f !important;
+            }
+
+            [data-theme="light"] .glass-nav .navbar-brand-text {
+                color: #0a192f !important;
+            }
+
+            /* Icono del botón de tema (Sol/Luna) en móviles */
+            [data-theme="light"] .theme-toggle-btn .theme-icon-dark {
+                display: none !important;
+            }
+
+            [data-theme="light"] .theme-toggle-btn .theme-icon-light {
+                display: inline-block !important;
+            }
+        }
     </style>
 </head>
 
