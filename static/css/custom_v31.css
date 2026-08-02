@@ -1851,13 +1851,34 @@ html[data-theme="light"] .btn-close-white {
    ========================================= */
 html[data-theme="light"] .navbar {
     /* Forzar los colores de la barra a oscuro (azul) */
-    --bs-navbar-color: #014ba0 !important;
+    --bs-navbar-color: #0a192f !important;
     --bs-navbar-hover-color: #003366 !important;
-    --bs-navbar-active-color: #014ba0 !important;
-    --bs-navbar-brand-color: #014ba0 !important;
+    --bs-navbar-active-color: #0a192f !important;
+    --bs-navbar-brand-color: #0a192f !important;
     --bs-navbar-brand-hover-color: #003366 !important;
-    --bs-offcanvas-bg: #ffffff !important;
     --bs-offcanvas-color: #0a192f !important;
+}
+
+/* Efecto cristal blanco para el modo día (Monitores y Móviles) */
+html[data-theme="light"] .glass-nav,
+html[data-theme="light"] .offcanvas {
+    background: rgba(255, 255, 255, 0.75) !important; 
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Sombras protectoras en el texto para que resalte sobre el cristal en modo día */
+html[data-theme="light"] .glass-nav .nav-link,
+html[data-theme="light"] .glass-nav .navbar-brand span,
+html[data-theme="light"] .offcanvas .nav-link,
+html[data-theme="light"] .offcanvas .dropdown-item,
+html[data-theme="light"] .offcanvas .dropdown-toggle,
+html[data-theme="light"] .offcanvas .offcanvas-title {
+    color: #0a192f !important;
+    font-weight: 600 !important;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.9) !important;
 }
 /* =========================================
    FIX: MASCOTA FOOTER RESPONSIVA
