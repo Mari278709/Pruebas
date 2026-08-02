@@ -1825,3 +1825,34 @@ html[data-theme="light"] .offcanvas-body .dropdown-menu {
 .offcanvas-body .dropdown-menu.show {
     display: block !important;
 }
+
+/* =========================================
+   FIX: MASCOTA FOOTER RESPONSIVA
+   ========================================= */
+.mascot-container {
+    height: 0; 
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-mascot {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+    transform: translateY(0);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+    position: relative;
+    z-index: 10;
+}
+
+/* En escritorio, se desplaza a la derecha y arriba */
+@media (min-width: 768px) {
+    .mascot-container {
+        justify-content: flex-start;
+    }
+    .footer-mascot {
+        height: 145px;
+        transform: translate(66px, -17px);
+    }
+}

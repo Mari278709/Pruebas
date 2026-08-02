@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // ----------------------------------------------------
     // LÓGICA DE MODO DÍA/NOCHE (THEME TOGGLE)
     // ----------------------------------------------------
-    const themeToggle = document.getElementById('theme-toggle');
-    const iconDark = document.querySelector('.theme-icon-dark');
-    const iconLight = document.querySelector('.theme-icon-light');
+    const themeToggles = document.querySelectorAll('.theme-toggle-btn');
+    const iconsDark = document.querySelectorAll('.theme-icon-dark');
+    const iconsLight = document.querySelectorAll('.theme-icon-light');
     
     // Función para aplicar un tema específico
     function applyTheme(theme) {
@@ -17,17 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (theme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.documentElement.setAttribute('data-bs-theme', 'light');
-            if (iconDark && iconLight) {
-                iconDark.classList.add('d-none');
-                iconLight.classList.remove('d-none');
-            }
+            iconsDark.forEach(icon => icon.classList.add('d-none'));
+            iconsLight.forEach(icon => icon.classList.remove('d-none'));
         } else {
             document.documentElement.removeAttribute('data-theme');
             document.documentElement.setAttribute('data-bs-theme', 'dark');
-            if (iconDark && iconLight) {
-                iconLight.classList.add('d-none');
-                iconDark.classList.remove('d-none');
-            }
+            iconsLight.forEach(icon => icon.classList.add('d-none'));
+            iconsDark.forEach(icon => icon.classList.remove('d-none'));
         }
     }
 
@@ -37,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function() {
         applyTheme(savedTheme);
     }
 
-    // Event listener para el botón
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function(e) {
+    // Event listener para los botones
+    themeToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
             e.preventDefault();
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -47,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
             applyTheme(newTheme);
             localStorage.setItem('istte-theme', newTheme);
         });
-    }
+    });
     // ----------------------------------------------------
 
     // Inicializar componentes interactivos
