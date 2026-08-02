@@ -1877,8 +1877,7 @@ html[data-theme="light"] .btn-close-white {
 .mascot-container {
     position: relative;
     display: flex;
-    justify-content: center; /* Centrado en móvil por defecto */
-    margin-top: 1.5rem;
+    justify-content: flex-end; /* Alineado a la derecha en móvil */
 }
 
 .footer-mascot {

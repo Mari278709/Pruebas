@@ -27,10 +27,10 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Design Tokens -->
-    <link rel="stylesheet" href="{% static 'css/design-tokens.css' %}?v=24">
+    <link rel="stylesheet" href="{% static 'css/design-tokens.css' %}?v=25">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}?v=24">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}?v=25">
 
     <style>
         /* =========================================
@@ -388,20 +388,22 @@
                 <!-- Enlaces Legales -->
                 <div class="col-12 col-md-3 col-lg-2">
                     <h2 class="footer-heading">Enlaces Legales</h2>
-                    <ul class="footer-links-list list-unstyled">
-                        <li class="mb-2"><a href="{% url 'aviso_legal' %}"
-                                class="footer-link small text-secondary text-decoration-none">Aviso legal</a></li>
-                        <li class="mb-2"><a href="{% url 'politica_privacidad' %}"
-                                class="footer-link small text-secondary text-decoration-none">Política de privacidad</a>
-                        </li>
-                        <li class="mb-2"><a href="{% url 'proceso_admision' %}"
-                                class="footer-link small text-secondary text-decoration-none">Admisiones</a></li>
-                        <li class="mb-2"><a href="{% url 'carreras' %}"
-                                class="footer-link small text-secondary text-decoration-none">Oferta Académica</a></li>
-                    </ul>
-                    <!-- Imagen solicitada (2.png) debajo de Enlaces Legales -->
-                    <div class="mt-3 mascot-container">
-                        <img src="{% static 'images/2.png' %}" alt="Mascota ISTTE" class="img-fluid footer-mascot">
+                    <div class="d-flex justify-content-between align-items-end">
+                        <ul class="footer-links-list list-unstyled mb-0">
+                            <li class="mb-2"><a href="{% url 'aviso_legal' %}"
+                                    class="footer-link small text-secondary text-decoration-none">Aviso legal</a></li>
+                            <li class="mb-2"><a href="{% url 'politica_privacidad' %}"
+                                    class="footer-link small text-secondary text-decoration-none">Política de privacidad</a>
+                            </li>
+                            <li class="mb-2"><a href="{% url 'proceso_admision' %}"
+                                    class="footer-link small text-secondary text-decoration-none">Admisiones</a></li>
+                            <li class="mb-2"><a href="{% url 'carreras' %}"
+                                    class="footer-link small text-secondary text-decoration-none">Oferta Académica</a></li>
+                        </ul>
+                        <!-- Imagen solicitada (2.png) al lado de Enlaces Legales en móvil -->
+                        <div class="mascot-container ms-2">
+                            <img src="{% static 'images/2.png' %}" alt="Mascota ISTTE" class="img-fluid footer-mascot">
+                        </div>
                     </div>
                 </div>
             </div>
