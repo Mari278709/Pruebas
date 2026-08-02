@@ -1832,25 +1832,30 @@ html[data-theme="light"] .btn-close-white {
    FIX: MASCOTA FOOTER RESPONSIVA
    ========================================= */
 .mascot-container {
-    height: 0; 
-    overflow: visible;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .footer-mascot {
-    height: 120px;
+    height: 130px;
     width: auto;
     object-fit: contain;
-    transform: translateY(0);
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
     position: relative;
     z-index: 10;
 }
 
-/* En escritorio, se desplaza a la derecha y arriba */
+/* En escritorio, regresa a su comportamiento original */
 @media (min-width: 768px) {
     .mascot-container {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        height: 0; 
+        overflow: visible;
         justify-content: flex-start;
     }
     .footer-mascot {
