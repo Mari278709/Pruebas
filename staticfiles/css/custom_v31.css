@@ -1,0 +1,1908 @@
+/* 
+   custom.css - Estilos Personalizados Portal ISTTE
+   Enfoque: Mobile-First, Alta Accesibilidad, Paleta Azul, Verde y Blanco.
+*/
+
+:root {
+    /* Paleta de Colores */
+    --istte-blue-primary: #1A73E8;
+    --istte-blue-dark: #04213a;
+    --istte-blue-darker: #021122;
+    --istte-blue-sky: #08315a;
+    --istte-blue-light: #E6F0FB;
+
+    --istte-green-accent: #2eb62e;
+    --istte-green-hover: #1f8a28;
+    --istte-green-soft: rgba(124, 232, 39, 0.15);
+    --istte-green-light: rgba(124, 232, 39, 0.15);
+
+    --istte-white: #FFFFFF;
+    --istte-bg-light: #F6F9FF;
+    --istte-bg-dark: #08172F;
+    --istte-border-color: rgba(255, 255, 255, 0.12);
+
+    /* Tipografía y Textos */
+    --istte-text-dark: #F7FBFF;
+    --istte-text-muted: #9FB5D6;
+    --istte-text-soft: #C9DBF2;
+
+    /* Sombras y Bordes */
+    --istte-shadow-sm: 0 6px 18px rgba(2, 15, 35, 0.12);
+    --istte-shadow-md: 0 12px 34px rgba(2, 15, 35, 0.18);
+    --istte-shadow-lg: 0 20px 48px rgba(2, 15, 35, 0.22);
+    --istte-radius-sm: 12px;
+    --istte-radius-md: 20px;
+    --istte-radius-lg: 28px;
+
+    /* Transiciones */
+    --istte-transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset y Base */
+body {
+    font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #02060d;
+    color: #ffffff;
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+/* Espaciado para que el header position-absolute no oculte el contenido superior de las subpáginas */
+main>section.py-5:first-child {
+    padding-top: 100px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+    background: rgba(124, 232, 39, 0.25);
+    color: #fff;
+}
+
+/* Mejoras de Accesibilidad - Contraste e Enfoque */
+a:focus,
+button:focus,
+input:focus,
+select:focus {
+    outline: 3px solid var(--istte-green-accent) !important;
+    outline-offset: 2px;
+}
+
+/* Header & Navegación */
+.navbar-istte {
+    background: rgba(4, 16, 42, 0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    transition: var(--istte-transition-smooth);
+}
+
+/* Resplandor para el botón de menú */
+.navbar-toggler {
+    animation: menu-glow 2.5s infinite alternate ease-in-out;
+    border-radius: 8px;
+    background-color: transparent;
+    /* Fondo transparente para resaltar el brillo */
+}
+
+@keyframes menu-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(124, 232, 39, 0.5), 0 0 10px rgba(124, 232, 39, 0.3);
+    }
+
+    50% {
+        box-shadow: -4px 0 15px rgba(124, 232, 39, 0.8), 4px 0 15px rgba(95, 162, 238, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(38, 95, 159, 0.9), 0 0 25px rgba(38, 95, 159, 0.6);
+    }
+}
+
+.navbar-brand-text {
+    font-weight: 800;
+    color: var(--istte-white);
+    letter-spacing: -0.6px;
+    font-size: 1rem;
+}
+
+.navbar-brand-subtext {
+    font-size: 0.72rem;
+    color: var(--istte-green-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1;
+}
+
+.nav-link-istte {
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    transition: var(--istte-transition-smooth);
+}
+
+.nav-link-istte:hover,
+.nav-link-istte.active {
+    color: var(--istte-white);
+    background-color: rgba(124, 232, 39, 0.12);
+}
+
+.btn-contacto-nav {
+    background-color: var(--istte-green-accent);
+    color: var(--istte-white);
+    border: none;
+}
+
+.btn-contacto-nav:hover {
+    background-color: var(--istte-green-hover);
+}
+
+/* Carreras */
+.career-card-media {
+    overflow: hidden;
+    border-radius: 1rem;
+    background: var(--istte-bg-light);
+}
+
+.career-card-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.career-card-image:hover {
+    transform: scale(1.03);
+    filter: saturate(1.05);
+}
+
+.career-detail-image {
+    width: auto;
+    max-width: 560px;
+    max-height: 140px;
+    object-fit: contain;
+    display: block;
+    border-radius: 1rem;
+    border: 1px solid rgba(11, 58, 111, 0.08);
+    box-shadow: none;
+    margin-left: auto;
+}
+
+/* Título a Obtener box sizing */
+.career-degree-box {
+    max-width: 340px;
+    margin-left: auto;
+    display: inline-block;
+    padding: 0.75rem 1rem;
+}
+
+@media (max-width: 991.98px) {
+    .career-degree-box {
+        max-width: 100%;
+        display: block;
+        margin-left: 0;
+    }
+}
+
+/* News images: limit height to avoid oversized cards */
+.news-image-ratio {
+    max-height: 180px;
+    overflow: hidden;
+}
+
+.news-image-ratio .object-fit-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hero Section */
+.hero-section,
+.hero-container {
+    background: linear-gradient(135deg, rgba(114, 178, 89, 0.85) 0%, rgba(38, 95, 159, 0.92) 100%),
+        url('https://i.ibb.co/TqndvKGy/front1.jpg');
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 0 7rem 0;
+    min-height: calc(100vh - 110px);
+    color: var(--istte-white);
+}
+
+/* Carrera hero: reduce vertical footprint for detalle_carreras header */
+.career-hero {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+}
+
+.career-hero .display-4 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+}
+
+.career-hero .lead {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Reduce video player height inside career detail for large screens */
+.video-player-wrapper {
+    height: 280px;
+}
+
+@media (max-width: 991.98px) {
+    .video-player-wrapper {
+        height: 220px !important;
+    }
+
+    .career-hero .display-4 {
+        font-size: 1.9rem;
+    }
+}
+
+/* New hero recreation styles */
+.career-hero {
+    background-image: radial-gradient(circle at 20% 10%, rgba(46, 182, 46, 0.06), transparent 8%),
+        radial-gradient(circle at 85% 20%, rgba(8, 49, 90, 0.12), transparent 10%);
+}
+
+.career-hero .display-4 {
+    font-weight: 900;
+    font-size: clamp(2.4rem, 4.6vw, 4rem);
+}
+
+.title-gradient {
+    background: linear-gradient(90deg, #00C853 0%, #00B0FF 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+/* Underline accent anchored to the highlighted word */
+.career-hero .display-4::after {
+    /* keep disabled to avoid double underline */
+    content: '';
+    display: none;
+}
+
+.title-gradient::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.85rem;
+    width: 140px;
+    height: 8px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--istte-green-neon), #00b0ff);
+    box-shadow: 0 6px 18px rgba(0, 176, 255, 0.08);
+}
+
+.hero-illustration {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-illustration-bg {
+    width: 560px;
+    height: 320px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center right;
+    transform: translateX(6%);
+    filter: drop-shadow(0 28px 60px rgba(2, 15, 35, 0.22)) saturate(1.02);
+    border-radius: 18px;
+}
+
+.career-cta-card {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 10;
+}
+
+.career-cta-card .card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.career-cta-card .card-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(57, 255, 20, 0.1);
+    border: 1px solid rgba(57, 255, 20, 0.3);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+}
+
+.career-cta-card .btn-arrow {
+    margin-left: 0.5rem;
+    display: inline-block;
+    transform: translateY(1px);
+}
+
+@media (max-width: 991.98px) {
+    .career-cta-card {
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+        box-shadow: var(--istte-shadow-sm);
+    }
+
+    .hero-illustration-bg {
+        width: 360px;
+        height: 220px;
+        transform: translateX(0%);
+        background-size: contain;
+    }
+
+    .career-hero .display-4 {
+        font-size: 2.4rem;
+    }
+}
+
+.hero-background-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 18% 22%, rgba(124, 232, 39, 0.22), transparent 14%),
+        radial-gradient(circle at 82% 20%, rgba(33, 151, 243, 0.18), transparent 14%),
+        linear-gradient(180deg, rgba(6, 18, 47, 0.92), rgba(10, 24, 70, 0.82));
+    pointer-events: none;
+}
+
+.hero-background-graphics {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hero-background-graphics,
+.hero-background-overlay {
+    z-index: 1;
+}
+
+.hero-main-title {
+    font-size: clamp(2.6rem, 3.6vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 1rem;
+}
+
+.text-green-accent {
+    color: var(--istte-green-accent);
+}
+
+.text-cursive {
+    font-family: 'Brush Script MT', 'Segoe Script', 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 1.05em;
+    line-height: 1;
+    color: var(--istte-white);
+    margin-top: 0.15em;
+}
+
+.hero-main-desc {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.05rem;
+    max-width: 32rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+.badge-accent-top {
+    background-color: transparent;
+    color: var(--istte-green-accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    padding: 0;
+    border-radius: 0;
+    text-transform: uppercase;
+}
+
+.hero-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.2rem;
+    align-items: center;
+}
+
+.btn-explora {
+    background-color: var(--istte-green-accent);
+    color: var(--istte-white);
+    padding: 1rem 1.9rem;
+    font-size: 1rem;
+    box-shadow: 0 22px 50px rgba(124, 232, 39, 0.25);
+    border: none;
+}
+
+.btn-explora:hover {
+    transform: translateY(-2px);
+    background-color: #8ef145;
+}
+
+.btn-conoce-mas {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--istte-white);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.btn-conoce-mas:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.hero-features {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hero-feature-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.4rem;
+    padding: 1rem 1.2rem;
+    min-width: 220px;
+    flex: 1 1 220px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.hero-feature-item i {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(124, 232, 39, 0.18);
+    color: var(--istte-green-accent);
+    font-size: 1.2rem;
+}
+
+.hero-image-wrapper {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+    padding: 0;
+}
+
+.hero-girl-image {
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.35));
+}
+
+.hero-image-backdrop {
+    position: absolute;
+    top: 6%;
+    left: 4%;
+    right: 4%;
+    bottom: 4%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 232, 39, 0.14), transparent 70%);
+    z-index: 0;
+}
+
+.hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    z-index: 1;
+}
+
+.hero-ring-1 {
+    width: 82%;
+    height: 82%;
+    top: 4%;
+    left: 9%;
+}
+
+.hero-ring-2 {
+    width: 62%;
+    height: 62%;
+    top: 14%;
+    left: 19%;
+    border-color: rgba(124, 232, 39, 0.55);
+    opacity: 1;
+}
+
+.hero-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--istte-green-accent);
+    box-shadow: 0 0 24px rgba(124, 232, 39, 0.45);
+}
+
+.hero-dot-1 {
+    top: 8%;
+    left: 2%;
+}
+
+.hero-dot-2 {
+    bottom: 20%;
+    right: 0%;
+    background: #2d9bf0;
+    box-shadow: 0 0 24px rgba(45, 155, 240, 0.5);
+}
+
+.hero-badge {
+    position: absolute;
+    bottom: 4%;
+    right: -4%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: 1.1rem;
+    background: var(--istte-white);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: var(--istte-shadow-lg);
+    max-width: 250px;
+    z-index: 3;
+}
+
+.hero-badge i {
+    color: var(--istte-green-hover);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.hero-badge strong {
+    display: block;
+    color: var(--istte-blue-dark);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+}
+
+.hero-badge small {
+    color: var(--istte-text-muted);
+    color: #64748b;
+    font-size: 0.74rem;
+    line-height: 1.3;
+}
+
+.glow-sphere-1,
+.glow-sphere-2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+}
+
+.glow-sphere-1 {
+    width: 320px;
+    height: 320px;
+    top: -80px;
+    left: -80px;
+    background: rgba(16, 124, 65, 0.28);
+}
+
+.glow-sphere-2 {
+    width: 260px;
+    height: 260px;
+    bottom: -60px;
+    right: -60px;
+    background: rgba(10, 59, 124, 0.18);
+}
+
+.hex-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(10, 59, 124, 0.12) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.16;
+    transform: translateY(-10%);
+}
+
+.student-graphic-wrapper {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.student-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 24px 40px rgba(10, 59, 124, 0.12));
+}
+
+.acredited-badge-float {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(10%, 40%);
+    background: rgba(4, 22, 54, 0.95);
+    border: 1px solid rgba(124, 232, 39, 0.18);
+    border-radius: 1.75rem;
+    min-width: 240px;
+    z-index: 2;
+    color: var(--istte-white);
+}
+
+.acredited-badge-float .badge-icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: rgba(124, 232, 39, 0.18);
+    display: grid;
+    place-items: center;
+    color: var(--istte-white);
+}
+
+.acredited-badge-float .badge-title {
+    font-weight: 700;
+    color: var(--istte-blue-primary);
+}
+
+.acredited-badge-float .badge-desc {
+    font-size: 0.85rem;
+    color: var(--istte-text-muted);
+}
+
+.overlay-cards-section {
+    margin-top: -4rem;
+    position: relative;
+    z-index: 5;
+}
+
+@media (max-width: 1199.98px) {
+    .overlay-cards-section {
+        margin-top: -2.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .overlay-cards-section {
+        margin-top: -1.5rem;
+    }
+}
+
+.card-overlay {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: var(--istte-radius-lg);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.card-overlay:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--istte-green-accent);
+    z-index: 10;
+    border-color: rgba(124, 232, 39, 0.25);
+}
+
+.icon-circle-overlay {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--istte-white);
+    font-size: 1.6rem;
+}
+
+.green-bg {
+    background-color: var(--istte-green-accent);
+}
+
+.blue-bg {
+    background-color: var(--istte-blue-primary);
+}
+
+.card-overlay-link {
+    color: var(--istte-blue-primary);
+    font-weight: 700;
+}
+
+.card-overlay-link:hover {
+    color: var(--istte-green-accent);
+}
+
+/* ---------- Marquee: cinta de tarjetas desplazándose a la derecha ---------- */
+.cards-marquee {
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+}
+
+.cards-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: marquee-right 28s linear infinite;
+}
+
+.cards-marquee:hover .cards-marquee-track {
+    animation-play-state: paused;
+}
+
+.cards-marquee-track .card-overlay {
+    flex: 0 0 auto;
+    width: 320px;
+}
+
+@keyframes marquee-right {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cards-marquee-track {
+        animation: none;
+    }
+}
+
+
+.quick-access-container {
+    margin-top: -4.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.card-quick-access {
+    background-color: var(--istte-white);
+    border: 1px solid var(--istte-border-color);
+    border-radius: var(--istte-radius-md);
+    box-shadow: var(--istte-shadow-lg);
+    transition: var(--istte-transition-smooth);
+    overflow: hidden;
+    height: 100%;
+}
+
+.card-quick-access::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--istte-blue-primary);
+    transition: var(--istte-transition-smooth);
+}
+
+.card-quick-access.accent::before {
+    background-color: var(--istte-green-accent);
+}
+
+.card-quick-access:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(10, 59, 124, 0.18);
+}
+
+.card-quick-access:hover::before {
+    width: 10px;
+}
+
+.icon-wrapper-quick {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    background-color: var(--istte-blue-light);
+    color: var(--istte-blue-primary);
+    transition: var(--istte-transition-smooth);
+}
+
+.card-quick-access.accent .icon-wrapper-quick {
+    background-color: var(--istte-green-light);
+    color: var(--istte-green-accent);
+}
+
+.card-quick-access:hover .icon-wrapper-quick {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.btn-istte-primary {
+    background-color: var(--istte-blue-primary);
+    color: var(--istte-white);
+    border: none;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: var(--istte-radius-sm);
+    transition: var(--istte-transition-smooth);
+}
+
+.btn-istte-primary:hover {
+    background-color: var(--istte-blue-dark);
+    color: var(--istte-white);
+    transform: translateY(-2px);
+}
+
+.btn-istte-accent {
+    background-color: var(--istte-green-accent);
+    color: var(--istte-white);
+    border: none;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: var(--istte-radius-sm);
+    transition: var(--istte-transition-smooth);
+}
+
+.btn-istte-accent:hover {
+    background-color: var(--istte-green-hover);
+    color: var(--istte-white);
+    transform: translateY(-2px);
+}
+
+/* Módulo de Trámites en Línea */
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--istte-blue-primary);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--istte-green-accent);
+    border-radius: 2px;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-input-istte {
+    border: 2px solid var(--istte-border-color);
+    padding: 0.8rem 1rem 0.8rem 3rem;
+    border-radius: 50px;
+    font-weight: 500;
+    box-shadow: var(--istte-shadow-sm);
+    transition: var(--istte-transition-smooth);
+}
+
+.search-input-istte:focus {
+    border-color: var(--istte-blue-primary);
+    box-shadow: 0 0 0 4px rgba(10, 59, 124, 0.15);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--istte-text-muted);
+    font-size: 1.2rem;
+}
+
+.card-tramite {
+    background-color: var(--istte-white);
+    border: 1px solid var(--istte-border-color);
+    border-radius: var(--istte-radius-md);
+    padding: 1.5rem;
+    transition: var(--istte-transition-smooth);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--istte-shadow-sm);
+}
+
+.card-tramite:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--istte-shadow-md);
+    border-color: var(--istte-blue-primary);
+}
+
+.badge-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.25rem 0.6rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+
+.badge-cat-academico {
+    background-color: var(--istte-blue-light);
+    color: var(--istte-blue-primary);
+}
+
+.badge-cat-administrativo {
+    background-color: var(--istte-green-light);
+    color: var(--istte-green-accent);
+}
+
+.tramite-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--istte-blue-dark);
+}
+
+.tramite-description {
+    font-size: 0.9rem;
+    color: var(--istte-text-muted);
+}
+
+.tramite-footer-link {
+    color: var(--istte-blue-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: var(--istte-transition-smooth);
+}
+
+.tramite-footer-link:hover {
+    color: var(--istte-green-accent);
+    gap: 0.5rem;
+}
+
+/* Agenda Académica - Cronograma Estilo Timeline */
+.agenda-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.btn-filter-istte {
+    background-color: var(--istte-white);
+    border: 1px solid var(--istte-border-color);
+    color: var(--istte-text-muted);
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    transition: var(--istte-transition-smooth);
+    font-size: 0.9rem;
+}
+
+.btn-filter-istte:hover {
+    background-color: var(--istte-blue-light);
+    color: var(--istte-blue-primary);
+}
+
+.btn-filter-istte.active {
+    background-color: var(--istte-blue-primary);
+    color: var(--istte-white);
+    border-color: var(--istte-blue-primary);
+}
+
+.timeline-container {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 2px;
+    height: 100%;
+    background-color: var(--istte-border-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    transition: var(--istte-transition-smooth);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--istte-white);
+    border: 3px solid var(--istte-blue-primary);
+    z-index: 2;
+    transition: var(--istte-transition-smooth);
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.3);
+    background-color: var(--istte-green-accent);
+    border-color: var(--istte-green-accent);
+}
+
+.timeline-card {
+    background-color: var(--istte-white);
+    border: 1px solid var(--istte-border-color);
+    border-radius: var(--istte-radius-md);
+    padding: 1.25rem;
+    box-shadow: var(--istte-shadow-sm);
+    transition: var(--istte-transition-smooth);
+}
+
+.timeline-item:hover .timeline-card {
+    border-color: var(--istte-green-accent);
+    box-shadow: var(--istte-shadow-md);
+}
+
+.timeline-date-badge {
+    font-weight: 700;
+    color: var(--istte-green-accent);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.timeline-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--istte-blue-primary);
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 992px) {
+    .navbar-istte .dropdown:hover .dropdown-menu {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+.dropdown-menu-custom {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: var(--istte-radius-md);
+    padding: 0.8rem 0.5rem;
+    box-shadow: var(--istte-shadow-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+    min-width: 240px;
+    animation: fadeInDropdown 0.3s ease forwards;
+}
+
+@keyframes fadeInDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-menu-custom .dropdown-item {
+    font-weight: 500;
+    color: var(--istte-blue-dark);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: var(--istte-transition-smooth);
+    margin-bottom: 2px;
+}
+
+.dropdown-menu-custom .dropdown-item:hover {
+    background-color: var(--istte-blue-light);
+    color: var(--istte-blue-primary);
+    transform: translateX(5px);
+}
+
+/* Footer Institucional */
+.footer-istte {
+    background-color: var(--istte-blue-dark);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 4rem 0 2rem 0;
+    border-top: 5px solid var(--istte-green-accent);
+    font-size: 0.95rem;
+}
+
+.footer-logo-title {
+    font-weight: 800;
+    color: var(--istte-white);
+    letter-spacing: -0.5px;
+}
+
+.footer-logo-subtitle {
+    color: var(--istte-green-accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.footer-heading {
+    color: var(--istte-white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 3px;
+    background-color: var(--istte-green-accent);
+    border-radius: 1.5px;
+}
+
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-list li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: var(--istte-transition-smooth);
+    display: inline-block;
+}
+
+.footer-link:hover {
+    color: var(--istte-white);
+    transform: translateX(3px);
+}
+
+.footer-contact-item {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.footer-contact-icon {
+    color: var(--istte-green-accent);
+    font-size: 1.1rem;
+    margin-top: 0.2rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--istte-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: var(--istte-transition-smooth);
+    text-decoration: none;
+}
+
+.social-btn:hover {
+    background-color: var(--istte-green-accent);
+    color: var(--istte-white);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+}
+
+/* Clases Útiles Animadas */
+.hover-lift {
+    transition: var(--istte-transition-smooth);
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+.animate-pulse-slow {
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Noticias (Multimedia) */
+.news-section .news-card {
+    transition: var(--istte-transition-smooth);
+}
+
+.news-section .news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--istte-shadow-md);
+}
+
+.news-section .object-fit-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-section .section-title {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 575.98px) {
+    .news-section .section-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Admin action buttons inside cards */
+.admin-actions .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.78rem;
+}
+
+/* Utility text color matching brand primary */
+.text-istte-primary {
+    color: var(--istte-blue-primary) !important;
+}
+
+/* Ensure contact button has high contrast */
+.btn-contacto-nav {
+    background-color: var(--istte-green-accent);
+    color: #07202a;
+    border: none;
+}
+
+.btn-contacto-nav:hover {
+    background-color: var(--istte-green-hover);
+    color: #fff;
+}
+
+/* Custom additions for the updated architecture */
+.hover-lift,
+.card-hover-lift {
+    transition: var(--istte-transition-smooth);
+}
+
+.hover-lift:hover,
+.card-hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--istte-shadow-lg) !important;
+}
+
+#organigramaTabs .nav-link {
+    color: var(--istte-blue-primary);
+    border: 1px solid var(--istte-blue-light);
+    background-color: var(--istte-white);
+    transition: var(--istte-transition-smooth);
+}
+
+#organigramaTabs .nav-link.active {
+    background-color: var(--istte-blue-primary) !important;
+    color: var(--istte-white) !important;
+    border-color: var(--istte-blue-primary);
+}
+
+/* Custom styling for News Carousel control arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--istte-blue-primary) !important;
+    border: 2px solid var(--istte-white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 991.98px) {
+    .video-player-wrapper {
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .video-player-wrapper {
+        height: 200px !important;
+    }
+}
+
+/* Forzar que los textos secundarios/grises sean blancos para mejor legibilidad */
+.text-secondary,
+.text-muted,
+p.text-secondary,
+.text-white-50 {
+    color: #ffffff !important;
+}
+
+/* =========================================
+   EFECTO COLLAGE ADAPTATIVO (NUESTRO ECOSISTEMA)
+   ========================================= */
+.collage-wrapper {
+    width: 120vw;
+
+    /* =========================================
+   FOOTER NEON & GLASS STYLES
+   ========================================= */
+    .footer-istte {
+        border-top: 2px solid var(--istte-neon) !important;
+        background: #02060d !important;
+    }
+
+    /* Efecto hover neon para todos los links normales del footer */
+    .footer-istte a:not(.social-btn):not(.btn-neon-solid):hover {
+        color: var(--istte-neon) !important;
+        text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+    }
+
+    /* Botones sociales de cristal */
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(0, 40, 179, 0.2);
+        border: 1px solid rgba(0, 40, 179, 0.5);
+        color: var(--istte-white);
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        backdrop-filter: blur(5px);
+    }
+
+    .social-btn:hover {
+        background: rgba(57, 255, 20, 0.15);
+        border-color: var(--istte-neon);
+        color: var(--istte-neon);
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
+    }
+
+    height: 120vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 1.5rem;
+    transform: translate(-50%, -50%) rotate(-2deg);
+}
+
+.collage-pic {
+    width: 20vw;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s ease;
+}
+
+/* Pseudo-selectores para esparcir cualquier cantidad de fotos aleatoriamente */
+.collage-pic:nth-child(2n) {
+    width: 25vw;
+    height: 300px;
+    transform: rotate(4deg) translateY(20px);
+}
+
+.collage-pic:nth-child(3n) {
+    width: 18vw;
+    height: 200px;
+    transform: rotate(-5deg) translateY(-30px);
+}
+
+.collage-pic:nth-child(4n) {
+    width: 28vw;
+    height: 350px;
+    transform: rotate(3deg) translateX(15px);
+}
+
+.collage-pic:nth-child(5n) {
+    width: 22vw;
+    height: 220px;
+    transform: rotate(-6deg) translateY(40px);
+}
+
+.collage-pic:nth-child(7n) {
+    width: 30vw;
+    height: 280px;
+    transform: rotate(2deg) translateX(-20px);
+}
+
+@media (max-width: 991.98px) {
+    .collage-wrapper {
+        gap: 0.5rem;
+    }
+
+    .collage-pic {
+        width: 35vw !important;
+        height: 180px !important;
+    }
+}
+
+/* =========================================
+   BADGE NEON PARA SUBPAGINAS
+   ========================================= */
+.badge-neon {
+    background: rgba(57, 255, 20, 0.15) !important;
+    color: var(--istte-neon) !important;
+    border: 1px solid rgba(57, 255, 20, 0.4) !important;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.1) !important;
+}
+
+/* =========================================
+   ACCORDION NEON & GLASS
+   ========================================= */
+.accordion,
+.accordion-item {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.accordion-button {
+    background: rgba(255, 255, 255, 0.03) !important;
+    color: var(--istte-white) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background: rgba(57, 255, 20, 0.1) !important;
+    color: var(--istte-neon) !important;
+    box-shadow: inset 0 -1px 0 rgba(57, 255, 20, 0.3) !important;
+}
+
+/* Cambiar el color de la flechita del acordeón (Bootstrap usa un SVG de fondo negro por defecto) */
+.accordion-button::after {
+    filter: invert(1);
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: invert(0.8) sepia(1) hue-rotate(80deg) saturate(5) brightness(1.2);
+}
+
+/* =========================================
+   LIST GROUP GLASS
+   ========================================= */
+.list-group-item {
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* =========================================
+   FORM CONTROL GLASS (Inputs)
+   ========================================= */
+.form-control,
+.form-select {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: var(--istte-white) !important;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(8, 49, 90, 0.6) !important;
+    border-color: var(--istte-neon) !important;
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.3) !important;
+    color: var(--istte-white) !important;
+    outline: none !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* =========================================
+   GLOBAL OVERRIDE BG-LIGHT PARA DARK THEME
+   ========================================= */
+.bg-light,
+.bg-light-subtle {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-left: 3px solid var(--istte-neon) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    color: var(--istte-white) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease;
+}
+
+.bg-light:hover,
+.bg-light-subtle:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-left: 3px solid #fff !important;
+    box-shadow: 0 8px 32px 0 rgba(57, 255, 20, 0.15) !important;
+}
+
+/* =========================================
+   FIX: TAMAÑOS DE BOTONES NEON PEQUEÑOS
+   ========================================= */
+.btn-neon.btn-sm,
+.btn-neon-solid.btn-sm {
+    padding: 0.4rem 1rem !important;
+    font-size: 0.85rem !important;
+}
+
+/* =========================================
+   FIX: MENU DESPLEGABLE (DROPDOWNS)
+   ========================================= */
+.dropdown-menu {
+    background-color: rgba(2, 6, 13, 0.95) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(57, 255, 20, 0.3) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+    padding: 0.5rem 0 !important;
+}
+
+.dropdown-item {
+    color: var(--istte-white) !important;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1.5rem !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(57, 255, 20, 0.15) !important;
+    color: var(--istte-neon) !important;
+    transform: translateX(5px);
+}
+
+/* =========================================
+   COLOR DE FONDO PERSONALIZADO PARA SUBPÁGINAS
+   ========================================= */
+body.bg-subpage {
+    background-color: #014ba0 !important;
+}
+
+/* =========================================
+   MODO CLARO (OVERRIDES GLOBALES DE CUSTOM.CSS)
+   ========================================= */
+[data-theme="light"] body.bg-subpage {
+    background-color: #e3f2fd !important;
+}
+
+html[data-theme="light"] body {
+    color: #0a192f !important;
+}
+
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-light,
+html[data-theme="light"] .text-secondary,
+html[data-theme="light"] .text-muted,
+html[data-theme="light"] p.text-secondary,
+html[data-theme="light"] .text-white-50,
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html[data-theme="light"] label,
+html[data-theme="light"] .form-label,
+html[data-theme="light"] .navbar-brand,
+html[data-theme="light"] .nav-link,
+html[data-theme="light"] .dropdown-item {
+    color: #0a192f !important; 
+}
+
+[data-theme="light"] .footer-istte {
+    background: #e9ecef !important;
+    border-top: 2px solid var(--istte-green-neon) !important;
+}
+
+/* EFECTO CRISTAL REALISTA MODO CLARO */
+html[data-theme="light"] .glass-card,
+html[data-theme="light"] .dropdown-menu,
+html[data-theme="light"] .bg-light,
+html[data-theme="light"] .bg-light-subtle,
+html[data-theme="light"] .career-cta-card,
+html[data-theme="light"] .accordion-button,
+html[data-theme="light"] .form-control,
+html[data-theme="light"] .form-select {
+    position: relative;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.05),
+        inset 2px 2px 3px rgba(255, 255, 255, 0.8),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .glass-card::before,
+html[data-theme="light"] .dropdown-menu::before,
+html[data-theme="light"] .bg-light::before,
+html[data-theme="light"] .bg-light-subtle::before,
+html[data-theme="light"] .career-cta-card::before,
+html[data-theme="light"] .accordion-button::before,
+html[data-theme="light"] .form-control::before,
+html[data-theme="light"] .form-select::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: inherit;
+}
+
+html[data-theme="light"] .glass-nav {
+    background: rgba(255, 255, 255, 0.1) !important; /* Casi transparente para efecto cristal puro */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+}
+
+html[data-theme="light"] .glass-nav::before {
+    display: none !important; /* Ocultar el fondo oscuro del modo noche */
+}
+
+html[data-theme="light"] .form-control,
+html[data-theme="light"] .form-select {
+    color: #0a192f !important;
+}
+
+html[data-theme="light"] .btn-neon,
+html[data-theme="light"] .btn-neon-solid {
+    background-color: transparent !important;
+    background-image: linear-gradient(135deg, rgba(24, 166, 74, 0.2) 0%, rgba(24, 166, 74, 0.05) 100%) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-right: 1px solid rgba(24, 166, 74, 0.5) !important;
+    border-bottom: 1px solid rgba(24, 166, 74, 0.5) !important;
+    color: #0a192f !important;
+    box-shadow: 0 4px 15px rgba(24, 166, 74, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.5) !important;
+}
+
+html[data-theme="light"] .btn-neon:hover,
+html[data-theme="light"] .btn-neon-solid:hover {
+    background-image: linear-gradient(135deg, rgba(24, 166, 74, 0.3) 0%, rgba(24, 166, 74, 0.1) 100%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 1) !important;
+    border-left: 1px solid rgba(255, 255, 255, 1) !important;
+    color: #000 !important;
+}
+
+/* =========================================
+   ADAPTACIONES INDEX PAGE MODO DÍA
+   ========================================= */
+html[data-theme="light"] .oferta-section,
+html[data-theme="light"] .ecosistema-section {
+    background-color: transparent !important; /* Quitar fondo negro oscuro de las secciones */
+}
+
+html[data-theme="light"] .hero-overlay,
+html[data-theme="light"] .oferta-overlay,
+html[data-theme="light"] .ecosistema-overlay,
+html[data-theme="light"] .bg-luz {
+    background: transparent !important; /* Quitar overlays oscuros y luces artificiales */
+}
+
+/* Removido el filtro que opacaba las imágenes del carrusel porque el usuario detesta el color blanco.
+   Se mantiene el brillo y los colores originales de las imágenes. */
+html[data-theme="light"] #heroCarousel,
+html[data-theme="light"] #ofertaCarousel,
+html[data-theme="light"] .collage-wrapper {
+    opacity: 1 !important; 
+    filter: none !important;
+}
+
+/* Color de texto en la barra de navegación y menús desplegables para máxima legibilidad */
+html[data-theme="light"] .navbar .nav-link,
+html[data-theme="light"] .navbar .navbar-brand span,
+html[data-theme="light"] .offcanvas-header span.text-white,
+html[data-theme="light"] .theme-toggle-btn,
+html[data-theme="light"] .dropdown-menu .dropdown-item {
+    color: #014ba0 !important;
+    font-weight: 600 !important;
+}
+
+html[data-theme="light"] .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(1, 75, 160, 0.1) !important;
+}
+
+/* =========================================
+   ANIMACIONES Y MEJORAS UI/UX (TARJETAS)
+   ========================================= */
+.career-card-media {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.career-card-image {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.glass-card:hover .career-card-image {
+    transform: scale(1.08); /* Efecto de zoom al pasar el ratón */
+}
+
+/* =========================================
+   ADAPTACIÓN MÓVIL (MODO DÍA)
+   ========================================= */
+/* Invertir color del ícono hamburguesa para que sea azul oscuro en modo claro */
+html[data-theme="light"] .navbar-toggler-icon {
+    filter: invert(24%) sepia(50%) saturate(2971%) hue-rotate(193deg) brightness(90%) contrast(105%);
+}
+
+/* Fondo de cristal para el menú lateral (offcanvas) en modo claro SOLO EN MÓVIL */
+@media (max-width: 1199px) {
+    html[data-theme="light"] .offcanvas {
+        background: rgba(255, 255, 255, 0.95) !important; /* Más opaco para que se pueda leer el texto oscuro */
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+}
+
+/* Asegurar que el botón de cerrar sea oscuro */
+html[data-theme="light"] .btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(0);
+}
+
+/* =========================================
+   FIX: MENÚ MÓVIL Y SUBMENÚS EN OFFCANVAS
+   ========================================= */
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        pointer-events: auto !important;
+        overflow-y: auto !important;
+    }
+
+    .offcanvas-body .navbar-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .offcanvas-body .nav-item {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Corregir submenús en móvil para que empujen el contenido y sean visibles */
+    .offcanvas-body .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        padding-left: 1rem !important;
+        margin-top: 0.5rem !important;
+    }
+
+    html[data-theme="light"] .offcanvas-body .dropdown-menu {
+        background: rgba(0, 0, 0, 0.03) !important;
+    }
+
+    .offcanvas-body .dropdown-menu.show {
+        display: block !important;
+    }
+}
+
+/* =========================================
+   FIX: BOOTSTRAP NATIVE VARIABLES FOR LIGHT MODE
+   ========================================= */
+html[data-theme="light"] .navbar {
+    /* Forzar los colores de la barra a oscuro (azul) */
+    --bs-navbar-color: #014ba0 !important;
+    --bs-navbar-hover-color: #003366 !important;
+    --bs-navbar-active-color: #014ba0 !important;
+    --bs-navbar-brand-color: #014ba0 !important;
+    --bs-navbar-brand-hover-color: #003366 !important;
+    --bs-offcanvas-bg: rgba(255, 255, 255, 0.95) !important;
+    --bs-offcanvas-color: #0a192f !important;
+}
+
+html[data-theme="light"] .offcanvas-body {
+    color: #0a192f !important;
+}
+
+/* =========================================
+   FIX: MASCOTA FOOTER RESPONSIVA
+   ========================================= */
+.mascot-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Alineado a la derecha en móvil */
+}
+
+.footer-mascot {
+    height: 130px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+    position: relative;
+    z-index: 10;
+}
+
+/* En escritorio, regresa a su comportamiento original */
+@media (min-width: 768px) {
+    .mascot-container {
+        height: 0; 
+        overflow: visible;
+        justify-content: flex-start;
+        margin-top: 0;
+    }
+    .footer-mascot {
+        height: 145px;
+        transform: translate(66px, -17px);
+    }
+}

@@ -1,0 +1,224 @@
+:root {
+  /* Primarios — Fondo oscuro y Neón */
+  --istte-bg-dark: #030a16;
+  --istte-bg-card: rgba(26, 115, 232, 0.05);
+  --istte-primary-blue: rgba(26, 115, 232, 1);
+  --istte-green-neon: rgba(57, 255, 20, 1);
+  --istte-green-glow: rgba(57, 255, 20, 0.4);
+  --istte-white: #ffffff;
+  --istte-text-muted: #8b9bb4;
+
+  /* Glassmorphism (Azules transparentes mucho más suaves) */
+  --glass-bg: rgba(26, 115, 232, 0.08);
+  --glass-border: rgba(66, 133, 244, 0.15);
+  --glass-blur: blur(16px);
+
+  /* Sombras (suaves/editoriales) */
+  --shadow-neon: 0 0 20px var(--istte-green-glow);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* Radios */
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Tipografía */
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+
+  --ease: cubic-bezier(.4,0,.2,1);
+  --t-base: .3s var(--ease);
+}
+
+/* =========================================
+   MODO CLARO (LIGHT THEME) OVERRIDES
+   ========================================= */
+[data-theme="light"] {
+  /* Fondos claros en lugar de oscuros */
+  --istte-bg-dark: #f0f4f8;
+  --istte-bg-card: rgba(255, 255, 255, 0.6);
+  
+  /* Textos oscuros en lugar de blancos */
+  --istte-white: #0a192f;
+  --istte-text-muted: #5e6e82;
+
+  /* Glassmorphism para modo día (cristal empañado claro) */
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.05);
+
+  /* Acento neón (lo oscurecemos un poquito para que lea bien sobre blanco) */
+  --istte-green-neon: #18a64a;
+  --istte-green-glow: rgba(24, 166, 74, 0.2);
+  --shadow-neon: 0 0 15px var(--istte-green-glow);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--istte-white);
+  background-color: var(--istte-bg-dark) !important;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--istte-white);
+  letter-spacing: -0.03em;
+}
+
+/* Glass Card Global Class */
+.glass-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--t-base), box-shadow var(--t-base);
+  z-index: 1;
+}
+
+/* Marca de Agua (Watermark) */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  background: url('../images/Logo%20(2).png') center/contain no-repeat;
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
+}
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* Neon Button Global Class */
+.btn-neon {
+  background: transparent;
+  color: var(--istte-green-neon);
+  border: 2px solid var(--istte-green-neon);
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all var(--t-base);
+  box-shadow: 0 0 10px transparent;
+  display: inline-block;
+  text-align: center;
+}
+.btn-neon:hover {
+  background: var(--istte-green-neon);
+  color: var(--istte-bg-dark);
+  box-shadow: var(--shadow-neon);
+  transform: scale(1.05);
+}
+
+.btn-neon-solid {
+  background: var(--istte-green-neon);
+  color: var(--istte-bg-dark);
+  border: 2px solid var(--istte-green-neon);
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all var(--t-base);
+  box-shadow: var(--shadow-neon);
+  display: inline-block;
+  text-align: center;
+}
+.btn-neon-solid:hover {
+  background: var(--istte-white);
+  color: var(--istte-bg-dark);
+  border-color: var(--istte-white);
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  transform: scale(1.05);
+}
+
+.text-neon { color: var(--istte-green-neon) !important; }
+
+/* Glass Nav (Floating Pill) */
+.glass-nav {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  position: relative;
+  z-index: 1; /* Nuevo contexto de apilamiento */
+}
+
+.glass-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* Detrás del navbar, pero dentro de su contexto */
+  background: rgba(10, 20, 35, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: inherit;
+}
+
+/* Glass Dropdown */
+.glass-dropdown {
+  background: rgba(10, 20, 35, 0.65) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+.glass-dropdown .dropdown-item {
+  color: var(--istte-white) !important;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+.glass-dropdown .dropdown-item:hover {
+  background: rgba(57, 255, 20, 0.15) !important;
+  color: var(--istte-green-neon) !important;
+}
+
+/* Active Link Glow */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link:hover {
+  color: var(--istte-green-neon) !important;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--istte-green-neon);
+  box-shadow: 0 0 10px var(--istte-green-neon);
+  border-radius: 3px;
+}
+
+/* --- EFECTOS NEON MEJORADOS --- */
+.text-neon {
+  color: var(--istte-green-neon) !important;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.5), 0 0 16px rgba(57, 255, 20, 0.3) !important;
+}
+
+.btn-neon-solid {
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.4), inset 0 0 8px rgba(57, 255, 20, 0.2) !important;
+}
+
+.btn-neon-solid:hover {
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.7), inset 0 0 15px rgba(57, 255, 20, 0.4) !important;
+}
