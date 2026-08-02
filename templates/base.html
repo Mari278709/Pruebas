@@ -94,9 +94,12 @@
            🔥 MODO DÍA - REESCRITO DESDE CERO (USANDO IDs INVENCIBLES)
            ========================================= */
 
-        /* 1. Fondo del menú lateral (Offcanvas) en modo día */
+        /* 1. Fondo Cristal del menú lateral (Offcanvas) en modo día */
         html[data-theme="light"] #offcanvasNavbar {
-            background-color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.6) !important;
         }
 
         /* 2. Color de TODOS los textos dentro del menú lateral */
@@ -116,10 +119,12 @@
             opacity: 1 !important;
         }
 
-        /* 4. Barra de navegación flotante principal */
+        /* 4. Barra de navegación flotante principal (Cristal) */
         html[data-theme="light"] #mainNavbar {
-            background: rgba(255, 255, 255, 0.85) !important;
-            border-color: rgba(0, 0, 0, 0.08) !important;
+            background: rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.6) !important;
         }
         
         /* 5. Textos de la barra flotante */
