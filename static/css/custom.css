@@ -1798,9 +1798,9 @@ html[data-theme="light"] .navbar-toggler-icon {
 /* Fondo de cristal para el menú lateral (offcanvas) en modo claro SOLO EN MÓVIL */
 @media (max-width: 1199px) {
     html[data-theme="light"] .offcanvas {
-        background: rgba(255, 255, 255, 0.25) !important; /* Cristal más transparente, no blanco lechoso */
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
+        background: rgba(255, 255, 255, 0.95) !important; /* Más opaco para que se pueda leer el texto oscuro */
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
         border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
     }
 }
