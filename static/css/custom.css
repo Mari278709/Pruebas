@@ -5,27 +5,27 @@
 
 :root {
     /* Paleta de Colores */
-    --istte-blue-primary: #0b3a6f;
+    --istte-blue-primary: #1A73E8;
     --istte-blue-dark: #04213a;
     --istte-blue-darker: #021122;
     --istte-blue-sky: #08315a;
     --istte-blue-light: #E6F0FB;
-    
+
     --istte-green-accent: #2eb62e;
     --istte-green-hover: #1f8a28;
     --istte-green-soft: rgba(124, 232, 39, 0.15);
     --istte-green-light: rgba(124, 232, 39, 0.15);
-    
+
     --istte-white: #FFFFFF;
     --istte-bg-light: #F6F9FF;
     --istte-bg-dark: #08172F;
     --istte-border-color: rgba(255, 255, 255, 0.12);
-    
+
     /* Tipografía y Textos */
     --istte-text-dark: #F7FBFF;
     --istte-text-muted: #9FB5D6;
     --istte-text-soft: #C9DBF2;
-    
+
     /* Sombras y Bordes */
     --istte-shadow-sm: 0 6px 18px rgba(2, 15, 35, 0.12);
     --istte-shadow-md: 0 12px 34px rgba(2, 15, 35, 0.18);
@@ -33,7 +33,7 @@
     --istte-radius-sm: 12px;
     --istte-radius-md: 20px;
     --istte-radius-lg: 28px;
-    
+
     /* Transiciones */
     --istte-transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -41,13 +41,23 @@
 /* Reset y Base */
 body {
     font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #F4F7FF;
-    color: #0E1B32;
+    background-color: #02060d;
+    color: #ffffff;
     line-height: 1.65;
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Espaciado para que el header position-absolute no oculte el contenido superior de las subpáginas */
+main>section.py-5:first-child {
+    padding-top: 100px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
@@ -57,7 +67,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mejoras de Accesibilidad - Contraste e Enfoque */
-a:focus, button:focus, input:focus, select:focus {
+a:focus,
+button:focus,
+input:focus,
+select:focus {
     outline: 3px solid var(--istte-green-accent) !important;
     outline-offset: 2px;
 }
@@ -66,9 +79,31 @@ a:focus, button:focus, input:focus, select:focus {
 .navbar-istte {
     background: rgba(4, 16, 42, 0.94);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
     transition: var(--istte-transition-smooth);
+}
+
+/* Resplandor para el botón de menú */
+.navbar-toggler {
+    animation: menu-glow 2.5s infinite alternate ease-in-out;
+    border-radius: 8px;
+    background-color: transparent;
+    /* Fondo transparente para resaltar el brillo */
+}
+
+@keyframes menu-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(124, 232, 39, 0.5), 0 0 10px rgba(124, 232, 39, 0.3);
+    }
+
+    50% {
+        box-shadow: -4px 0 15px rgba(124, 232, 39, 0.8), 4px 0 15px rgba(95, 162, 238, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(38, 95, 159, 0.9), 0 0 25px rgba(38, 95, 159, 0.6);
+    }
 }
 
 .navbar-brand-text {
@@ -88,7 +123,7 @@ a:focus, button:focus, input:focus, select:focus {
 }
 
 .nav-link-istte {
-    color: rgba(255,255,255,0.88);
+    color: rgba(255, 255, 255, 0.88);
     font-weight: 600;
     padding: 0.6rem 1rem;
     border-radius: 999px;
@@ -164,6 +199,7 @@ a:focus, button:focus, input:focus, select:focus {
     max-height: 180px;
     overflow: hidden;
 }
+
 .news-image-ratio .object-fit-cover {
     width: 100%;
     height: 100%;
@@ -173,9 +209,9 @@ a:focus, button:focus, input:focus, select:focus {
 /* Hero Section */
 .hero-section,
 .hero-container {
-    background: radial-gradient(circle at top left, rgba(124, 232, 39, 0.18), transparent 22%),
-                radial-gradient(circle at 85% 16%, rgba(33, 151, 243, 0.16), transparent 22%),
-                linear-gradient(180deg, rgba(6, 18, 47, 0.96) 0%, rgba(8, 23, 61, 0.96) 100%);
+    background: linear-gradient(135deg, rgba(114, 178, 89, 0.85) 0%, rgba(38, 95, 159, 0.92) 100%),
+        url('https://i.ibb.co/TqndvKGy/front1.jpg');
+    background-blend-mode: overlay;
     background-size: cover;
     background-position: center;
     position: relative;
@@ -190,14 +226,16 @@ a:focus, button:focus, input:focus, select:focus {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
 }
+
 .career-hero .display-4 {
     font-size: clamp(1.8rem, 3.2vw, 2.6rem);
     line-height: 1.05;
     margin-bottom: 0.5rem;
 }
+
 .career-hero .lead {
     font-size: 1rem;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Reduce video player height inside career detail for large screens */
@@ -209,6 +247,7 @@ a:focus, button:focus, input:focus, select:focus {
     .video-player-wrapper {
         height: 220px !important;
     }
+
     .career-hero .display-4 {
         font-size: 1.9rem;
     }
@@ -216,13 +255,15 @@ a:focus, button:focus, input:focus, select:focus {
 
 /* New hero recreation styles */
 .career-hero {
-    background-image: radial-gradient(circle at 20% 10%, rgba(46,182,46,0.06), transparent 8%),
-                      radial-gradient(circle at 85% 20%, rgba(8,49,90,0.12), transparent 10%);
+    background-image: radial-gradient(circle at 20% 10%, rgba(46, 182, 46, 0.06), transparent 8%),
+        radial-gradient(circle at 85% 20%, rgba(8, 49, 90, 0.12), transparent 10%);
 }
+
 .career-hero .display-4 {
     font-weight: 900;
     font-size: clamp(2.4rem, 4.6vw, 4rem);
 }
+
 .title-gradient {
     background: linear-gradient(90deg, #00C853 0%, #00B0FF 70%);
     -webkit-background-clip: text;
@@ -237,6 +278,7 @@ a:focus, button:focus, input:focus, select:focus {
     content: '';
     display: none;
 }
+
 .title-gradient::after {
     content: '';
     position: absolute;
@@ -245,8 +287,8 @@ a:focus, button:focus, input:focus, select:focus {
     width: 140px;
     height: 8px;
     border-radius: 8px;
-    background: linear-gradient(90deg, var(--istte-green-accent), #00b0ff);
-    box-shadow: 0 6px 18px rgba(0,176,255,0.08);
+    background: linear-gradient(90deg, var(--istte-green-neon), #00b0ff);
+    box-shadow: 0 6px 18px rgba(0, 176, 255, 0.08);
 }
 
 .hero-illustration {
@@ -255,6 +297,7 @@ a:focus, button:focus, input:focus, select:focus {
     align-items: center;
     justify-content: center;
 }
+
 .hero-illustration-bg {
     width: 560px;
     height: 320px;
@@ -262,7 +305,7 @@ a:focus, button:focus, input:focus, select:focus {
     background-size: cover;
     background-position: center right;
     transform: translateX(6%);
-    filter: drop-shadow(0 28px 60px rgba(2,15,35,0.22)) saturate(1.02);
+    filter: drop-shadow(0 28px 60px rgba(2, 15, 35, 0.22)) saturate(1.02);
     border-radius: 18px;
 }
 
@@ -272,34 +315,33 @@ a:focus, button:focus, input:focus, select:focus {
     top: 50%;
     transform: translateY(-50%);
     width: 380px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 20px;
-    box-shadow: 0 12px 34px rgba(2,15,35,0.10);
-    border: 1px solid rgba(11,58,111,0.06);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 10;
 }
+
 .career-cta-card .card-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .career-cta-card .card-icon {
     width: 64px;
     height: 64px;
-    background: linear-gradient(180deg,#e8f9ee,#eef9ff);
+    background: rgba(57, 255, 20, 0.1);
+    border: 1px solid rgba(57, 255, 20, 0.3);
     border-radius: 50%;
     display: grid;
     place-items: center;
-    box-shadow: 0 8px 20px rgba(2,15,35,0.08);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
 }
-.career-cta-card .btn {
-    background: linear-gradient(90deg, var(--istte-green-accent), #18a64a);
-    border: none;
-    color: white;
-    font-weight: 700;
-    padding: 0.65rem 1rem;
-    border-radius: 999px;
-}
-.career-cta-card .btn .btn-arrow {
+
+.career-cta-card .btn-arrow {
     margin-left: 0.5rem;
     display: inline-block;
     transform: translateY(1px);
@@ -312,12 +354,14 @@ a:focus, button:focus, input:focus, select:focus {
         margin-top: 1rem;
         box-shadow: var(--istte-shadow-sm);
     }
+
     .hero-illustration-bg {
         width: 360px;
         height: 220px;
         transform: translateX(0%);
         background-size: contain;
     }
+
     .career-hero .display-4 {
         font-size: 2.4rem;
     }
@@ -327,8 +371,8 @@ a:focus, button:focus, input:focus, select:focus {
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 18% 22%, rgba(124, 232, 39, 0.22), transparent 14%),
-                radial-gradient(circle at 82% 20%, rgba(33, 151, 243, 0.18), transparent 14%),
-                linear-gradient(180deg, rgba(6, 18, 47, 0.92), rgba(10, 24, 70, 0.82));
+        radial-gradient(circle at 82% 20%, rgba(33, 151, 243, 0.18), transparent 14%),
+        linear-gradient(180deg, rgba(6, 18, 47, 0.92), rgba(10, 24, 70, 0.82));
     pointer-events: none;
 }
 
@@ -365,7 +409,7 @@ a:focus, button:focus, input:focus, select:focus {
 }
 
 .hero-main-desc {
-    color: rgba(255,255,255,0.82);
+    color: rgba(255, 255, 255, 0.82);
     font-size: 1.05rem;
     max-width: 32rem;
     line-height: 1.7;
@@ -406,13 +450,13 @@ a:focus, button:focus, input:focus, select:focus {
 }
 
 .btn-conoce-mas {
-    background-color: rgba(255,255,255,0.08);
+    background-color: rgba(255, 255, 255, 0.08);
     color: var(--istte-white);
-    border: 1px solid rgba(255,255,255,0.24);
+    border: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 .btn-conoce-mas:hover {
-    background-color: rgba(255,255,255,0.18);
+    background-color: rgba(255, 255, 255, 0.18);
 }
 
 .hero-features {
@@ -423,8 +467,8 @@ a:focus, button:focus, input:focus, select:focus {
 }
 
 .hero-feature-item {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.4rem;
     padding: 1rem 1.2rem;
     min-width: 220px;
@@ -432,7 +476,7 @@ a:focus, button:focus, input:focus, select:focus {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: rgba(255,255,255,0.92);
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .hero-feature-item i {
@@ -651,16 +695,19 @@ a:focus, button:focus, input:focus, select:focus {
 }
 
 .card-overlay {
-    background-color: var(--istte-white);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
     border-radius: var(--istte-radius-lg);
-    transition: var(--istte-transition-smooth);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .card-overlay:hover {
-    transform: translateY(-6px);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--istte-green-accent);
+    z-index: 10;
     border-color: rgba(124, 232, 39, 0.25);
-    box-shadow: 0 24px 40px rgba(15, 23, 42, 0.12);
 }
 
 .icon-circle-overlay {
@@ -718,6 +765,7 @@ a:focus, button:focus, input:focus, select:focus {
     0% {
         transform: translateX(-50%);
     }
+
     100% {
         transform: translateX(0%);
     }
@@ -1039,6 +1087,54 @@ a:focus, button:focus, input:focus, select:focus {
     margin-bottom: 0.5rem;
 }
 
+@media (min-width: 992px) {
+    .navbar-istte .dropdown:hover .dropdown-menu {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+.dropdown-menu-custom {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: var(--istte-radius-md);
+    padding: 0.8rem 0.5rem;
+    box-shadow: var(--istte-shadow-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+    min-width: 240px;
+    animation: fadeInDropdown 0.3s ease forwards;
+}
+
+@keyframes fadeInDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-menu-custom .dropdown-item {
+    font-weight: 500;
+    color: var(--istte-blue-dark);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: var(--istte-transition-smooth);
+    margin-bottom: 2px;
+}
+
+.dropdown-menu-custom .dropdown-item:hover {
+    background-color: var(--istte-blue-light);
+    color: var(--istte-blue-primary);
+    transform: translateX(5px);
+}
+
 /* Footer Institucional */
 .footer-istte {
     background-color: var(--istte-blue-dark);
@@ -1163,30 +1259,43 @@ a:focus, button:focus, input:focus, select:focus {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Noticias (Multimedia) */
 .news-section .news-card {
     transition: var(--istte-transition-smooth);
 }
+
 .news-section .news-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--istte-shadow-md);
 }
+
 .news-section .object-fit-cover {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .news-section .section-title {
     font-size: 1.5rem;
 }
 
 @media (max-width: 575.98px) {
-    .news-section .section-title { font-size: 1.25rem; }
+    .news-section .section-title {
+        font-size: 1.25rem;
+    }
 }
 
 /* Admin action buttons inside cards */
@@ -1206,16 +1315,20 @@ a:focus, button:focus, input:focus, select:focus {
     color: #07202a;
     border: none;
 }
+
 .btn-contacto-nav:hover {
     background-color: var(--istte-green-hover);
     color: #fff;
 }
 
 /* Custom additions for the updated architecture */
-.hover-lift, .card-hover-lift {
+.hover-lift,
+.card-hover-lift {
     transition: var(--istte-transition-smooth);
 }
-.hover-lift:hover, .card-hover-lift:hover {
+
+.hover-lift:hover,
+.card-hover-lift:hover {
     transform: translateY(-8px);
     box-shadow: var(--istte-shadow-lg) !important;
 }
@@ -1240,7 +1353,7 @@ a:focus, button:focus, input:focus, select:focus {
     height: 3rem;
     background-color: var(--istte-blue-primary) !important;
     border: 2px solid var(--istte-white);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 991.98px) {
@@ -1248,8 +1361,381 @@ a:focus, button:focus, input:focus, select:focus {
         height: 300px !important;
     }
 }
+
 @media (max-width: 575.98px) {
     .video-player-wrapper {
         height: 200px !important;
     }
+}
+
+/* Forzar que los textos secundarios/grises sean blancos para mejor legibilidad */
+.text-secondary,
+.text-muted,
+p.text-secondary,
+.text-white-50 {
+    color: #ffffff !important;
+}
+
+/* =========================================
+   EFECTO COLLAGE ADAPTATIVO (NUESTRO ECOSISTEMA)
+   ========================================= */
+.collage-wrapper {
+    width: 120vw;
+
+    /* =========================================
+   FOOTER NEON & GLASS STYLES
+   ========================================= */
+    .footer-istte {
+        border-top: 2px solid var(--istte-neon) !important;
+        background: #02060d !important;
+    }
+
+    /* Efecto hover neon para todos los links normales del footer */
+    .footer-istte a:not(.social-btn):not(.btn-neon-solid):hover {
+        color: var(--istte-neon) !important;
+        text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+    }
+
+    /* Botones sociales de cristal */
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(0, 40, 179, 0.2);
+        border: 1px solid rgba(0, 40, 179, 0.5);
+        color: var(--istte-white);
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        backdrop-filter: blur(5px);
+    }
+
+    .social-btn:hover {
+        background: rgba(57, 255, 20, 0.15);
+        border-color: var(--istte-neon);
+        color: var(--istte-neon);
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(57, 255, 20, 0.3);
+    }
+
+    height: 120vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 1.5rem;
+    transform: translate(-50%, -50%) rotate(-2deg);
+}
+
+.collage-pic {
+    width: 20vw;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s ease;
+}
+
+/* Pseudo-selectores para esparcir cualquier cantidad de fotos aleatoriamente */
+.collage-pic:nth-child(2n) {
+    width: 25vw;
+    height: 300px;
+    transform: rotate(4deg) translateY(20px);
+}
+
+.collage-pic:nth-child(3n) {
+    width: 18vw;
+    height: 200px;
+    transform: rotate(-5deg) translateY(-30px);
+}
+
+.collage-pic:nth-child(4n) {
+    width: 28vw;
+    height: 350px;
+    transform: rotate(3deg) translateX(15px);
+}
+
+.collage-pic:nth-child(5n) {
+    width: 22vw;
+    height: 220px;
+    transform: rotate(-6deg) translateY(40px);
+}
+
+.collage-pic:nth-child(7n) {
+    width: 30vw;
+    height: 280px;
+    transform: rotate(2deg) translateX(-20px);
+}
+
+@media (max-width: 991.98px) {
+    .collage-wrapper {
+        gap: 0.5rem;
+    }
+
+    .collage-pic {
+        width: 35vw !important;
+        height: 180px !important;
+    }
+}
+
+/* =========================================
+   BADGE NEON PARA SUBPAGINAS
+   ========================================= */
+.badge-neon {
+    background: rgba(57, 255, 20, 0.15) !important;
+    color: var(--istte-neon) !important;
+    border: 1px solid rgba(57, 255, 20, 0.4) !important;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.1) !important;
+}
+
+/* =========================================
+   ACCORDION NEON & GLASS
+   ========================================= */
+.accordion,
+.accordion-item {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.accordion-button {
+    background: rgba(255, 255, 255, 0.03) !important;
+    color: var(--istte-white) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background: rgba(57, 255, 20, 0.1) !important;
+    color: var(--istte-neon) !important;
+    box-shadow: inset 0 -1px 0 rgba(57, 255, 20, 0.3) !important;
+}
+
+/* Cambiar el color de la flechita del acordeón (Bootstrap usa un SVG de fondo negro por defecto) */
+.accordion-button::after {
+    filter: invert(1);
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: invert(0.8) sepia(1) hue-rotate(80deg) saturate(5) brightness(1.2);
+}
+
+/* =========================================
+   LIST GROUP GLASS
+   ========================================= */
+.list-group-item {
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* =========================================
+   FORM CONTROL GLASS (Inputs)
+   ========================================= */
+.form-control,
+.form-select {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: var(--istte-white) !important;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(8, 49, 90, 0.6) !important;
+    border-color: var(--istte-neon) !important;
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.3) !important;
+    color: var(--istte-white) !important;
+    outline: none !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* =========================================
+   GLOBAL OVERRIDE BG-LIGHT PARA DARK THEME
+   ========================================= */
+.bg-light,
+.bg-light-subtle {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-left: 3px solid var(--istte-neon) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    color: var(--istte-white) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease;
+}
+
+.bg-light:hover,
+.bg-light-subtle:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-left: 3px solid #fff !important;
+    box-shadow: 0 8px 32px 0 rgba(57, 255, 20, 0.15) !important;
+}
+
+/* =========================================
+   FIX: TAMAÑOS DE BOTONES NEON PEQUEÑOS
+   ========================================= */
+.btn-neon.btn-sm,
+.btn-neon-solid.btn-sm {
+    padding: 0.4rem 1rem !important;
+    font-size: 0.85rem !important;
+}
+
+/* =========================================
+   FIX: MENU DESPLEGABLE (DROPDOWNS)
+   ========================================= */
+.dropdown-menu {
+    background-color: rgba(2, 6, 13, 0.95) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(57, 255, 20, 0.3) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+    padding: 0.5rem 0 !important;
+}
+
+.dropdown-item {
+    color: var(--istte-white) !important;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1.5rem !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(57, 255, 20, 0.15) !important;
+    color: var(--istte-neon) !important;
+    transform: translateX(5px);
+}
+
+/* =========================================
+   COLOR DE FONDO PERSONALIZADO PARA SUBPÁGINAS
+   ========================================= */
+body.bg-subpage {
+    background-color: #014ba0 !important;
+}
+
+/* =========================================
+   MODO CLARO (OVERRIDES GLOBALES DE CUSTOM.CSS)
+   ========================================= */
+[data-theme="light"] body.bg-subpage {
+    background-color: #e3f2fd !important;
+}
+
+html[data-theme="light"] body {
+    color: #0a192f !important;
+}
+
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-light,
+html[data-theme="light"] .text-secondary,
+html[data-theme="light"] .text-muted,
+html[data-theme="light"] p.text-secondary,
+html[data-theme="light"] .text-white-50,
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html[data-theme="light"] label,
+html[data-theme="light"] .form-label,
+html[data-theme="light"] .navbar-brand,
+html[data-theme="light"] .nav-link,
+html[data-theme="light"] .dropdown-item {
+    color: #0a192f !important; 
+}
+
+[data-theme="light"] .footer-istte {
+    background: #e9ecef !important;
+    border-top: 2px solid var(--istte-green-neon) !important;
+}
+
+/* EFECTO CRISTAL REALISTA MODO CLARO */
+html[data-theme="light"] .glass-card,
+html[data-theme="light"] .dropdown-menu,
+html[data-theme="light"] .bg-light,
+html[data-theme="light"] .bg-light-subtle,
+html[data-theme="light"] .career-cta-card,
+html[data-theme="light"] .accordion-button,
+html[data-theme="light"] .glass-nav,
+html[data-theme="light"] .form-control,
+html[data-theme="light"] .form-select {
+    background-color: transparent !important;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: none !important; /* Reemplazamos los bordes físicos por sombras para mayor precisión */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.05), /* Sombra exterior suave */
+        inset 2px 2px 3px rgba(255, 255, 255, 0.8), /* Borde especular brillante superior/izquierdo */
+        inset -1px -1px 2px rgba(255, 255, 255, 0.1), /* Borde inferior/derecho sutil */
+        inset 0 0 20px rgba(255, 255, 255, 0.2) !important; /* Resplandor interno */
+}
+
+html[data-theme="light"] .form-control,
+html[data-theme="light"] .form-select {
+    color: #0a192f !important;
+}
+
+html[data-theme="light"] .btn-neon,
+html[data-theme="light"] .btn-neon-solid {
+    background-color: transparent !important;
+    background-image: linear-gradient(135deg, rgba(24, 166, 74, 0.2) 0%, rgba(24, 166, 74, 0.05) 100%) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-right: 1px solid rgba(24, 166, 74, 0.5) !important;
+    border-bottom: 1px solid rgba(24, 166, 74, 0.5) !important;
+    color: #0a192f !important;
+    box-shadow: 0 4px 15px rgba(24, 166, 74, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.5) !important;
+}
+
+html[data-theme="light"] .btn-neon:hover,
+html[data-theme="light"] .btn-neon-solid:hover {
+    background-image: linear-gradient(135deg, rgba(24, 166, 74, 0.3) 0%, rgba(24, 166, 74, 0.1) 100%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 1) !important;
+    border-left: 1px solid rgba(255, 255, 255, 1) !important;
+    color: #000 !important;
+}
+
+/* =========================================
+   ADAPTACIONES INDEX PAGE MODO DÍA
+   ========================================= */
+html[data-theme="light"] .oferta-section,
+html[data-theme="light"] .ecosistema-section {
+    background-color: transparent !important; /* Quitar fondo negro oscuro de las secciones */
+}
+
+html[data-theme="light"] .hero-overlay,
+html[data-theme="light"] .oferta-overlay,
+html[data-theme="light"] .ecosistema-overlay,
+html[data-theme="light"] .bg-luz {
+    background: transparent !important; /* Quitar overlays oscuros y luces artificiales */
+}
+
+/* Hacer que los carruseles/imágenes de fondo sigan visibles pero como una textura suave para que el degradado siga siendo protagonista */
+html[data-theme="light"] #heroCarousel,
+html[data-theme="light"] #ofertaCarousel,
+html[data-theme="light"] .collage-wrapper {
+    opacity: 0.4 !important; /* Aumentado a 40% para que se noten bien */
+    filter: brightness(110%) !important;
+}
+
+/* Color de texto en la barra de navegación y menús desplegables para máxima legibilidad */
+html[data-theme="light"] .navbar .nav-link,
+html[data-theme="light"] .navbar .navbar-brand span,
+html[data-theme="light"] .dropdown-menu .dropdown-item {
+    color: #014ba0 !important;
+    font-weight: 600 !important;
+}
+
+html[data-theme="light"] .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(1, 75, 160, 0.1) !important;
 }

@@ -1,0 +1,33 @@
+<div class="card h-100 border-0  tarjeta-carrera hover-lift" data-aos="fade-up" data-aos-delay="{{ delay|default:'0' }}">
+    <div class="position-relative overflow-hidden" style="border-radius: var(--radius-md) var(--radius-md) 0 0; aspect-ratio: 16/9;">
+        <img src="{{ image_url }}" class="w-100 h-100 object-fit-cover transition-transform" alt="{{ title }}">
+        {% if badge %}
+        <span class="position-absolute top-0 start-0 m-3 badge bg-istte-green px-3 py-2 rounded-pill " style="background-color: var(--istte-green); font-size: 0.8rem; letter-spacing: 0.5px;">{{ badge }}</span>
+        {% endif %}
+    </div>
+    <div class="card-body p-4 d-flex flex-column" style="background-color: var(--istte-surface);">
+        <h3 class="h4 card-title fw-bold mb-3" style="color: var(--istte-blue-primary);">{{ title }}</h3>
+        <p class="card-text text-secondary mb-4 flex-grow-1" style="font-size: 0.95rem;">{{ description }}</p>
+        <a href="{{ url }}" class="btn btn-outline-primary mt-auto align-self-start fw-semibold d-inline-flex align-items-center gap-2 rounded-pill" style="color: var(--istte-blue-primary); border-color: var(--istte-blue-primary);">
+            <span>Ver detalles</span>
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+</div>
+
+<style>
+.tarjeta-carrera.hover-lift {
+    transition: transform var(--t-base), box-shadow var(--t-base);
+    border-radius: var(--radius-md);
+}
+.tarjeta-carrera.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md) !important;
+}
+.tarjeta-carrera .transition-transform {
+    transition: transform 0.6s ease;
+}
+.tarjeta-carrera:hover .transition-transform {
+    transform: scale(1.05);
+}
+</style>

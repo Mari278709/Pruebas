@@ -6,13 +6,13 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-neon text-decoration-none">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Transparencia</li>
             </ol>
         </nav>
 
         <div class="text-center mb-5">
-            <h1 id="transp-title" class="fw-extrabold text-primary display-4">Transparencia Institucional</h1>
+            <h1 id="transp-title" class="fw-extrabold text-white display-4">Transparencia Institucional</h1>
             <p class="text-secondary">Cumplimos activamente con el acceso a la información pública, la ética y la protección de datos personales.</p>
         </div>
 
@@ -20,23 +20,23 @@
             <div class="col-12 col-lg-9">
                 
                 <!-- Acordeón de Transparencia -->
-                <div class="accordion border border-light-subtle rounded-4 overflow-hidden shadow-sm" id="transparenciaAccordion">
+                <div class="accordion border-0 rounded-4 overflow-hidden " id="transparenciaAccordion">
                     
                     <!-- 1. Rendición de Cuentas -->
                     <div class="accordion-item border-0">
                         <h2 class="accordion-header">
-                            <button class="accordion-button bg-light text-primary fw-bold border-bottom" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <i class="bi bi-briefcase-fill me-2 text-success"></i>Rendición de Cuentas
+                            <button class="accordion-button bg-light text-white fw-bold border-bottom" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="bi bi-briefcase-fill me-2 text-neon"></i>Rendición de Cuentas
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#transparenciaAccordion">
-                            <div class="accordion-body bg-white">
+                            <div class="accordion-body glass-card">
                                 <p class="small text-secondary mb-3">
                                     En cumplimiento con lo establecido por el Consejo de Participación Ciudadana y Control Social (CPCCS), el ISTTE publica sus informes anuales de rendición de cuentas, presupuestos ejecutados y metas alcanzadas.
                                 </p>
                                 <ul class="list-unstyled small mb-0">
-                                    <li class="mb-2"><a href="#" class="text-success text-decoration-none"><i class="bi-file-pdf me-1"></i> Informe de Rendición de Cuentas 2025</a></li>
-                                    <li><a href="#" class="text-success text-decoration-none"><i class="bi-file-pdf me-1"></i> Informe de Rendición de Cuentas 2024</a></li>
+                                    <li class="mb-2"><a href="#" class="text-neon text-decoration-none"><i class="bi-file-pdf me-1"></i> Informe de Rendición de Cuentas 2025</a></li>
+                                    <li><a href="#" class="text-neon text-decoration-none"><i class="bi-file-pdf me-1"></i> Informe de Rendición de Cuentas 2024</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -45,12 +45,12 @@
                     <!-- 2. Ética Institucional -->
                     <div class="accordion-item border-0">
                         <h2 class="accordion-header">
-                            <button class="accordion-button bg-light text-primary fw-bold border-bottom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <i class="bi bi-shield-heart-fill me-2 text-success"></i>Ética Institucional
+                            <button class="accordion-button bg-light text-white fw-bold border-bottom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="bi bi-shield-heart-fill me-2 text-neon"></i>Ética Institucional
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#transparenciaAccordion">
-                            <div class="accordion-body bg-white">
+                            <div class="accordion-body glass-card">
                                 <p class="small text-secondary mb-3">
                                     Promovemos un ambiente de respeto, honestidad y equidad a través del estricto cumplimiento del Código de Ética Institucional. El Comité de Ética vela por la resolución adecuada de cualquier inconveniente y promueve los valores del ISTTE.
                                 </p>
@@ -62,16 +62,16 @@
                     <!-- 3. Protección de Datos -->
                     <div class="accordion-item border-0">
                         <h2 class="accordion-header">
-                            <button class="accordion-button bg-light text-primary fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <i class="bi bi-shield-lock-fill me-2 text-success"></i>Protección de Datos Personales
+                            <button class="accordion-button bg-light text-white fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="bi bi-shield-lock-fill me-2 text-neon"></i>Protección de Datos Personales
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#transparenciaAccordion">
-                            <div class="accordion-body bg-white">
+                            <div class="accordion-body glass-card">
                                 <p class="small text-secondary mb-3">
                                     Conforme a la Ley Orgánica de Protección de Datos Personales de Ecuador, el ISTTE garantiza la confidencialidad, el correcto uso y resguardo de la información recolectada de postulantes, estudiantes, exalumnos y personal administrativo.
                                 </p>
-                                <a href="{% url 'politica_privacidad' %}" class="text-success small text-decoration-none fw-bold">Ver Política de Privacidad y Protección de Datos →</a>
+                                <a href="{% url 'politica_privacidad' %}" class="text-neon small text-decoration-none fw-bold">Ver Política de Privacidad y Protección de Datos →</a>
                             </div>
                         </div>
                     </div>

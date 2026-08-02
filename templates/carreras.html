@@ -6,13 +6,13 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-neon text-decoration-none">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Carreras Tecnológicas</li>
             </ol>
         </nav>
         
         <div class="text-center mb-5">
-            <h1 id="carreras-title" class="fw-extrabold text-primary display-4">Carreras Tecnológicas</h1>
+            <h1 id="carreras-title" class="fw-extrabold text-white display-4">Carreras Tecnológicas</h1>
             <p class="text-secondary small">
                 {% if modalidad_filtro == 'presencial' %}
                     Modalidad Presencial - Formación práctica e interactiva en laboratorios avanzados.
@@ -27,12 +27,12 @@
         <div class="row g-4">
             {% for slug, info in carreras %}
             <div class="col-12 col-md-6 col-lg-4">
-                <article class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100 d-flex flex-column justify-content-between hover-lift">
+                <article class="p-4 border-0 rounded-4 glass-card  h-100 d-flex flex-column justify-content-between hover-lift">
                     <div>
                         <div class="career-card-media mb-3">
                             <img src="{{ info.image }}" alt="Imagen representativa de {{ info.title }}" class="career-card-image">
                         </div>
-                        <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
+                        <div class="badge-neon bg-opacity-10 text-neon rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
                             {% if slug == 'desarrollo-software' %}
                                 <i class="bi bi-code-slash fs-4"></i>
                             {% elif slug == 'ciberseguridad' %}
@@ -43,16 +43,16 @@
                                 <i class="bi bi-car-front-fill fs-4"></i>
                             {% endif %}
                         </div>
-                        <h2 class="h5 fw-bold text-primary mb-2">{{ info.title }}</h2>
+                        <h2 class="h5 fw-bold text-white mb-2">{{ info.title }}</h2>
                         <p class="text-secondary small mb-3">{{ info.profile|truncatechars:110 }}</p>
                         <div class="d-flex flex-column gap-2 mb-3">
-                            <span class="small text-secondary"><i class="bi bi-clock me-1 text-success"></i><strong>Duración:</strong> {{ info.duration }}</span>
-                            <span class="small text-secondary"><i class="bi bi-laptop me-1 text-success"></i><strong>Modalidad:</strong> {{ info.modality }}</span>
+                            <span class="small text-secondary"><i class="bi bi-clock me-1 text-neon"></i><strong>Duración:</strong> {{ info.duration }}</span>
+                            <span class="small text-secondary"><i class="bi bi-laptop me-1 text-neon"></i><strong>Modalidad:</strong> {{ info.modality }}</span>
                         </div>
                     </div>
                     <div class="d-flex gap-2 mt-2">
                         <a href="{% url 'detalle_carreras' career_slug=slug %}" class="btn btn-sm btn-outline-primary flex-grow-1">Ver Detalles</a>
-                        <a href="{% url 'inscripcion' %}?carrera={{ slug }}" class="btn btn-sm btn-success flex-grow-1 text-white fw-bold" style="background-color: var(--istte-green-accent);">Inscribirse</a>
+                        <a href="{% url 'inscripcion' %}?carrera={{ slug }}" class="btn-neon-solid btn-sm flex-grow-1 fw-bold">Inscribirse</a>
                     </div>
                 </article>
             </div>

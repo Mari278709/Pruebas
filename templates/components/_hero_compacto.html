@@ -1,0 +1,26 @@
+<div class="hero-compacto bg-istte-dark text-white py-5 position-relative overflow-hidden" style="background-color: var(--istte-blue-primary);">
+    <!-- Elementos decorativos de fondo -->
+    <div class="position-absolute top-0 end-0 opacity-25 w-50 h-100" style="background: radial-gradient(circle at 80% 20%, var(--istte-green-soft), transparent 60%);"></div>
+    <div class="container position-relative z-1">
+        <div class="row align-items-center min-vh-25">
+            <div class="col-lg-8" data-aos="fade-up">
+                {% if breadcrumbs %}
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-3">
+                            <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white-50 text-decoration-none">Inicio</a></li>
+                            {% for b in breadcrumbs %}
+                                <li class="breadcrumb-item {% if forloop.last %}active text-white fw-bold{% else %}text-white-50{% endif %}" aria-current="{% if forloop.last %}page{% endif %}">
+                                    {% if not forloop.last %}<a href="{{ b.url }}" class="text-white-50 text-decoration-none">{{ b.name }}</a>{% else %}{{ b.name }}{% endif %}
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </nav>
+                {% endif %}
+                <h1 class="display-4 fw-bold mb-3 text-white">{{ title }}</h1>
+                {% if subtitle %}
+                    <p class="lead text-white-50 mb-0">{{ subtitle }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

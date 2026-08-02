@@ -1,0 +1,21 @@
+<section class="cta-banner py-5 my-5 position-relative overflow-hidden" style="background-color: var(--istte-blue-primary);">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(46,182,46,0.15) 0%, transparent 100%);"></div>
+    <div class="container position-relative z-1" data-aos="zoom-in">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="display-6 fw-bold text-white mb-4">{{ title }}</h2>
+                <p class="lead text-white-50 mb-5">{{ description }}</p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{{ primary_url }}" class="btn btn-lg px-5 py-3 fw-bold rounded-pill shadow" style="background-color: var(--istte-green); color: white; border: none;">
+                        {{ primary_text }} <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                    {% if secondary_url %}
+                    <a href="{{ secondary_url }}" class="btn btn-lg btn-outline-light px-5 py-3 fw-bold rounded-pill">
+                        {{ secondary_text }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

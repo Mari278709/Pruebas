@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .models import Inscripcion
 
 PAGE_TEMPLATES = [
     'index',
@@ -198,6 +202,29 @@ def carreras(request):
 def validacion_experiencia(request):
     return render(request, 'validacion_experiencia.html')
 
+from django.http import JsonResponse
+
+def api_carreras(request):
+    """
+    Endpoint para que el frontend de React consuma la data de las carreras.
+    """
+    return JsonResponse({'carreras': CARRERAS_DATA})
+
+def api_media(request):
+    from .models import MediaItem
+    media = MediaItem.objects.filter(published=True).order_by('-created_at')[:3]
+    media_list = []
+    for item in media:
+        media_list.append({
+            'title': item.title,
+            'description': item.description,
+            'image_url': item.image.url if item.image else None,
+            'video_url': item.video.url if item.video else None,
+            'created_at': item.created_at.isoformat()
+        })
+    return JsonResponse({'media': media_list})
+
+
 
 def detalle_carreras(request, career_slug):
     from django.shortcuts import redirect
@@ -328,3 +355,23 @@ def upload_media(request):
         'form': form,
         'success': success,
     })
+
+
+@csrf_exempt
+def api_inscripcion(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            inscripcion = Inscripcion.objects.create(
+                nombres=data.get('nombres', ''),
+                apellidos=data.get('apellidos', ''),
+                cedula=data.get('cedula', ''),
+                telefono=data.get('telefono', ''),
+                correo=data.get('correo', ''),
+                carrera=data.get('carrera', ''),
+                modalidad=data.get('modalidad', '')
+            )
+            return JsonResponse({'status': 'success', 'message': 'Inscripción recibida con éxito.', 'id': inscripcion.id})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Método no permitido.'}, status=405)

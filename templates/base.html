@@ -1,153 +1,276 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="Portal web oficial de servicios institucionales del Instituto Tecnológico Superior Tecnoecuatoriano (ISTTE).">
+    <meta name="description"
+        content="Portal web oficial de servicios institucionales del Instituto Tecnológico Superior Tecnoecuatoriano (ISTTE).">
     <title>{% block title %}Portal Institucional | ISTTE{% endblock %}</title>
 
     <!-- Google Fonts: Outfit (modern titles) & Caveat (cursive/script accents) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Design Tokens -->
+    <link rel="stylesheet" href="{% static 'css/design-tokens.css' %}?v=16">
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}?v=16">
+
+    <style>
+        /* =========================================
+           FONDO DEGRADADO (IMAGEN REFERENCIA) A 30%
+           ========================================= */
+        html[data-theme="light"] body.bg-subpage,
+        html[data-theme="light"] body {
+            background-color: #ffffff !important;
+            position: relative;
+        }
+
+        html[data-theme="light"] body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #00d2ff 35%, #18a64a 70%, #a8ff78 100%);
+            opacity: 0.2;
+            /* 30% de opacidad tal cual lo pediste */
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* EFECTO CRISTAL css.glass - MODO DÍA */
+        html[data-theme="light"] .glass-card,
+        html[data-theme="light"] .dropdown-menu,
+        html[data-theme="light"] .bg-light,
+        html[data-theme="light"] .bg-light-subtle,
+        html[data-theme="light"] .career-cta-card,
+        html[data-theme="light"] .accordion-button,
+        html[data-theme="light"] .glass-nav,
+        html[data-theme="light"] .form-control,
+        html[data-theme="light"] .form-select {
+            background: rgba(255, 255, 255, 0.25) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        }
+
+        html[data-theme="light"] .btn-neon,
+        html[data-theme="light"] .btn-neon-solid {
+            background: rgba(24, 166, 74, 0.15) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 30px rgba(24, 166, 74, 0.1) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            border: 1px solid rgba(24, 166, 74, 0.6) !important;
+            color: #014ba0 !important;
+        }
+
+        html[data-theme="light"] .btn-neon:hover,
+        html[data-theme="light"] .btn-neon-solid:hover {
+            background: rgba(24, 166, 74, 0.3) !important;
+            border-color: rgba(24, 166, 74, 1) !important;
+            box-shadow: 0 4px 30px rgba(24, 166, 74, 0.3) !important;
+        }
+    </style>
 </head>
-<body>
 
-    <!-- MENÚ DE NAVEGACIÓN DINÁMICO Y DESPLEGABLE -->
-    <header class="sticky-top">
-        <nav class="navbar navbar-expand-xl navbar-istte py-3" aria-label="Navegación principal">
-            <div class="container-fluid px-xl-5">
-                <!-- Logotipo Oficial ISTTE -->
-                <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="{% url 'index' %}">
-                    <svg width="45" height="45" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="logo-spinner">
-                        <circle cx="50" cy="50" r="48" fill="#0A3B7C" />
-                        <g fill="#2EA62E">
-                            <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" />
-                            <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(60 50 50)" />
-                            <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(120 50 50)" />
-                            <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(180 50 50)" />
-                            <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(240 50 50)" />
-                            <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(300 50 50)" />
-                        </g>
-                        <circle cx="50" cy="50" r="12" fill="#0A3B7C" stroke="#FFFFFF" stroke-width="3" />
-                    </svg>
-                    <div>
-                        <span class="navbar-brand-text d-block m-0">TECNOECUATORIANO</span>
-                        <span class="navbar-brand-subtext text-uppercase fw-bold text-success" style="font-size: 0.65rem; letter-spacing: 0.5px;">Instituto Superior Tecnológico</span>
-                    </div>
-                </a>
-                
-                <!-- Toggler móvil -->
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Alternar navegación">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <!-- Elementos del menú desplegables -->
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav mx-auto mb-2 mb-xl-0 gap-1 text-center">
-                        
-                        <!-- 0. HOME -->
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-istte" href="{% url 'index' %}">Inicio</a>
-                        </li>
+<body class="{% block body_class %}bg-subpage{% endblock %}">
 
-                        <!-- 1. Información Institucional (Desplegable) -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link nav-link-istte dropdown-toggle" href="#" id="menuInfo" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Información Institucional
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-custom border-0 shadow" aria-labelledby="menuInfo">
-                                <li><a class="dropdown-item" href="{% url 'organigrama' %}">Organigrama</a></li>
-                                <li><a class="dropdown-item" href="{% url 'presentacion_institucional' %}">Presentación Institucional</a></li>
-                                <li><a class="dropdown-item" href="{% url 'planificacion_estrategica' %}">Planificación Estratégica</a></li>
-                                <li><a class="dropdown-item" href="{% url 'aseguramiento_calidad' %}">Aseguramiento de la Calidad</a></li>
-                                <li><a class="dropdown-item" href="{% url 'gaceta_institucional' %}">Gaceta Institucional</a></li>
-                                <li><a class="dropdown-item" href="{% url 'transparencia' %}">Transparencia</a></li>
-                                <li><a class="dropdown-item" href="{% url 'sedes_campus' %}">Sedes - Campus</a></li>
+    <!-- MENÚ DE NAVEGACIÓN (Floating Glassmorphism Pill) -->
+    <header class="position-absolute pt-4 w-100" style="z-index: 1030; pointer-events: none;">
+        <div class="container-fluid px-2 px-md-4">
+            <nav class="navbar navbar-expand-xl navbar-dark glass-nav py-2 px-3" aria-label="Navegación principal"
+                style="pointer-events: auto; border-radius: 30px;">
+                <div class="container-fluid px-0">
+                    <!-- Logotipo Oficial ISTTE -->
+                    <a class="navbar-brand text-decoration-none m-0 me-3 d-flex align-items-center gap-2"
+                        href="{% url 'index' %}">
+                        <img src="{% static 'images/logo.png' %}" alt="Logo ISTTE" style="width: 38px; height: auto;">
+                        <div class="d-flex flex-column justify-content-center d-none d-sm-flex">
+                            <span class="d-block m-0 text-white fw-bold"
+                                style="font-size: 0.65rem; letter-spacing: 0.28rem; text-transform: uppercase; line-height: 1; margin-bottom: 2px !important;">TECNOECUATORIANO</span>
+                            <span class="d-block m-0 text-neon"
+                                style="font-size: 0.85rem; font-weight: 600; line-height: 1;">Instituto Superior
+                                Tecnológico</span>
+                        </div>
+                    </a>
+
+                    <!-- Toggler móvil a la derecha -->
+                    <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                        aria-label="Alternar navegación">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Offcanvas / Menú de enlaces -->
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header border-bottom border-secondary">
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="{% static 'images/logo.png' %}" alt="Logo ISTTE"
+                                    style="width: 38px; height: auto;">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <span class="d-block m-0 text-white fw-bold"
+                                        style="font-size: 0.65rem; letter-spacing: 0.28rem; text-transform: uppercase; line-height: 1; margin-bottom: 2px !important;">TECNOECUATORIANO</span>
+                                    <span class="d-block m-0 text-neon"
+                                        style="font-size: 0.85rem; font-weight: 600; line-height: 1;">Instituto Superior
+                                        Tecnológico</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                aria-label="Cerrar"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-center flex-grow-1 pe-2 gap-1 fw-semibold"
+                                style="font-size: 0.9rem;">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white px-2" href="{% url 'index' %}">Inicio</a>
+                                </li>
+
+                                <!-- Dropdown Institucional -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white px-2" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Institución</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark glass-dropdown p-2 gap-1">
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'organigrama' %}">Organigrama</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'presentacion_institucional' %}">Presentación
+                                                Institucional</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'planificacion_estrategica' %}">Planificación
+                                                Estratégica</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'aseguramiento_calidad' %}">Aseguramiento de la Calidad</a>
+                                        </li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'gaceta_institucional' %}">Gaceta Institucional</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'transparencia' %}">Transparencia</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'sedes_campus' %}">Sedes - Campus</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown Oferta Académica -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white px-2" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Oferta Académica</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark glass-dropdown p-2 gap-1">
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'carreras' %}?modalidad=presencial">Modalidad
+                                                Presencial</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'carreras' %}?modalidad=linea">Modalidad En Línea</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'validacion_experiencia' %}">Validación de
+                                                Conocimientos</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'detalle_carreras' career_slug='escuela-conduccion' %}">Escuela
+                                                de Conducción</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown Servicios -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white px-2" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark glass-dropdown p-2 gap-1">
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'biblioteca' %}">Biblioteca</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'portal_empleo' %}">Portal de Empleo</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="https://aulavirtual.tecnoecuatoriano.edu.ec" target="_blank"
+                                                rel="noopener noreferrer">Aula Virtual</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="https://siacad.tecnoecuatoriano.edu.ec" target="_blank"
+                                                rel="noopener noreferrer">SIACAD</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'asociacion_graduados' %}">Asociación de Graduados</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'soporte_tecnico' %}">Soporte Técnico</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'unidad_titulacion' %}">Unidad de Titulación</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2" href="{% url 'cec_tecno' %}">Centro
+                                                de Educación Continua (CEC)</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown Unidades Académicas -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white px-2" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Unidades Académicas</a>
+                                    <ul class="dropdown-menu border-0 shadow-sm rounded-4 p-3">
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'bienestar' %}">Bienestar Institucional</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'vinculacion' %}">Vinculación con la Sociedad</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'investigacion' %}">Investigación</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'tecno_informativo' %}">Tecno Informativo</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- Dropdown Admisiones -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white px-2" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">Admisiones</a>
+                                    <ul class="dropdown-menu border-0 shadow-sm rounded-4 p-3">
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'proceso_admision' %}">Proceso de Admisión</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'proceso_admision' %}#requisitos-fechas">Requisitos y
+                                                Fechas</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'becas_incentivos' %}">Becas e Incentivos</a></li>
+                                        <li><a class="dropdown-item py-2 rounded-2"
+                                                href="{% url 'inscripcion' %}">Inscripción en Línea</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
 
-                        <!-- 2. Oferta Académica (Desplegable) -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link nav-link-istte dropdown-toggle" href="#" id="menuOferta" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Oferta Académica
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-custom border-0 shadow" aria-labelledby="menuOferta">
-                                <li><a class="dropdown-item" href="{% url 'carreras' %}?modalidad=presencial">Modalidad Presencial</a></li>
-                                <li><a class="dropdown-item" href="{% url 'carreras' %}?modalidad=linea">Modalidad En Línea</a></li>
-                                <li><a class="dropdown-item" href="{% url 'validacion_experiencia' %}">Validación de Conocimientos</a></li>
-                                <li><a class="dropdown-item" href="{% url 'detalle_carreras' career_slug='escuela-conduccion' %}">Escuela de Conducción</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- 3. Servicios (Desplegable) -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link nav-link-istte dropdown-toggle" href="#" id="menuServicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Servicios
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-custom border-0 shadow" aria-labelledby="menuServicios">
-                                <li><a class="dropdown-item" href="{% url 'biblioteca' %}">Biblioteca</a></li>
-                                <li><a class="dropdown-item" href="{% url 'portal_empleo' %}">Portal de Empleo</a></li>
-                                <li><a class="dropdown-item" href="https://aulavirtual.tecnoecuatoriano.edu.ec" target="_blank" rel="noopener noreferrer">Aula Virtual</a></li>
-                                <li><a class="dropdown-item" href="https://siacad.tecnoecuatoriano.edu.ec" target="_blank" rel="noopener noreferrer">SIACAD</a></li>
-                                <li><a class="dropdown-item" href="{% url 'asociacion_graduados' %}">Asociación de Graduados</a></li>
-                                <li><a class="dropdown-item" href="{% url 'soporte_tecnico' %}">Soporte Técnico</a></li>
-                                <li><a class="dropdown-item" href="{% url 'unidad_titulacion' %}">Unidad de Titulación</a></li>
-                                <li><a class="dropdown-item" href="{% url 'cec_tecno' %}">Centro de Educación Continua (CEC)</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- 4. Unidades Académicas (Desplegable) -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link nav-link-istte dropdown-toggle" href="#" id="menuUnidades" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Unidades Académicas
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-custom border-0 shadow" aria-labelledby="menuUnidades">
-                                <li><a class="dropdown-item" href="{% url 'bienestar' %}">Bienestar Institucional</a></li>
-                                <li><a class="dropdown-item" href="{% url 'vinculacion' %}">Vinculación con la Sociedad</a></li>
-                                <li><a class="dropdown-item" href="{% url 'investigacion' %}">Investigación</a></li>
-                                <li><a class="dropdown-item" href="{% url 'tecno_informativo' %}">Tecno Informativo</a></li>
-                            </ul>
-                        </li>
-
-                        <!-- 5. Admisiones (Desplegable) -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link nav-link-istte dropdown-toggle" href="#" id="menuAdmisiones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admisiones
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-custom border-0 shadow" aria-labelledby="menuAdmisiones">
-                                <li><a class="dropdown-item" href="{% url 'proceso_admision' %}">Proceso de Admisión</a></li>
-                                <li><a class="dropdown-item" href="{% url 'proceso_admision' %}#requisitos-fechas">Requisitos y Fechas</a></li>
-                                <li><a class="dropdown-item" href="{% url 'becas_incentivos' %}">Becas e Incentivos</a></li>
-                                <li><a class="dropdown-item" href="{% url 'inscripcion' %}">Inscripción en Línea</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <!-- 6. Botones de Acción Destacados (Inscríbete y Contacto) -->
-                    <div class="d-flex flex-column flex-xl-row gap-2 justify-content-center align-items-center mt-3 mt-xl-0">
-                        <a href="{% url 'inscripcion' %}" class="btn btn-contacto-nav py-2 px-3 fw-bold d-inline-flex align-items-center gap-2" style="background-color: var(--istte-green-accent);">
-                            <span>INSCRIBETE</span>
-                            <i class="bi bi-pencil-square" aria-hidden="true"></i>
-                        </a>
-                        <a href="{% url 'contacto' %}" class="btn btn-outline-light py-2 px-3 d-inline-flex align-items-center gap-2" style="border-radius: 999px;">
-                            <span>CONTACTO</span>
-                            <i class="bi bi-envelope" aria-hidden="true"></i>
-                        </a>
+                            <!-- Botones de Acción Destacados (Inscríbete y Contacto) -->
+                            <div
+                                class="d-flex flex-lg-row flex-column gap-2 align-items-lg-center mt-4 mt-lg-0 me-lg-3">
+                                <!-- Botón de Tema (Sol/Luna) -->
+                                <button id="theme-toggle"
+                                    class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center"
+                                    aria-label="Cambiar tema">
+                                    <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
+                                    <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
+                                </button>
+                                <a href="{% url 'contacto' %}" class="nav-link fw-semibold text-white px-1">Contacto</a>
+                                <a href="{% url 'inscripcion' %}" class="btn-neon-solid px-3 py-2 text-decoration-none">
+                                    Inscríbete
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
     <!-- CONTENIDO ESPECÍFICO DE CADA SUBPÁGINA -->
@@ -156,7 +279,9 @@
     </main>
 
     <!-- BOTÓN DE WHATSAPP FLOTANTE INTERACTIVO -->
-    <a href="https://wa.me/593999999999" class="whatsapp-float d-flex align-items-center gap-2 text-decoration-none shadow" target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp">
+    <a href="https://wa.me/593999999999"
+        class="whatsapp-float d-flex align-items-center gap-2 text-decoration-none shadow" target="_blank"
+        rel="noopener noreferrer" aria-label="Chatear por WhatsApp">
         <i class="bi bi-whatsapp"></i>
         <span class="whatsapp-text">¿Necesitas ayuda? <strong>¡Chatea con nosotros!</strong></span>
     </a>
@@ -168,42 +293,39 @@
                 <!-- Información Logo y Marca -->
                 <div class="col-12 col-md-4">
                     <div class="d-flex align-items-center gap-2 mb-3">
-                        <svg width="35" height="35" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <circle cx="50" cy="50" r="48" fill="#0A3B7C" />
-                            <g fill="#2EA62E">
-                                <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" />
-                                <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(60 50 50)" />
-                                <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(120 50 50)" />
-                                <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(180 50 50)" />
-                                <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(240 50 50)" />
-                                <path d="M50 18 C60 18 70 30 66 42 C58 40 52 32 50 18 Z" transform="rotate(300 50 50)" />
-                            </g>
-                            <circle cx="50" cy="50" r="12" fill="#0A3B7C" stroke="#FFFFFF" stroke-width="3" />
-                        </svg>
-                        <div>
-                            <span class="footer-logo-title d-block m-0 h5">TECNOECUATORIANO</span>
-                            <span class="footer-logo-subtitle text-success">Instituto Superior Tecnológico</span>
+                        <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 50px; height: auto;">
+                        <div class="d-flex flex-column justify-content-center">
+                            <span class="d-block m-0 text-white fw-bold"
+                                style="font-size: 0.85rem; letter-spacing: 0.38rem; text-transform: uppercase; margin-bottom: 2px !important;">TECNOECUATORIANO</span>
+                            <span class="d-block m-0 text-neon" style="font-size: 1.1rem; font-weight: 600;">Instituto
+                                Superior Tecnológico</span>
                         </div>
                     </div>
                     <p class="small text-secondary mb-4">
-                        Formamos profesionales altamente capacitados con competencias sólidas para el desarrollo de la sociedad.
+                        Formamos profesionales altamente capacitados con competencias sólidas para el desarrollo de la
+                        sociedad.
                     </p>
-                    
+
                     <h3 class="h6 text-white mb-2 fw-bold">Síguenos en Redes Sociales</h3>
                     <div class="social-links d-flex gap-2">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook Oficial ISTTE">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                            aria-label="Facebook Oficial ISTTE">
                             <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram Oficial ISTTE">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                            aria-label="Instagram Oficial ISTTE">
                             <i class="bi bi-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok Oficial ISTTE">
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                            aria-label="TikTok Oficial ISTTE">
                             <i class="bi bi-tiktok" aria-hidden="true"></i>
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn Oficial ISTTE">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                            aria-label="LinkedIn Oficial ISTTE">
                             <i class="bi bi-linkedin" aria-hidden="true"></i>
                         </a>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube Oficial ISTTE">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+                            aria-label="YouTube Oficial ISTTE">
                             <i class="bi bi-youtube" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -212,39 +334,44 @@
                 <!-- Contacto & Sedes -->
                 <div class="col-12 col-md-5">
                     <h2 class="footer-heading">Información de Contacto</h2>
-                    
+
                     <div class="footer-contact-item mb-2 d-flex align-items-start gap-2">
-                        <i class="bi bi-geo-alt-fill footer-contact-icon text-success" aria-hidden="true"></i>
+                        <i class="bi bi-geo-alt-fill footer-contact-icon text-neon" aria-hidden="true"></i>
                         <address class="m-0 small text-secondary">
-                            <strong>Sedes y Campus:</strong> 
-                            <a href="{% url 'sedes_campus' %}" class="text-secondary text-decoration-none hover-underline">Quito (Norte, Sur, Pifo), Guayaquil, Santa Elena</a>
+                            <strong>Sedes y Campus:</strong>
+                            <a href="{% url 'sedes_campus' %}"
+                                class="text-secondary text-decoration-none hover-underline">Quito (Norte, Sur, Pifo),
+                                Guayaquil, Santa Elena</a>
                         </address>
                     </div>
-                    
+
                     <div class="footer-contact-item mb-2 d-flex align-items-start gap-2">
-                        <i class="bi bi-journal-bookmark-fill footer-contact-icon text-success" aria-hidden="true"></i>
+                        <i class="bi bi-journal-bookmark-fill footer-contact-icon text-neon" aria-hidden="true"></i>
                         <div class="small text-secondary">
-                            <strong>Centros de Educación Continua:</strong> Ficoa, Av. Guaytambos O4-76 y Montalvo, Ambato
+                            <strong>Centros de Educación Continua:</strong> Ficoa, Av. Guaytambos O4-76 y Montalvo,
+                            Ambato
                         </div>
                     </div>
-                    
+
                     <div class="footer-contact-item mb-2 d-flex align-items-start gap-2">
-                        <i class="bi bi-telephone-fill footer-contact-icon text-success" aria-hidden="true"></i>
+                        <i class="bi bi-telephone-fill footer-contact-icon text-neon" aria-hidden="true"></i>
                         <div class="small text-secondary">
                             <strong>Teléfonos:</strong> (02) 256-5555 / 099-999-9999
                         </div>
                     </div>
 
                     <div class="footer-contact-item mb-3 d-flex align-items-start gap-2">
-                        <i class="bi bi-envelope-fill footer-contact-icon text-success" aria-hidden="true"></i>
+                        <i class="bi bi-envelope-fill footer-contact-icon text-neon" aria-hidden="true"></i>
                         <div class="small text-secondary">
-                            <strong>Correos:</strong> 
-                            <a href="mailto:info@tecnoecuatoriano.edu.ec" class="text-secondary text-decoration-none">info@tecnoecuatoriano.edu.ec</a> | 
-                            <a href="mailto:admisiones@tecnoecuatoriano.edu.ec" class="text-secondary text-decoration-none">admisiones@tecnoecuatoriano.edu.ec</a>
+                            <strong>Correos:</strong>
+                            <a href="mailto:info@tecnoecuatoriano.edu.ec"
+                                class="text-secondary text-decoration-none">info@tecnoecuatoriano.edu.ec</a> |
+                            <a href="mailto:admisiones@tecnoecuatoriano.edu.ec"
+                                class="text-secondary text-decoration-none">admisiones@tecnoecuatoriano.edu.ec</a>
                         </div>
                     </div>
 
-                    <a href="{% url 'contacto' %}" class="btn btn-sm btn-outline-success text-white border-success">
+                    <a href="{% url 'contacto' %}" class="btn-neon-solid px-3 py-2 text-decoration-none d-inline-block">
                         <i class="bi bi-file-earmark-text-fill me-1"></i> Formulario de Contacto
                     </a>
                 </div>
@@ -253,25 +380,64 @@
                 <div class="col-12 col-md-3 col-lg-2">
                     <h2 class="footer-heading">Enlaces Legales</h2>
                     <ul class="footer-links-list list-unstyled">
-                        <li class="mb-2"><a href="{% url 'aviso_legal' %}" class="footer-link small text-secondary text-decoration-none">Aviso legal</a></li>
-                        <li class="mb-2"><a href="{% url 'politica_privacidad' %}" class="footer-link small text-secondary text-decoration-none">Política de privacidad</a></li>
-                        <li class="mb-2"><a href="{% url 'proceso_admision' %}" class="footer-link small text-secondary text-decoration-none">Admisiones</a></li>
-                        <li class="mb-2"><a href="{% url 'carreras' %}" class="footer-link small text-secondary text-decoration-none">Oferta Académica</a></li>
+                        <li class="mb-2"><a href="{% url 'aviso_legal' %}"
+                                class="footer-link small text-secondary text-decoration-none">Aviso legal</a></li>
+                        <li class="mb-2"><a href="{% url 'politica_privacidad' %}"
+                                class="footer-link small text-secondary text-decoration-none">Política de privacidad</a>
+                        </li>
+                        <li class="mb-2"><a href="{% url 'proceso_admision' %}"
+                                class="footer-link small text-secondary text-decoration-none">Admisiones</a></li>
+                        <li class="mb-2"><a href="{% url 'carreras' %}"
+                                class="footer-link small text-secondary text-decoration-none">Oferta Académica</a></li>
                     </ul>
+                    <!-- Imagen solicitada (2.png) debajo de Enlaces Legales -->
+                    <div class="mt-3 d-flex justify-content-center justify-content-md-start"
+                        style="height: 0; overflow: visible;">
+                        <img src="{% static 'images/2.png' %}" alt="Mascota ISTTE" class="img-fluid"
+                            style="height: 145px; width: auto; object-fit: contain; transform: translate(66px, -17px); filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); position: relative; z-index: 10;">
+                    </div>
                 </div>
             </div>
 
             <!-- Fila Inferior Legal -->
             <div class="footer-bottom text-center mt-4 pt-3 border-top border-secondary-subtle">
-                <p class="m-0 small text-secondary">&copy; 2026 Instituto Tecnológico Superior Tecnoecuatoriano. Todos los derechos reservados.</p>
+                <p class="m-0 small text-secondary">&copy; 2026 Instituto Tecnológico Superior Tecnoecuatoriano. Todos
+                    los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 Bundle JS con Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <!-- Custom JS -->
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Bootstrap 5 Bundle JS con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Alpine JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"
+        integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+        crossorigin="anonymous"></script>
+
+    <!-- Initialize AOS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+                easing: 'ease-out-cubic'
+            });
+        });
+    </script>
+
+    <!-- Scripts Principales -->
+    <script src="{% static 'js/main.js' %}?v=1.1"></script>
 </body>
+
 </html>

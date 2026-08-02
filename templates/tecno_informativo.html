@@ -7,20 +7,20 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-neon text-decoration-none">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Tecno Informativo</li>
             </ol>
         </nav>
 
         <div class="text-center mb-5">
-            <h1 id="tecno-title" class="fw-extrabold text-primary display-4">Tecno Informativo</h1>
+            <h1 id="tecno-title" class="fw-extrabold text-white display-4">Tecno Informativo</h1>
             <p class="text-secondary">Boletín digital de noticias, avances tecnológicos y eventos del ISTTE.</p>
         </div>
 
         <div class="row g-4">
             {% for item in news_items %}
             <div class="col-12 col-md-6 col-lg-4">
-                <article class="card border-0 rounded-4 shadow-sm h-100 overflow-hidden bg-white">
+                <article class="card border-0 rounded-4  h-100 overflow-hidden glass-card">
                     <div class="ratio ratio-16x9 news-image-ratio">
                         {% if item.image %}
                             <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-img-top object-fit-cover">
@@ -34,9 +34,9 @@
                     </div>
                     <div class="card-body p-4">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge bg-success bg-opacity-10 text-success fw-bold py-1 px-2 rounded-pill small">INSTITUCIONAL</span>
+                            <span class="badge badge-neon bg-opacity-10 text-neon fw-bold py-1 px-2 rounded-pill small">INSTITUCIONAL</span>
                         </div>
-                        <h2 class="h5 text-primary fw-bold mb-2">{{ item.title }}</h2>
+                        <h2 class="h5 text-white fw-bold mb-2">{{ item.title }}</h2>
                         <p class="small text-secondary mb-3">{{ item.description|truncatechars:120 }}</p>
                         <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
                             <small class="text-muted"><i class="bi bi-calendar3 me-1"></i> {{ item.created_at|date:"d M Y" }}</small>

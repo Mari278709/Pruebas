@@ -1,0 +1,10 @@
+# Dependencias principales (Compatibles con Windows, macOS y Linux)
+Django>=5.0,<6.0
+Pillow>=10.0.0
+python-dotenv>=1.0.0
+dj-database-url>=2.0.0
+whitenoise>=6.5.0
+psycopg2-binary>=2.9.0
+
+# Servidor WSGI para producción (solo Linux/macOS, ignorado en Windows)
+gunicorn>=21.0.0; sys_platform != 'win32'

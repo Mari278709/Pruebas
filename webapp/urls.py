@@ -33,4 +33,7 @@ urlpatterns = [
     path('transparencia/', views.transparencia, name='transparencia'),
     path('aviso-legal/', views.aviso_legal, name='aviso_legal'),
     path('politica-privacidad/', views.politica_privacidad, name='politica_privacidad'),
+    path('api/carreras/', views.api_carreras, name='api_carreras'),
+    path('api/media/', views.api_media, name='api_media'),
+    path('api/inscripcion/', views.api_inscripcion, name='api_inscripcion'),
 ]
