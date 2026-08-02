@@ -1703,6 +1703,10 @@ html[data-theme="light"] .glass-nav {
     -webkit-backdrop-filter: blur(20px) !important;
 }
 
+html[data-theme="light"] .glass-nav::before {
+    display: none !important; /* Ocultar el fondo oscuro del modo noche */
+}
+
 html[data-theme="light"] .form-control,
 html[data-theme="light"] .form-select {
     color: #0a192f !important;
