@@ -1859,9 +1859,8 @@ html[data-theme="light"] .navbar {
     --bs-offcanvas-color: #0a192f !important;
 }
 
-/* Efecto cristal blanco para el modo día (Monitores y Móviles) */
-html[data-theme="light"] .glass-nav,
-html[data-theme="light"] .offcanvas {
+/* Efecto cristal blanco para el modo día (Monitores) */
+html[data-theme="light"] .glass-nav {
     background: rgba(255, 255, 255, 0.75) !important; 
     backdrop-filter: blur(25px) !important;
     -webkit-backdrop-filter: blur(25px) !important;
@@ -1869,13 +1868,9 @@ html[data-theme="light"] .offcanvas {
     border: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Sombras protectoras en el texto para que resalte sobre el cristal en modo día */
+/* Sombras protectoras en el texto para que resalte sobre el cristal en modo día (Monitores) */
 html[data-theme="light"] .glass-nav .nav-link,
-html[data-theme="light"] .glass-nav .navbar-brand span,
-html[data-theme="light"] .offcanvas .nav-link,
-html[data-theme="light"] .offcanvas .dropdown-item,
-html[data-theme="light"] .offcanvas .dropdown-toggle,
-html[data-theme="light"] .offcanvas .offcanvas-title {
+html[data-theme="light"] .glass-nav .navbar-brand span {
     color: #0a192f !important;
     font-weight: 600 !important;
     text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.9) !important;
