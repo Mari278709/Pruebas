@@ -105,10 +105,10 @@
         html[data-theme="light"] #mainNavbar .theme-icon-dark {
             display: none !important;
         }
+
         html[data-theme="light"] #mainNavbar .theme-icon-light {
             display: inline-block !important;
         }
-        
     </style>
 </head>
 
@@ -133,16 +133,8 @@
                         </div>
                     </a>
 
-                    <!-- Controles Móvil (Tema + Toggler) -->
+                    <!-- Controles Móvil (Toggler) -->
                     <div class="d-flex align-items-center gap-2">
-                        <!-- Botón Tema Móvil -->
-                        <button
-                            class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-xl-none"
-                            aria-label="Cambiar tema">
-                            <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
-                            <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
-                        </button>
-
                         <!-- Toggler móvil -->
                         <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
@@ -283,13 +275,6 @@
                             <!-- Botones de Acción Destacados (Inscríbete y Contacto) -->
                             <div
                                 class="d-flex flex-lg-row flex-column gap-2 align-items-lg-center mt-4 mt-lg-0 me-lg-3">
-                                <!-- Botón de Tema (Sol/Luna) - Desktop -->
-                                <button
-                                    class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-none d-xl-flex"
-                                    aria-label="Cambiar tema">
-                                    <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
-                                    <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
-                                </button>
                                 <a href="{% url 'contacto' %}" class="nav-link fw-semibold px-1">Contacto</a>
                                 <a href="{% url 'inscripcion' %}" class="btn-neon-solid px-3 py-2 text-decoration-none">
                                     Inscríbete
@@ -424,18 +409,19 @@
                         </ul>
                         <!-- Imagen solicitada (2.png) al lado de Enlaces Legales en móvil -->
                         <div class="mascot-container ms-2">
-                            <img src="{% static 'images/2.png' %}" alt="Mascota ISTTE" class="img-fluid footer-mascot">
+                            <img src="{% static 'images/2.png' %}" alt="Mascota ISTTE" class="img-fluid footer-mascot"
+                                style="max-width: 60px;">
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Fila Inferior Legal -->
-            <div class="footer-bottom text-center mt-4 pt-3 border-top border-secondary-subtle">
-                <p class="m-0 small text-secondary">&copy; 2026 Instituto Tecnológico Superior Tecnoecuatoriano. Todos
-                    los derechos reservados.</p>
+                <!-- Fila Inferior Legal -->
+                <div class="footer-bottom text-center mt-4 pt-3 border-top border-secondary-subtle">
+                    <p class="m-0 small text-secondary">&copy; 2026 Instituto Tecnológico Superior Tecnoecuatoriano.
+                        Todos
+                        los derechos reservados.</p>
+                </div>
             </div>
-        </div>
     </footer>
 
 
