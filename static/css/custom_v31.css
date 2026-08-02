@@ -1799,15 +1799,7 @@ html[data-theme="light"] .navbar-toggler-icon {
     filter: invert(24%) sepia(50%) saturate(2971%) hue-rotate(193deg) brightness(90%) contrast(105%);
 }
 
-/* Fondo de cristal para el menú lateral (offcanvas) en modo claro SOLO EN MÓVIL */
-@media (max-width: 1199px) {
-    html[data-theme="light"] .offcanvas {
-        background: rgba(255, 255, 255, 0.95) !important; /* Más opaco para que se pueda leer el texto oscuro */
-        backdrop-filter: blur(25px) !important;
-        -webkit-backdrop-filter: blur(25px) !important;
-        border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
-    }
-}
+/* Fondo de cristal para el menú lateral (offcanvas) en modo claro SOLO EN MÓVIL eliminado para usar diseño nativo */
 
 /* Asegurar que el botón de cerrar sea oscuro */
 html[data-theme="light"] .btn-close-white {
@@ -1848,10 +1840,7 @@ html[data-theme="light"] .btn-close-white {
         margin-top: 0.5rem !important;
     }
 
-    html[data-theme="light"] .offcanvas-body .dropdown-menu {
-        background: rgba(0, 0, 0, 0.03) !important;
-    }
-
+    /* Estilos dropdown modo día móvil eliminados para diseño nativo */
     .offcanvas-body .dropdown-menu.show {
         display: block !important;
     }
@@ -1867,14 +1856,9 @@ html[data-theme="light"] .navbar {
     --bs-navbar-active-color: #014ba0 !important;
     --bs-navbar-brand-color: #014ba0 !important;
     --bs-navbar-brand-hover-color: #003366 !important;
-    --bs-offcanvas-bg: rgba(255, 255, 255, 0.95) !important;
+    --bs-offcanvas-bg: #ffffff !important;
     --bs-offcanvas-color: #0a192f !important;
 }
-
-html[data-theme="light"] .offcanvas-body {
-    color: #0a192f !important;
-}
-
 /* =========================================
    FIX: MASCOTA FOOTER RESPONSIVA
    ========================================= */
