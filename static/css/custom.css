@@ -1772,6 +1772,8 @@ html[data-theme="light"] .collage-wrapper {
 /* Color de texto en la barra de navegación y menús desplegables para máxima legibilidad */
 html[data-theme="light"] .navbar .nav-link,
 html[data-theme="light"] .navbar .navbar-brand span,
+html[data-theme="light"] .offcanvas-header span.text-white,
+html[data-theme="light"] .theme-toggle-btn,
 html[data-theme="light"] .dropdown-menu .dropdown-item {
     color: #014ba0 !important;
     font-weight: 600 !important;
