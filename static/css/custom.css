@@ -1739,3 +1739,48 @@ html[data-theme="light"] .dropdown-menu .dropdown-item {
 html[data-theme="light"] .dropdown-menu .dropdown-item:hover {
     background-color: rgba(1, 75, 160, 0.1) !important;
 }
+
+/* =========================================
+   ANIMACIONES Y MEJORAS UI/UX (TARJETAS)
+   ========================================= */
+.career-card-media {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.career-card-image {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.glass-card:hover .career-card-image {
+    transform: scale(1.08); /* Efecto de zoom al pasar el ratón */
+}
+
+/* =========================================
+   ADAPTACIÓN MÓVIL (MODO DÍA)
+   ========================================= */
+/* Invertir color del ícono hamburguesa para que sea azul oscuro en modo claro */
+html[data-theme="light"] .navbar-toggler-icon {
+    filter: invert(24%) sepia(50%) saturate(2971%) hue-rotate(193deg) brightness(90%) contrast(105%);
+}
+
+/* Forzar que el borde del botón en móvil sea visible */
+html[data-theme="light"] .navbar-toggler {
+    border: 1px solid rgba(1, 75, 160, 0.2) !important;
+}
+
+/* Fondo de cristal para el menú lateral (offcanvas) en modo claro */
+html[data-theme="light"] .offcanvas {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-left: 1px solid rgba(1, 75, 160, 0.1);
+}
+
+/* Asegurar que el botón de cerrar sea oscuro */
+html[data-theme="light"] .btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(0);
+}

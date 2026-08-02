@@ -27,10 +27,10 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Design Tokens -->
-    <link rel="stylesheet" href="{% static 'css/design-tokens.css' %}?v=16">
+    <link rel="stylesheet" href="{% static 'css/design-tokens.css' %}?v=18">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}?v=16">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}?v=18">
 
     <style>
         /* =========================================
@@ -432,6 +432,44 @@
                 once: true,
                 offset: 50,
                 easing: 'ease-out-cubic'
+            });
+        });
+    </script>
+
+    <!-- Vanilla Tilt JS para animaciones 3D en cristal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+    <!-- UI Sounds Script (Micro-interacciones) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicializar audios (asumimos que los agregarás luego en static/audio/)
+            // Si el archivo no existe, simplemente fallará silenciosamente sin romper nada
+            const hoverSound = new Audio("{% static 'audio/hover.mp3' %}");
+            hoverSound.volume = 0.05; // Volumen muy bajo para que sea sutil
+            
+            const clickSound = new Audio("{% static 'audio/click.mp3' %}");
+            clickSound.volume = 0.1;
+
+            // Reproducir sonido de hover en botones neón y tarjetas
+            const interactiveElements = document.querySelectorAll('.btn-neon, .btn-neon-solid, .glass-card');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    // Solo intentar reproducir si el audio está listo para evitar errores de consola iniciales
+                    if(hoverSound.readyState >= 2) {
+                        hoverSound.currentTime = 0;
+                        hoverSound.play().catch(()=>{});
+                    }
+                });
+                
+                // Si es un botón, también sonido de clic
+                if(el.classList.contains('btn-neon') || el.classList.contains('btn-neon-solid')) {
+                    el.addEventListener('click', () => {
+                        if(clickSound.readyState >= 2) {
+                            clickSound.currentTime = 0;
+                            clickSound.play().catch(()=>{});
+                        }
+                    });
+                }
             });
         });
     </script>

@@ -6,11 +6,12 @@
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-neon text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'index' %}"
+                        class="text-neon text-decoration-none">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Inscripción</li>
             </ol>
         </nav>
-        
+
         <div class="text-center mb-5">
             <h1 id="insc-title" class="fw-extrabold text-white display-4">Inscripción en Línea</h1>
             <p class="text-secondary small">Por favor ingresa tus datos para iniciar el proceso de postulación.</p>
@@ -24,18 +25,21 @@
                         <!-- Alerta de Éxito Oculta -->
                         <div class="alert alert-success d-none mb-4" id="alert-insc-success" role="alert">
                             <i class="bi bi-check-circle-fill me-2"></i>
-                            <strong>¡Inscripción registrada!</strong> Nos pondremos en contacto contigo por correo electrónico.
+                            <strong>¡Inscripción registrada!</strong> Nos pondremos en contacto contigo por correo
+                            electrónico.
                         </div>
 
                         <div class="mb-3">
                             <label for="insc-name" class="form-label small fw-bold">Nombre Completo</label>
-                            <input type="text" class="form-control" id="insc-name" required placeholder="Ej: Mariuxi Mina">
+                            <input type="text" class="form-control" id="insc-name" required
+                                placeholder="Ej: Mariuxi Minda">
                             <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="insc-email" class="form-label small fw-bold">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="insc-email" required placeholder="juan.perez@ejemplo.com">
+                            <input type="email" class="form-control" id="insc-email" required
+                                placeholder="mariuxi.minda@ejemplo.com">
                             <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
                         </div>
 

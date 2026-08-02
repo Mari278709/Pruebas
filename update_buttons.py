@@ -2,16 +2,17 @@ import os
 
 files = {
     r"d:\Git GitHub\Busy\Pruebas\templates\detalle_carreras.html": [
-        ('Ej: Jesus Pacheco', 'Ej: Mariuxi Minda'),
-        ('jesus@ejemplo.com', 'mariuxi@ejemplo.com'),
+        ('Ej: Wilson Pascal', 'Ej: Mariuxi Minda'),
+        ('pascal@ejemplo.com', 'mariuxi@ejemplo.com'),
         ('btn btn-success btn-lg w-100', 'btn-neon-solid btn-lg w-100'),
         ('btn btn-success w-100 py-2 mt-2 fw-bold text-white text-uppercase" style="background-color: var(--istte-green-accent);"', 'btn-neon-solid w-100 py-2 mt-2 fw-bold text-uppercase"'),
     ],
     r"d:\Git GitHub\Busy\Pruebas\templates\inscripcion.html": [
-        ('Ej: Jesus Pacheco', 'Ej: Mariuxi Minda'),
+        ('Ej: Wilson Pascal', 'Ej: Mariuxi Minda'),
+        ('pascal@ejemplo.com', 'mariuxi@ejemplo.com'),
     ],
     r"d:\Git GitHub\Busy\Pruebas\templates\contacto.html": [
-        ('Ej: Jesus Pacheco', 'Ej: Mariuxi Minda'),
+        ('Ej: Wilson Pascal', 'Ej: Mariuxi Minda'),
     ],
     r"d:\Git GitHub\Busy\Pruebas\templates\planificacion_estrategica.html": [
         ('btn btn-lg btn-success text-white py-3 px-4 fw-bold shadow', 'btn-neon-solid btn-lg py-3 px-4 fw-bold shadow'),
