@@ -91,6 +91,61 @@
             border-color: rgba(24, 166, 74, 1) !important;
             box-shadow: 0 4px 30px rgba(24, 166, 74, 0.3) !important;
         }
+
+        /* =========================================
+   MODO DÍA - NAVEGACIÓN Y OFFCANVAS
+   ========================================= */
+
+        /* Fondo y color de texto del offcanvas en modo día */
+        [data-theme="light"] .offcanvas {
+            background-color: #ffffff !important;
+            color: #0a192f !important;
+        }
+
+        /* Todos los textos dentro del offcanvas deben ser oscuros */
+        [data-theme="light"] .offcanvas .nav-link,
+        [data-theme="light"] .offcanvas .dropdown-item,
+        [data-theme="light"] .offcanvas .navbar-brand-text,
+        [data-theme="light"] .offcanvas .navbar-brand-subtext,
+        [data-theme="light"] .offcanvas .btn-close {
+            color: #0a192f !important;
+        }
+
+        /* Botón de cerrar: invertir el color (la cruz) */
+        [data-theme="light"] .offcanvas .btn-close {
+            filter: invert(1);
+        }
+
+        /* Texto del navbar flotante (glass-nav) en modo día */
+        [data-theme="light"] .glass-nav .nav-link {
+            color: #0a192f !important;
+        }
+
+        [data-theme="light"] .glass-nav .nav-link:hover {
+            color: #18a64a !important;
+        }
+
+        [data-theme="light"] .glass-nav .navbar-brand-text {
+            color: #0a192f !important;
+        }
+
+        [data-theme="light"] .glass-nav .navbar-brand-subtext {
+            color: #18a64a !important;
+        }
+
+        [data-theme="light"] .glass-nav {
+            background: rgba(255, 255, 255, 0.85) !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+
+        /* Icono del botón de tema: mostrar sol en modo día */
+        [data-theme="light"] .theme-toggle-btn .theme-icon-dark {
+            display: none !important;
+        }
+
+        [data-theme="light"] .theme-toggle-btn .theme-icon-light {
+            display: inline-block !important;
+        }
     </style>
 </head>
 
@@ -118,12 +173,13 @@
                     <!-- Controles Móvil (Tema + Toggler) -->
                     <div class="d-flex align-items-center gap-2">
                         <!-- Botón Tema Móvil -->
-                        <button class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-xl-none"
+                        <button
+                            class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-xl-none"
                             aria-label="Cambiar tema">
                             <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
                             <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
                         </button>
-                        
+
                         <!-- Toggler móvil -->
                         <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
@@ -265,7 +321,8 @@
                             <div
                                 class="d-flex flex-lg-row flex-column gap-2 align-items-lg-center mt-4 mt-lg-0 me-lg-3">
                                 <!-- Botón de Tema (Sol/Luna) - Desktop -->
-                                <button class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-none d-xl-flex"
+                                <button
+                                    class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-none d-xl-flex"
                                     aria-label="Cambiar tema">
                                     <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
                                     <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
@@ -393,12 +450,14 @@
                             <li class="mb-2"><a href="{% url 'aviso_legal' %}"
                                     class="footer-link small text-secondary text-decoration-none">Aviso legal</a></li>
                             <li class="mb-2"><a href="{% url 'politica_privacidad' %}"
-                                    class="footer-link small text-secondary text-decoration-none">Política de privacidad</a>
+                                    class="footer-link small text-secondary text-decoration-none">Política de
+                                    privacidad</a>
                             </li>
                             <li class="mb-2"><a href="{% url 'proceso_admision' %}"
                                     class="footer-link small text-secondary text-decoration-none">Admisiones</a></li>
                             <li class="mb-2"><a href="{% url 'carreras' %}"
-                                    class="footer-link small text-secondary text-decoration-none">Oferta Académica</a></li>
+                                    class="footer-link small text-secondary text-decoration-none">Oferta Académica</a>
+                            </li>
                         </ul>
                         <!-- Imagen solicitada (2.png) al lado de Enlaces Legales en móvil -->
                         <div class="mascot-container ms-2">
@@ -455,7 +514,7 @@
             // Si el archivo no existe, simplemente fallará silenciosamente sin romper nada
             const hoverSound = new Audio("{% static 'audio/hover.mp3' %}");
             hoverSound.volume = 0.05; // Volumen muy bajo para que sea sutil
-            
+
             const clickSound = new Audio("{% static 'audio/click.mp3' %}");
             clickSound.volume = 0.1;
 
@@ -464,18 +523,18 @@
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     // Solo intentar reproducir si el audio está listo para evitar errores de consola iniciales
-                    if(hoverSound.readyState >= 2) {
+                    if (hoverSound.readyState >= 2) {
                         hoverSound.currentTime = 0;
-                        hoverSound.play().catch(()=>{});
+                        hoverSound.play().catch(() => { });
                     }
                 });
-                
+
                 // Si es un botón, también sonido de clic
-                if(el.classList.contains('btn-neon') || el.classList.contains('btn-neon-solid')) {
+                if (el.classList.contains('btn-neon') || el.classList.contains('btn-neon-solid')) {
                     el.addEventListener('click', () => {
-                        if(clickSound.readyState >= 2) {
+                        if (clickSound.readyState >= 2) {
                             clickSound.currentTime = 0;
-                            clickSound.play().catch(()=>{});
+                            clickSound.play().catch(() => { });
                         }
                     });
                 }
