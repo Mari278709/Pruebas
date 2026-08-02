@@ -41,8 +41,8 @@
 /* Reset y Base */
 body {
     font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #02060d;
-    color: #ffffff;
+    background-color: var(--istte-bg-dark, #02060d);
+    color: var(--istte-white, #ffffff);
     line-height: 1.65;
     overflow-x: hidden;
 }

@@ -53,6 +53,51 @@
   --shadow-neon: 0 0 15px var(--istte-green-glow);
 }
 
+/* =========================================
+   OVERRIDES BOOTSTRAP PARA MODO CLARO
+   Debido a las clases hardcodeadas en HTML
+   ========================================= */
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-light {
+    color: var(--istte-white) !important;
+}
+
+[data-theme="light"] .bg-dark,
+[data-theme="light"] .bg-istte-dark {
+    background-color: var(--istte-bg-dark) !important;
+}
+
+[data-theme="light"] .text-white-50 {
+    color: var(--istte-text-muted) !important;
+}
+
+[data-theme="light"] .hero-section,
+[data-theme="light"] .hero-container {
+    color: var(--istte-white);
+}
+
+[data-theme="light"] .glass-nav {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .glass-nav::before {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(25px);
+}
+
+[data-theme="light"] .glass-dropdown {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .glass-dropdown .dropdown-item {
+    color: var(--istte-white) !important;
+}
+
+[data-theme="light"] .glass-dropdown .dropdown-item:hover {
+    background: rgba(24, 166, 74, 0.15) !important;
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--istte-white);
