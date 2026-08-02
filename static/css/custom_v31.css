@@ -1858,6 +1858,24 @@ html[data-theme="light"] .btn-close-white {
 }
 
 /* =========================================
+   FIX: BOOTSTRAP NATIVE VARIABLES FOR LIGHT MODE
+   ========================================= */
+html[data-theme="light"] .navbar {
+    /* Forzar los colores de la barra a oscuro (azul) */
+    --bs-navbar-color: #014ba0 !important;
+    --bs-navbar-hover-color: #003366 !important;
+    --bs-navbar-active-color: #014ba0 !important;
+    --bs-navbar-brand-color: #014ba0 !important;
+    --bs-navbar-brand-hover-color: #003366 !important;
+    --bs-offcanvas-bg: rgba(255, 255, 255, 0.95) !important;
+    --bs-offcanvas-color: #0a192f !important;
+}
+
+html[data-theme="light"] .offcanvas-body {
+    color: #0a192f !important;
+}
+
+/* =========================================
    FIX: MASCOTA FOOTER RESPONSIVA
    ========================================= */
 .mascot-container {
