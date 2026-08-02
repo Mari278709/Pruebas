@@ -1795,13 +1795,14 @@ html[data-theme="light"] .navbar-toggler-icon {
     filter: invert(24%) sepia(50%) saturate(2971%) hue-rotate(193deg) brightness(90%) contrast(105%);
 }
 
-/* Eliminar el borde forzado que no gustó */
-
-html[data-theme="light"] .offcanvas {
-    background: rgba(255, 255, 255, 0.25) !important; /* Cristal más transparente, no blanco lechoso */
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+/* Fondo de cristal para el menú lateral (offcanvas) en modo claro SOLO EN MÓVIL */
+@media (max-width: 1199px) {
+    html[data-theme="light"] .offcanvas {
+        background: rgba(255, 255, 255, 0.25) !important; /* Cristal más transparente, no blanco lechoso */
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
 }
 
 /* Asegurar que el botón de cerrar sea oscuro */
