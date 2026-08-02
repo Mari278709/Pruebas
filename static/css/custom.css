@@ -1788,42 +1788,44 @@ html[data-theme="light"] .btn-close-white {
 /* =========================================
    FIX: MENÚ MÓVIL Y SUBMENÚS EN OFFCANVAS
    ========================================= */
-.offcanvas-body {
-    pointer-events: auto !important;
-    overflow-y: auto !important;
-}
+@media (max-width: 1199.98px) {
+    .offcanvas-body {
+        pointer-events: auto !important;
+        overflow-y: auto !important;
+    }
 
-.offcanvas-body .navbar-nav {
-    display: flex !important;
-    flex-direction: column !important;
-    height: auto !important;
-    overflow: visible !important;
-}
+    .offcanvas-body .navbar-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
 
-.offcanvas-body .nav-item {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 0.5rem;
-}
+    .offcanvas-body .nav-item {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.5rem;
+    }
 
-/* Corregir submenús en móvil para que empujen el contenido y sean visibles */
-.offcanvas-body .dropdown-menu {
-    position: static !important;
-    float: none !important;
-    transform: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    padding-left: 1rem !important;
-    margin-top: 0.5rem !important;
-}
+    /* Corregir submenús en móvil para que empujen el contenido y sean visibles */
+    .offcanvas-body .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        padding-left: 1rem !important;
+        margin-top: 0.5rem !important;
+    }
 
-html[data-theme="light"] .offcanvas-body .dropdown-menu {
-    background: rgba(0, 0, 0, 0.03) !important;
-}
+    html[data-theme="light"] .offcanvas-body .dropdown-menu {
+        background: rgba(0, 0, 0, 0.03) !important;
+    }
 
-.offcanvas-body .dropdown-menu.show {
-    display: block !important;
+    .offcanvas-body .dropdown-menu.show {
+        display: block !important;
+    }
 }
 
 /* =========================================
