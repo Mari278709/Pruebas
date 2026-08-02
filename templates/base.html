@@ -140,7 +140,7 @@
                             class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-xl-none"
                             aria-label="Cambiar tema">
                             <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
-                            <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
+                            <i class="bi bi-sun-fill theme-icon-light fs-5 d-none text-dark"></i>
                         </button>
 
                         <!-- Toggler móvil -->
@@ -159,9 +159,9 @@
                                 <img src="{% static 'images/logo.png' %}" alt="Logo ISTTE"
                                     style="width: 38px; height: auto;">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <span class="d-block m-0 text-white fw-bold"
+                                    <span class="d-block m-0 text-white fw-bold offcanvas-title-text"
                                         style="font-size: 0.65rem; letter-spacing: 0.28rem; text-transform: uppercase; line-height: 1; margin-bottom: 2px !important;">TECNOECUATORIANO</span>
-                                    <span class="d-block m-0 text-neon"
+                                    <span class="d-block m-0 text-neon offcanvas-subtitle-text"
                                         style="font-size: 0.85rem; font-weight: 600; line-height: 1;">Instituto Superior
                                         Tecnológico</span>
                                 </div>
@@ -288,7 +288,7 @@
                                     class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-none d-xl-flex"
                                     aria-label="Cambiar tema">
                                     <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
-                                    <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
+                                    <i class="bi bi-sun-fill theme-icon-light fs-5 d-none text-dark"></i>
                                 </button>
                                 <a href="{% url 'contacto' %}" class="nav-link fw-semibold px-1">Contacto</a>
                                 <a href="{% url 'inscripcion' %}" class="btn-neon-solid px-3 py-2 text-decoration-none">

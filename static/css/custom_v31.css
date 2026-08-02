@@ -1734,7 +1734,8 @@ html[data-theme="light"] .collage-wrapper {
 /* Color de texto en la barra de navegación y menús desplegables para máxima legibilidad */
 html[data-theme="light"] .navbar .nav-link,
 html[data-theme="light"] .navbar .navbar-brand span,
-html[data-theme="light"] .offcanvas-header span.text-white,
+html[data-theme="light"] .offcanvas-title-text,
+html[data-theme="light"] .offcanvas-subtitle-text,
 html[data-theme="light"] .theme-toggle-btn,
 html[data-theme="light"] .dropdown-menu .dropdown-item {
     color: #014ba0 !important;
@@ -1830,6 +1831,25 @@ html[data-theme="light"] .navbar {
     --bs-navbar-brand-color: #0a192f !important;
     --bs-navbar-brand-hover-color: #003366 !important;
     --bs-offcanvas-color: #0a192f !important;
+}
+
+/* Fix offcanvas background en modo día */
+html[data-theme="light"] .offcanvas,
+html[data-theme="light"] .offcanvas-body,
+html[data-theme="light"] .offcanvas-header {
+    background-color: var(--istte-white) !important;
+}
+
+html[data-theme="light"] .offcanvas .nav-link,
+html[data-theme="light"] .offcanvas .dropdown-item {
+    color: #014ba0 !important;
+}
+
+/* Ocultar header de offcanvas en pantallas xl para evitar duplicación de logos */
+@media (min-width: 1200px) {
+    .offcanvas-header {
+        display: none !important;
+    }
 }
 
 /* Efecto cristal blanco para el modo día (Monitores) */
