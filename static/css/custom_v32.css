@@ -1837,7 +1837,7 @@ html[data-theme="light"] .navbar {
 html[data-theme="light"] .offcanvas,
 html[data-theme="light"] .offcanvas-body,
 html[data-theme="light"] .offcanvas-header {
-    background-color: var(--istte-white) !important;
+    background-color: #ffffff !important;
 }
 
 html[data-theme="light"] .offcanvas .nav-link,
