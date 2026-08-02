@@ -133,8 +133,16 @@
                         </div>
                     </a>
 
-                    <!-- Controles Móvil (Toggler) -->
+                    <!-- Controles Móvil (Tema + Toggler) -->
                     <div class="d-flex align-items-center gap-2">
+                        <!-- Botón Tema Móvil -->
+                        <button
+                            class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-xl-none"
+                            aria-label="Cambiar tema">
+                            <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
+                            <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
+                        </button>
+
                         <!-- Toggler móvil -->
                         <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
@@ -275,6 +283,13 @@
                             <!-- Botones de Acción Destacados (Inscríbete y Contacto) -->
                             <div
                                 class="d-flex flex-lg-row flex-column gap-2 align-items-lg-center mt-4 mt-lg-0 me-lg-3">
+                                <!-- Botón de Tema (Sol/Luna) - Desktop -->
+                                <button
+                                    class="btn btn-link text-white text-decoration-none px-2 d-flex align-items-center theme-toggle-btn d-none d-xl-flex"
+                                    aria-label="Cambiar tema">
+                                    <i class="bi bi-moon-stars-fill theme-icon-dark fs-5"></i>
+                                    <i class="bi bi-sun-fill theme-icon-light fs-5 d-none"></i>
+                                </button>
                                 <a href="{% url 'contacto' %}" class="nav-link fw-semibold px-1">Contacto</a>
                                 <a href="{% url 'inscripcion' %}" class="btn-neon-solid px-3 py-2 text-decoration-none">
                                     Inscríbete
