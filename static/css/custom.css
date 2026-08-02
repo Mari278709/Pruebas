@@ -1663,19 +1663,60 @@ html[data-theme="light"] .bg-light,
 html[data-theme="light"] .bg-light-subtle,
 html[data-theme="light"] .career-cta-card,
 html[data-theme="light"] .accordion-button,
-html[data-theme="light"] .glass-nav,
 html[data-theme="light"] .form-control,
 html[data-theme="light"] .form-select {
+    position: relative;
     background-color: transparent !important;
+    border: none !important;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.05),
+        inset 2px 2px 3px rgba(255, 255, 255, 0.8),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .glass-card::before,
+html[data-theme="light"] .dropdown-menu::before,
+html[data-theme="light"] .bg-light::before,
+html[data-theme="light"] .bg-light-subtle::before,
+html[data-theme="light"] .career-cta-card::before,
+html[data-theme="light"] .accordion-button::before,
+html[data-theme="light"] .form-control::before,
+html[data-theme="light"] .form-select::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
     background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
-    border: none !important; /* Reemplazamos los bordes físicos por sombras para mayor precisión */
+    border-radius: inherit;
+}
+
+html[data-theme="light"] .glass-nav {
+    background: transparent !important;
+    border: none !important;
     box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.05), /* Sombra exterior suave */
-        inset 2px 2px 3px rgba(255, 255, 255, 0.8), /* Borde especular brillante superior/izquierdo */
-        inset -1px -1px 2px rgba(255, 255, 255, 0.1), /* Borde inferior/derecho sutil */
-        inset 0 0 20px rgba(255, 255, 255, 0.2) !important; /* Resplandor interno */
+        0 15px 35px rgba(0, 0, 0, 0.05),
+        inset 2px 2px 3px rgba(255, 255, 255, 0.8),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.05) !important;
+    position: relative;
+    z-index: 1; /* Nuevo contexto de apilamiento */
+}
+
+html[data-theme="light"] .glass-nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
 }
 
 html[data-theme="light"] .form-control,

@@ -148,12 +148,23 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display
 
 /* Glass Nav (Floating Pill) */
 .glass-nav {
-  background: rgba(10, 20, 35, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   border-radius: 50px;
+  position: relative;
+  z-index: 1; /* Nuevo contexto de apilamiento */
+}
+
+.glass-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* Detrás del navbar, pero dentro de su contexto */
+  background: rgba(10, 20, 35, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: inherit;
 }
 
 /* Glass Dropdown */
