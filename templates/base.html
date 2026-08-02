@@ -51,19 +51,17 @@
             bottom: 0;
             background: linear-gradient(135deg, #1e3c72 0%, #00d2ff 35%, #18a64a 70%, #a8ff78 100%);
             opacity: 0.2;
-            /* 30% de opacidad tal cual lo pediste */
             z-index: -1;
             pointer-events: none;
         }
 
-        /* EFECTO CRISTAL css.glass - MODO DÍA */
+        /* EFECTO CRISTAL - MODO DÍA (escritorio) */
         html[data-theme="light"] .glass-card,
         html[data-theme="light"] .dropdown-menu,
         html[data-theme="light"] .bg-light,
         html[data-theme="light"] .bg-light-subtle,
         html[data-theme="light"] .career-cta-card,
         html[data-theme="light"] .accordion-button,
-        html[data-theme="light"] .glass-nav,
         html[data-theme="light"] .form-control,
         html[data-theme="light"] .form-select {
             background: rgba(255, 255, 255, 0.25) !important;
@@ -90,6 +88,75 @@
             background: rgba(24, 166, 74, 0.3) !important;
             border-color: rgba(24, 166, 74, 1) !important;
             box-shadow: 0 4px 30px rgba(24, 166, 74, 0.3) !important;
+        }
+
+        /* =========================================
+           🔥 SOLUCIÓN DEFINITIVA PARA MODO DÍA (TODOS LOS TAMAÑOS)
+           ========================================= */
+
+        /* 1. Fondo y color de texto del offcanvas en modo día */
+        html[data-theme="light"] .offcanvas,
+        html[data-bs-theme="light"] .offcanvas {
+            background-color: #ffffff !important;
+            color: #0a192f !important;
+        }
+
+        /* 2. TODOS los textos dentro del offcanvas en modo día */
+        html[data-theme="light"] .offcanvas .nav-link,
+        html[data-bs-theme="light"] .offcanvas .nav-link,
+        html[data-theme="light"] .offcanvas .dropdown-item,
+        html[data-bs-theme="light"] .offcanvas .dropdown-item,
+        html[data-theme="light"] .offcanvas .navbar-brand-text,
+        html[data-bs-theme="light"] .offcanvas .navbar-brand-text,
+        html[data-theme="light"] .offcanvas .navbar-brand-subtext,
+        html[data-bs-theme="light"] .offcanvas .navbar-brand-subtext,
+        html[data-theme="light"] .offcanvas .dropdown-toggle,
+        html[data-bs-theme="light"] .offcanvas .dropdown-toggle,
+        html[data-theme="light"] .offcanvas .offcanvas-title,
+        html[data-bs-theme="light"] .offcanvas .offcanvas-title,
+        html[data-theme="light"] .offcanvas .btn-neon-solid,
+        html[data-bs-theme="light"] .offcanvas .btn-neon-solid {
+            color: #0a192f !important;
+        }
+
+        /* 3. Botón de cerrar (X) en modo día */
+        html[data-theme="light"] .offcanvas .btn-close,
+        html[data-bs-theme="light"] .offcanvas .btn-close {
+            filter: invert(1) !important;
+            opacity: 1 !important;
+        }
+
+        /* 4. Navbar flotante en modo día */
+        html[data-theme="light"] .glass-nav,
+        html[data-bs-theme="light"] .glass-nav {
+            background: rgba(255, 255, 255, 0.85) !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+        }
+        html[data-theme="light"] .glass-nav .nav-link,
+        html[data-bs-theme="light"] .glass-nav .nav-link,
+        html[data-theme="light"] .glass-nav .navbar-brand-text,
+        html[data-bs-theme="light"] .glass-nav .navbar-brand-text {
+            color: #0a192f !important;
+        }
+        html[data-theme="light"] .glass-nav .navbar-brand-subtext,
+        html[data-bs-theme="light"] .glass-nav .navbar-brand-subtext {
+            color: #18a64a !important;
+        }
+
+        /* 5. Icono del menú (hamburguesa) en modo día */
+        html[data-theme="light"] .navbar-toggler-icon,
+        html[data-bs-theme="light"] .navbar-toggler-icon {
+            filter: invert(1) !important;
+        }
+
+        /* 6. Botón de tema (sol/luna) en modo día */
+        html[data-theme="light"] .theme-toggle-btn .theme-icon-dark,
+        html[data-bs-theme="light"] .theme-toggle-btn .theme-icon-dark {
+            display: none !important;
+        }
+        html[data-theme="light"] .theme-toggle-btn .theme-icon-light,
+        html[data-bs-theme="light"] .theme-toggle-btn .theme-icon-light {
+            display: inline-block !important;
         }
     </style>
 </head>
