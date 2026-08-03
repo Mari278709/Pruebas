@@ -38,13 +38,19 @@
     --istte-transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset y Base */
+/* =========================================
+   ESTILOS GENERALES
+   ========================================= */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+}
+
 body {
     font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--istte-bg-dark, #02060d);
     color: var(--istte-white, #ffffff);
     line-height: 1.65;
-    overflow-x: hidden;
 }
 
 /* Espaciado para que el header position-absolute no oculte el contenido superior de las subpáginas */
@@ -1654,7 +1660,8 @@ html[data-theme="light"] .text-muted,
 html[data-theme="light"] p.text-secondary,
 html[data-theme="light"] .text-white-50,
 html[data-theme="light"] .footer-istte .footer-link,
-html[data-theme="light"] .footer-istte .footer-heading {
+html[data-theme="light"] .footer-istte .footer-heading,
+html[data-theme="light"] .force-dark-light-mode {
     color: #000000 !important; 
     text-shadow: none !important;
 }
