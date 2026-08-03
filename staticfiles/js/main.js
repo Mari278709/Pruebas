@@ -7,17 +7,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // ----------------------------------------------------
     // PREMIUM THEME TOGGLE
     // ----------------------------------------------------
-    const themeCheckbox = document.getElementById('checkbox-theme-desktop');
+    const themeCheckboxes = document.querySelectorAll('.theme-switch-input');
     
     function applyTheme(theme) {
         if (theme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.documentElement.setAttribute('data-bs-theme', 'light');
-            if (themeCheckbox) themeCheckbox.checked = true;
+            themeCheckboxes.forEach(cb => cb.checked = true);
         } else {
             document.documentElement.removeAttribute('data-theme');
             document.documentElement.setAttribute('data-bs-theme', 'dark');
-            if (themeCheckbox) themeCheckbox.checked = false;
+            themeCheckboxes.forEach(cb => cb.checked = false);
         }
     }
 
@@ -27,14 +27,14 @@ document.addEventListener("DOMContentLoaded", function() {
         applyTheme(savedTheme);
     }
 
-    // Escuchar el switch de escritorio
-    if (themeCheckbox) {
-        themeCheckbox.addEventListener('change', function(e) {
+    // Escuchar el switch
+    themeCheckboxes.forEach(cb => {
+        cb.addEventListener('change', function(e) {
             const newTheme = e.target.checked ? 'light' : 'dark';
             applyTheme(newTheme);
             localStorage.setItem('istte-theme', newTheme);
         });
-    }
+    });
     // ----------------------------------------------------
     // Inicializar componentes interactivos
     initSearchTramites();

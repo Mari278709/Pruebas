@@ -84,8 +84,16 @@
 
                     <!-- Controles Móvil (Tema + Toggler) -->
                     <div class="d-flex align-items-center gap-2">
-                        <!-- Botón Tema Móvil Removido -->
-
+                        <!-- Botón Tema Móvil -->
+                        <div class="theme-switch-wrapper d-flex d-lg-none align-items-center me-1" title="Cambiar Modo Día/Noche">
+                            <label class="theme-switch" for="checkbox-theme-mobile">
+                                <input type="checkbox" id="checkbox-theme-mobile" class="theme-switch-input" />
+                                <div class="slider round" style="transform: scale(0.85);">
+                                    <i class="bi bi-sun-fill icon-sun"></i>
+                                    <i class="bi bi-moon-stars-fill icon-moon"></i>
+                                </div>
+                            </label>
+                        </div>
                         <!-- Toggler móvil -->
                         <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
@@ -227,7 +235,7 @@
                             <div
                                 class="d-flex flex-lg-row flex-column gap-2 align-items-lg-center mt-4 mt-lg-0 me-lg-3">
                                 <!-- Theme Toggle Premium -->
-                                <div class="theme-switch-wrapper d-flex align-items-center mb-4 mb-lg-0 me-lg-3" title="Cambiar Modo Día/Noche">
+                                <div class="theme-switch-wrapper d-none d-lg-flex align-items-center mb-4 mb-lg-0 me-lg-3" title="Cambiar Modo Día/Noche">
                                     <label class="theme-switch" for="checkbox-theme-desktop">
                                         <input type="checkbox" id="checkbox-theme-desktop" class="theme-switch-input" />
                                         <div class="slider round">
@@ -453,7 +461,7 @@
     </script>
 
     <!-- Scripts Principales -->
-    <script src="{% static 'js/main.js' %}?v=1.1"></script>
+    <script src="{% static 'js/main.js' %}?v=5"></script>
 </body>
 
 </html>
