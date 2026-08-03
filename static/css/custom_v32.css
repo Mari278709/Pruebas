@@ -1630,15 +1630,11 @@ body.bg-subpage {
 
 html[data-theme="light"] body {
     background-color: #ffffff !important;
-    color: #0a192f !important;
+    color: var(--istte-white) !important;
 }
 
 html[data-theme="light"] .text-white,
 html[data-theme="light"] .text-light,
-html[data-theme="light"] .text-secondary,
-html[data-theme="light"] .text-muted,
-html[data-theme="light"] p.text-secondary,
-html[data-theme="light"] .text-white-50,
 html[data-theme="light"] h1,
 html[data-theme="light"] h2,
 html[data-theme="light"] h3,
@@ -1650,7 +1646,14 @@ html[data-theme="light"] .form-label,
 html[data-theme="light"] .navbar-brand,
 html[data-theme="light"] .nav-link,
 html[data-theme="light"] .dropdown-item {
-    color: #0a192f !important; 
+    color: var(--istte-white) !important; 
+}
+
+html[data-theme="light"] .text-secondary,
+html[data-theme="light"] .text-muted,
+html[data-theme="light"] p.text-secondary,
+html[data-theme="light"] .text-white-50 {
+    color: var(--istte-text-muted) !important; 
 }
 
 [data-theme="light"] .footer-istte {
@@ -1911,5 +1914,346 @@ html[data-theme="light"] .glass-nav .navbar-brand span {
     .footer-mascot {
         height: 145px;
         transform: translate(66px, -17px);
+    }
+}
+
+/* =========================================
+   PREMIUM THEME TOGGLE (DESKTOP)
+   ========================================= */
+.theme-switch-wrapper {
+    position: relative;
+    margin-right: 15px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 32px;
+    position: relative;
+    width: 62px;
+    margin: 0;
+}
+
+.theme-switch .theme-switch-input {
+    display: none;
+}
+
+.theme-switch .slider {
+    background-color: rgba(4, 21, 45, 0.8);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px;
+}
+
+.theme-switch .slider .icon-sun {
+    color: #f39c12;
+    font-size: 13px;
+    z-index: 1;
+    transition: 0.3s;
+    opacity: 0; /* Oculto en modo noche por defecto */
+}
+
+.theme-switch .slider .icon-moon {
+    color: #f1c40f;
+    font-size: 13px;
+    z-index: 1;
+    transition: 0.3s;
+    opacity: 1; /* Visible en modo noche */
+}
+
+.theme-switch .slider:before {
+    background-color: #fff;
+    bottom: 2px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    width: 26px;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.theme-switch .slider.round {
+    border-radius: 34px;
+}
+
+.theme-switch .slider.round:before {
+    border-radius: 50%;
+}
+
+/* Light Mode State */
+.theme-switch-input:checked + .slider {
+    background-color: #e2e8f0;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.theme-switch-input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: #fff;
+}
+
+.theme-switch-input:checked + .slider .icon-sun {
+    opacity: 1;
+}
+
+.theme-switch-input:checked + .slider .icon-moon {
+    opacity: 0;
+}
+
+/* FORCED LIGHT MODE OVERRIDES FOR DROPDOWN */
+html[data-theme="light"] .glass-dropdown,
+html[data-theme="light"] body .glass-dropdown,
+html[data-theme="light"] .navbar .glass-dropdown {
+    background: rgba(255, 255, 255, 0.98) !important;
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+html[data-theme="light"] .glass-dropdown .dropdown-item {
+    color: #0a192f !important;
+    font-weight: 500 !important;
+}
+    .offcanvas-body .dropdown-menu.show {
+        display: block !important;
+    }
+}
+
+/* =========================================
+   FIX: BOOTSTRAP NATIVE VARIABLES FOR LIGHT MODE
+   ========================================= */
+html[data-theme="light"] .navbar {
+    /* Forzar los colores de la barra a oscuro (azul) */
+    --bs-navbar-color: #0a192f !important;
+    --bs-navbar-hover-color: #003366 !important;
+    --bs-navbar-active-color: #0a192f !important;
+    --bs-navbar-brand-color: #0a192f !important;
+    --bs-navbar-brand-hover-color: #003366 !important;
+    --bs-offcanvas-color: #0a192f !important;
+}
+
+/* Fix offcanvas background en modo día */
+html[data-theme="light"] .offcanvas,
+html[data-theme="light"] .offcanvas-body,
+html[data-theme="light"] .offcanvas-header {
+    background-color: #ffffff !important;
+}
+
+html[data-theme="light"] .offcanvas .nav-link,
+html[data-theme="light"] .offcanvas .dropdown-item {
+    color: #014ba0 !important;
+}
+
+/* Ocultar header de offcanvas en pantallas xl para evitar duplicación de logos */
+@media (min-width: 1200px) {
+    .offcanvas-header {
+        display: none !important;
+    }
+}
+
+/* Efecto cristal blanco para el modo día (Monitores) */
+html[data-theme="light"] .glass-nav {
+    background: rgba(255, 255, 255, 0.75) !important; 
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Sombras protectoras en el texto para que resalte sobre el cristal en modo día (Monitores) */
+html[data-theme="light"] .glass-nav .nav-link,
+html[data-theme="light"] .glass-nav .navbar-brand span {
+    color: #0a192f !important;
+    font-weight: 600 !important;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.9) !important;
+}
+/* =========================================
+   FIX: MASCOTA FOOTER RESPONSIVA
+   ========================================= */
+.mascot-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Alineado a la derecha en móvil */
+}
+
+.footer-mascot {
+    height: 130px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+    position: relative;
+    z-index: 10;
+}
+
+/* En escritorio, regresa a su comportamiento original */
+@media (min-width: 768px) {
+    .mascot-container {
+        height: 0; 
+        overflow: visible;
+        justify-content: flex-start;
+        margin-top: 0;
+    }
+    .footer-mascot {
+        height: 145px;
+        transform: translate(66px, -17px);
+    }
+}
+
+/* =========================================
+   PREMIUM THEME TOGGLE (DESKTOP)
+   ========================================= */
+.theme-switch-wrapper {
+    position: relative;
+    margin-right: 15px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 32px;
+    position: relative;
+    width: 62px;
+    margin: 0;
+}
+
+.theme-switch .theme-switch-input {
+    display: none;
+}
+
+.theme-switch .slider {
+    background-color: rgba(4, 21, 45, 0.8);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px;
+}
+
+.theme-switch .slider .icon-sun {
+    color: #f39c12;
+    font-size: 13px;
+    z-index: 1;
+    transition: 0.3s;
+    opacity: 0; /* Oculto en modo noche por defecto */
+}
+
+.theme-switch .slider .icon-moon {
+    color: #f1c40f;
+    font-size: 13px;
+    z-index: 1;
+    transition: 0.3s;
+    opacity: 1; /* Visible en modo noche */
+}
+
+.theme-switch .slider:before {
+    background-color: #fff;
+    bottom: 2px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    width: 26px;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.theme-switch .slider.round {
+    border-radius: 34px;
+}
+
+.theme-switch .slider.round:before {
+    border-radius: 50%;
+}
+
+/* Light Mode State */
+.theme-switch-input:checked + .slider {
+    background-color: #e2e8f0;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.theme-switch-input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: #fff;
+}
+
+.theme-switch-input:checked + .slider .icon-sun {
+    opacity: 1;
+}
+
+.theme-switch-input:checked + .slider .icon-moon {
+    opacity: 0;
+}
+
+/* FORCED LIGHT MODE OVERRIDES FOR DROPDOWN */
+html[data-theme="light"] .glass-dropdown,
+html[data-theme="light"] body .glass-dropdown,
+html[data-theme="light"] .navbar .glass-dropdown {
+    background: rgba(255, 255, 255, 0.98) !important;
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+html[data-theme="light"] .glass-dropdown .dropdown-item {
+    color: #0a192f !important;
+    font-weight: 500 !important;
+}
+
+html[data-theme="light"] .glass-dropdown .dropdown-item:hover {
+    background-color: rgba(24, 166, 74, 0.15) !important;
+}
+
+/* =========================================
+   FIXES EXCLUSIVOS PARA MÓVIL (MENÚ OFFCANVAS)
+   ========================================= */
+@media (max-width: 1199.98px) {
+    /* Asegurar que el menú móvil offcanvas no colapse por culpa del backdrop-filter del navbar */
+    .navbar .offcanvas {
+        position: fixed !important;
+        height: 100vh !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        max-height: 100vh !important;
+        box-shadow: none !important;
+        border-left: none !important;
+    }
+
+    /* Alinear la rayita verde debajo del texto en el menú móvil SOLO cuando se hace hover o está activo */
+    .offcanvas-body .nav-link:not(.dropdown-toggle):hover::after,
+    .offcanvas-body .nav-link:not(.dropdown-toggle).active::after {
+        left: 0.5rem !important;
+        transform: none !important;
+        background-color: #18a64a !important; /* Verde sólido claro */
+        box-shadow: none !important; /* Quitar resplandor */
+    }
+
+    /* Quitar la "sombra" (fondo oscuro) que aparece detrás del menú móvil al abrirlo */
+    .offcanvas-backdrop {
+        background-color: transparent !important;
+        opacity: 0 !important;
     }
 }

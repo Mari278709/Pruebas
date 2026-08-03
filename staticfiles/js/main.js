@@ -5,47 +5,37 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     // ----------------------------------------------------
-    // LÓGICA DE MODO DÍA/NOCHE (THEME TOGGLE)
+    // PREMIUM THEME TOGGLE
     // ----------------------------------------------------
-    const themeToggles = document.querySelectorAll('.theme-toggle-btn');
-    const iconsDark = document.querySelectorAll('.theme-icon-dark');
-    const iconsLight = document.querySelectorAll('.theme-icon-light');
+    const themeCheckbox = document.getElementById('checkbox-theme-desktop');
     
-    // Función para aplicar un tema específico
     function applyTheme(theme) {
-        console.log("Aplicando tema:", theme);
         if (theme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.documentElement.setAttribute('data-bs-theme', 'light');
-            iconsDark.forEach(icon => icon.classList.add('d-none'));
-            iconsLight.forEach(icon => icon.classList.remove('d-none'));
+            if (themeCheckbox) themeCheckbox.checked = true;
         } else {
             document.documentElement.removeAttribute('data-theme');
             document.documentElement.setAttribute('data-bs-theme', 'dark');
-            iconsLight.forEach(icon => icon.classList.add('d-none'));
-            iconsDark.forEach(icon => icon.classList.remove('d-none'));
+            if (themeCheckbox) themeCheckbox.checked = false;
         }
     }
 
-    // Verificar si hay una preferencia guardada al cargar la página
+    // Cargar preferencia
     const savedTheme = localStorage.getItem('istte-theme');
     if (savedTheme) {
         applyTheme(savedTheme);
     }
 
-    // Event listener para los botones
-    themeToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
+    // Escuchar el switch de escritorio
+    if (themeCheckbox) {
+        themeCheckbox.addEventListener('change', function(e) {
+            const newTheme = e.target.checked ? 'light' : 'dark';
             applyTheme(newTheme);
             localStorage.setItem('istte-theme', newTheme);
         });
-    });
+    }
     // ----------------------------------------------------
-
     // Inicializar componentes interactivos
     initSearchTramites();
     initFilterAgenda();
