@@ -1652,8 +1652,11 @@ html[data-theme="light"] .dropdown-item {
 html[data-theme="light"] .text-secondary,
 html[data-theme="light"] .text-muted,
 html[data-theme="light"] p.text-secondary,
-html[data-theme="light"] .text-white-50 {
-    color: var(--istte-text-muted) !important; 
+html[data-theme="light"] .text-white-50,
+html[data-theme="light"] .footer-istte .footer-link,
+html[data-theme="light"] .footer-istte .footer-heading {
+    color: #000000 !important; 
+    text-shadow: none !important;
 }
 
 [data-theme="light"] .footer-istte {
