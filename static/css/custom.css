@@ -64,10 +64,10 @@ a:focus, button:focus, input:focus, select:focus {
 
 /* Header & Navegación */
 .navbar-istte {
-    background: rgba(4, 16, 42, 0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(180deg, rgba(4, 16, 42, 0.98), rgba(6, 27, 78, 0.92));
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
     transition: var(--istte-transition-smooth);
 }
 
@@ -173,9 +173,9 @@ a:focus, button:focus, input:focus, select:focus {
 /* Hero Section */
 .hero-section,
 .hero-container {
-    background: radial-gradient(circle at top left, rgba(124, 232, 39, 0.18), transparent 22%),
-                radial-gradient(circle at 85% 16%, rgba(33, 151, 243, 0.16), transparent 22%),
-                linear-gradient(180deg, rgba(6, 18, 47, 0.96) 0%, rgba(8, 23, 61, 0.96) 100%);
+    background: radial-gradient(circle at top left, rgba(46, 182, 46, 0.26), transparent 18%),
+                radial-gradient(circle at 92% 10%, rgba(0, 202, 255, 0.18), transparent 16%),
+                linear-gradient(180deg, rgba(7, 24, 56, 0.98) 0%, rgba(10, 34, 84, 0.96) 42%, rgba(9, 25, 60, 0.99) 100%);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -326,21 +326,119 @@ a:focus, button:focus, input:focus, select:focus {
 .hero-background-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 18% 22%, rgba(124, 232, 39, 0.22), transparent 14%),
-                radial-gradient(circle at 82% 20%, rgba(33, 151, 243, 0.18), transparent 14%),
-                linear-gradient(180deg, rgba(6, 18, 47, 0.92), rgba(10, 24, 70, 0.82));
+    background: radial-gradient(circle at 18% 22%, rgba(124, 232, 39, 0.18), transparent 18%),
+                radial-gradient(circle at 82% 20%, rgba(33, 151, 243, 0.18), transparent 18%),
+                linear-gradient(180deg, rgba(7, 18, 40, 0.72), rgba(9, 23, 60, 0.78));
     pointer-events: none;
+    z-index: 2;
 }
 
 .hero-background-graphics {
     position: absolute;
     inset: 0;
     pointer-events: none;
+    z-index: 0;
 }
 
 .hero-background-graphics,
-.hero-background-overlay {
-    z-index: 1;
+.hero-sedes-gallery {
+    z-index: 0;
+}
+
+.hero-sedes-gallery {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-sede-card {
+    position: absolute;
+    width: clamp(190px, 18vw, 240px);
+    min-height: 220px;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 32px 70px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(18px);
+    animation: float-slow 15s ease-in-out infinite alternate;
+}
+
+.hero-sede-card:nth-child(2) {
+    animation-duration: 14s;
+    animation-delay: 2s;
+}
+
+.hero-sede-card:nth-child(3) {
+    animation-duration: 16s;
+    animation-delay: 4s;
+}
+
+.hero-sede-card-1 {
+    top: 8%;
+    left: 6%;
+}
+
+.hero-sede-card-2 {
+    bottom: 8%;
+    right: 8%;
+    width: clamp(200px, 18vw, 260px);
+}
+
+.hero-sede-card-3 {
+    top: 20%;
+    right: 18%;
+    width: clamp(170px, 16vw, 220px);
+}
+
+.hero-sede-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.9rem 1rem;
+    background: rgba(4, 20, 46, 0.92);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+.hero-sede-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05) brightness(0.93) contrast(1.02);
+}
+
+@keyframes float-slow {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    50% {
+        transform: translate(8px, -8px) scale(1.01);
+    }
+    100% {
+        transform: translate(0px, -14px) scale(1);
+    }
+}
+
+@keyframes slow-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-sedes-gallery {
+        display: none;
+    }
 }
 
 .hero-main-title {
@@ -479,6 +577,7 @@ a:focus, button:focus, input:focus, select:focus {
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.3);
     z-index: 1;
+    animation: slow-rotate 18s linear infinite;
 }
 
 .hero-ring-1 {
@@ -495,6 +594,7 @@ a:focus, button:focus, input:focus, select:focus {
     left: 19%;
     border-color: rgba(124, 232, 39, 0.55);
     opacity: 1;
+    animation-direction: reverse;
 }
 
 .hero-dot {
@@ -504,6 +604,7 @@ a:focus, button:focus, input:focus, select:focus {
     border-radius: 50%;
     background: var(--istte-green-accent);
     box-shadow: 0 0 24px rgba(124, 232, 39, 0.45);
+    animation: pulse 4.8s ease-in-out infinite;
 }
 
 .hero-dot-1 {
