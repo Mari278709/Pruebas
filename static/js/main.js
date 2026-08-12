@@ -8,7 +8,101 @@ document.addEventListener('DOMContentLoaded', () => {
     initSearchTramites();
     initFilterAgenda();
     initFormValidation();
+    initScrollReveal();
+    initDarkMode();
 });
+
+/**
+ * Animación de aparición progresiva al hacer scroll
+ */
+function initScrollReveal() {
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    const counters = document.querySelectorAll('.counter-number');
+
+    if (!elements.length && !counters.length) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+        elements.forEach((element) => element.classList.add('is-visible'));
+        counters.forEach((counter) => animateCounter(counter));
+        return;
+    }
+
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const target = entry.target;
+            target.classList.add('is-visible');
+            obs.unobserve(target);
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -8% 0px'
+    });
+
+    const counterObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const counterValue = entry.target;
+            const delay = Number(counterValue.getAttribute('data-delay') || 0);
+
+            window.setTimeout(() => {
+                animateCounter(counterValue);
+            }, delay);
+
+            obs.unobserve(counterValue);
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -5% 0px'
+    });
+
+    elements.forEach((element, index) => {
+        const delay = element.getAttribute('data-delay');
+        const normalizedDelay = delay ? Number(delay) : index * 80;
+        element.style.transitionDelay = `${Math.min(normalizedDelay, 500)}ms`;
+        revealObserver.observe(element);
+    });
+
+    counters.forEach((counter) => {
+        counterObserver.observe(counter);
+    });
+}
+
+function animateCounter(counterValue) {
+    if (!counterValue || counterValue.dataset.animated === 'true') return;
+
+    const targetValue = Number(counterValue.getAttribute('data-target') || 0);
+    const suffix = counterValue.getAttribute('data-suffix') || '';
+    const duration = 1400;
+    const startTime = performance.now();
+
+    counterValue.dataset.animated = 'true';
+    counterValue.textContent = '0';
+    counterValue.style.transform = 'scale(0.9)';
+    counterValue.style.opacity = '0.7';
+
+    const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.round(targetValue * eased);
+
+        counterValue.textContent = `${currentValue}${suffix}`;
+        counterValue.style.transform = `scale(${0.9 + (progress * 0.1)})`;
+        counterValue.style.opacity = `${0.7 + (progress * 0.3)}`;
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            counterValue.textContent = `${targetValue}${suffix}`;
+            counterValue.style.transform = 'scale(1)';
+            counterValue.style.opacity = '1';
+        }
+    };
+
+    requestAnimationFrame(step);
+}
 
 /**
  * Módulo de búsqueda en tiempo real para Trámites en Línea
@@ -160,5 +254,35 @@ function initFormValidation() {
                 formEl.classList.add('was-validated');
             }
         });
+    });
+}
+
+/**
+ * Inicializa y controla el estado del Modo Oscuro
+ */
+function initDarkMode() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (!toggleBtn) return;
+
+    // Comprobar la preferencia guardada o el esquema del sistema
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Aplicar el estado inicial
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.body.classList.add('dark-mode');
+        toggleBtn.classList.add('active');
+    } else {
+        document.body.classList.remove('dark-mode');
+        toggleBtn.classList.remove('active');
+    }
+
+    // Escuchar el evento click para alternar el modo
+    toggleBtn.addEventListener('click', () => {
+        const isDarkMode = document.body.classList.toggle('dark-mode');
+        toggleBtn.classList.toggle('active', isDarkMode);
+        
+        // Guardar la preferencia
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     });
 }

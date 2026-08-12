@@ -11,26 +11,77 @@
             </ol>
         </nav>
 
-        <div class="text-center mb-5">
-            <h1 id="organigrama-title" class="fw-extrabold text-primary display-4">Estructura Organizacional</h1>
-            <p class="text-secondary">Conoce las instancias de liderazgo, regulación académica y gobernanza del Instituto.</p>
+       <div class="text-center mb-5 p-4 bg-light rounded shadow-sm">
+    <h1 id="organigrama-title" 
+        class="fw-bold text-primary display-4">
+        <strong>Estructura Organizacional</strong>
+    </h1>
+    <p class="text-secondary fs-5 fw-semibold">
+        Conoce las instancias de liderazgo, regulación académica 
+        y gobernanza del Instituto.
+    </p>
+</div>
+
+
+        <!-- SECCIÓN PRINCIPAL: ORGANIGRAMA COMPLETO -->
+        <div class="card border-0 shadow-sm p-4 bg-white rounded-4 mb-5">
+            <div class="row align-items-center g-4">
+                <div class="col-12 col-lg-7 text-center">
+                    <div class="position-relative overflow-hidden rounded-3 border">
+                        <img src="{% static 'images/organigrama-completo.png' %}" 
+                             alt="Organigrama Estructural Tecnoecuatoriano" 
+                             class="img-fluid w-100"
+                             style="cursor: pointer; transition: transform 0.2s;"
+                             data-bs-toggle="modal" 
+                             data-bs-target="#modalOrganigrama"
+                             onmouseover="this.style.transform='scale(1.02)'"
+                             onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    <small class="text-muted mt-2 d-block">
+                        <i class="bi bi-zoom-in me-1"></i> Haz clic en la imagen para ampliar el diagrama completo
+                    </small>
+                </div>
+
+                <div class="col-12 col-lg-5">
+                    <h2 class="h3 fw-bold text-primary mb-3">Gobernanza e Institucionalidad</h2>
+                    <p class="text-secondary" style="line-height: 1.6;">
+                        El Instituto Superior Tecnológico Tecnoecuatoriano articula sus procesos estratégicos, tácticos y operacionales a través de un esquema organigráfico integral, diseñado para garantizar el cumplimiento normativo, la calidad académica y la excelencia administrativa.
+                    </p>
+                    <div class="p-3 bg-light rounded-3 border-start border-4 border-primary">
+    <span class="fw-bolder text-primary d-block mb-2 fs-6 text-uppercase tracking-wide">Niveles Estructurales:</span>
+    <ul class="list-unstyled small mb-0 text-secondary">
+        <li class="mb-1"><i class="bi bi-circle-fill me-2 text-secondary"></i><strong class="text-dark">Nivel Directivo:</strong> Toma de decisiones estratégicas.</li>
+        <li class="mb-1"><i class="bi bi-circle-fill me-2 text-info"></i><strong class="text-dark">Nivel Asesor:</strong> Consultoría y regulación técnica.</li>
+        <li class="mb-1"><i class="bi bi-circle-fill me-2" style="color: #fd7e14;"></i><strong class="text-dark">Nivel Apoyo:</strong> Gestión de recursos y servicios.</li>
+        <li><i class="bi bi-circle-fill me-2 text-success"></i><strong class="text-dark">Nivel Operativo:</strong> Ejecución de docencia e investigación.</li>
+    </ul>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5 opacity-10">
+
+        <div class="text-center mb-4">
+            <h3 class="h4 fw-bold text-primary">Desglose por Instancias de Liderazgo</h3>
+            <p class="text-secondary small">Explora las responsabilidades específicas de cada órgano de gobierno.</p>
         </div>
 
         <!-- Pestañas de Navegación de Organigramas -->
         <ul class="nav nav-pills justify-content-center mb-5 gap-2" id="organigramaTabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active px-4 py-2 fw-bold" id="institucional-tab" data-bs-toggle="pill" data-bs-target="#institucional" type="button" role="tab" aria-controls="institucional" aria-selected="true">
-                    <i class="bi bi-diagram-3-fill me-2"></i>Organigrama Institucional
+                    <i class="bi bi-diagram-3-fill me-2"></i>Línea Ejecutiva
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link px-4 py-2 fw-bold" id="regentes-tab" data-bs-toggle="pill" data-bs-target="#regentes" type="button" role="tab" aria-controls="regentes" aria-selected="false">
-                    <i class="bi bi-people-fill me-2"></i>Organigrama de Regentes
+                    <i class="bi bi-people-fill me-2"></i>Consejo de Regentes
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link px-4 py-2 fw-bold" id="cas-tab" data-bs-toggle="pill" data-bs-target="#cas" type="button" role="tab" aria-controls="cas" aria-selected="false">
-                    <i class="bi bi-shield-check me-2"></i>Organigrama CAS (Consejo Académico Superior)
+                    <i class="bi bi-shield-check me-2"></i>Consejo Académico Superior (CAS)
                 </button>
             </li>
         </ul>
@@ -82,7 +133,6 @@
                     <div class="col-12 col-lg-7 text-center">
                         <div class="border border-light-subtle rounded-4 bg-white shadow-sm p-4">
                             <h3 class="h5 text-primary fw-bold mb-3">Diagrama de la Línea de Reporte</h3>
-                            <!-- Representación visual premium con cards HTML y líneas simples -->
                             <div class="d-flex flex-column align-items-center gap-3">
                                 <div class="p-3 border border-success border-2 rounded-3 bg-light text-center" style="width: 220px;">
                                     <strong class="text-success text-uppercase">Rectoría</strong>
@@ -217,8 +267,25 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </section>
+
+<!-- MODAL PARA VER ORGANIGRAMA COMPLETO EN PANTALLA COMPLETA -->
+<div class="modal fade" id="modalOrganigrama" tabindex="-1" aria-labelledby="modalOrganigramaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold text-primary" id="modalOrganigramaLabel">Organigrama Institucional Completo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <img src="{% static 'images/organigrama-completo.png' %}" 
+                     alt="Organigrama Estructural Tecnoecuatoriano Completo" 
+                     class="img-fluid rounded-3">
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

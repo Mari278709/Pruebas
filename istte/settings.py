@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-change-me'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -13,7 +13,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', 
+    'django_ckeditor_5',
     'webapp',
 ]
 
@@ -57,6 +58,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -86,3 +88,48 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ==========================================
+# CONFIGURACIÓN DE CKEDITOR 5
+# ==========================================
+customColorPalette = [
+    {'color': 'hsl(4, 90%, 58%)', 'label': 'Rojo'},
+    {'color': 'hsl(120, 75%, 60%)', 'label': 'Verde'},
+    {'color': 'hsl(209, 88%, 54%)', 'label': 'Azul'},
+]
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+    },
+    'extends': {
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3',
+            'bulletedList', 'numberedList', 'blockQuote',
+        ],
+        'toolbar': [
+            'heading', '|', 
+            'bold', 'italic', 'underline', 'strikethrough', 'code', 'subscript', 'superscript', 'highlight', '|',
+            'link', 'uploadImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', '|',
+            'bulletedList', 'numberedList', 'todoList', '|',
+            'undo', 'redo'
+        ],
+        'image': {
+            'toolbar': [
+                'imageTextAlternative', 'toggleImageCaption', 
+                'imageStyle:inline', 'imageStyle:block', 'imageStyle:side'
+            ]
+        },
+        'table': {
+            'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells']
+        },
+        'heading': {
+            'options': [
+                {'model': 'paragraph', 'title': 'Párrafo', 'class': 'ck-heading_paragraph'},
+                {'model': 'heading1', 'view': 'h1', 'title': 'Título 1', 'class': 'ck-heading_heading1'},
+                {'model': 'heading2', 'view': 'h2', 'title': 'Título 2', 'class': 'ck-heading_heading2'},
+                {'model': 'heading3', 'view': 'h3', 'title': 'Título 3', 'class': 'ck-heading_heading3'}
+            ]
+        }
+    }
+}

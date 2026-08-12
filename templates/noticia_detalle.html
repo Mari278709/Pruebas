@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ noticia.title }} | ISTTE{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'tecno_informativo' %}" class="text-success text-decoration-none">Tecno Informativo</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ noticia.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <article class="card border-0 rounded-4 shadow-sm overflow-hidden">
+                    {% if noticia.image %}
+                        <img src="{{ noticia.image.url }}" alt="{{ noticia.title }}" class="img-fluid w-100 object-fit-cover" style="max-height: 400px;">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <p class="small text-muted mb-2"><i class="bi bi-calendar3 me-1"></i> {{ noticia.published_at|date:"d M Y" }}</p>
+                        <h1 class="h2 text-primary fw-bold mb-3">{{ noticia.title }}</h1>
+                        {% if noticia.summary %}
+                            <p class="lead text-secondary mb-4">{{ noticia.summary }}</p>
+                        {% endif %}
+                        <div class="text-secondary">
+                            {{ noticia.content|safe }}
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

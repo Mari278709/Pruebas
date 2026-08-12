@@ -1,56 +1,193 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Tecno Informativo | ISTTE{% endblock %}
+
 {% block content %}
-<section class="py-5" aria-labelledby="tecno-title">
-    <div class="container py-4">
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tecno Informativo</li>
-            </ol>
-        </nav>
 
-        <div class="text-center mb-5">
-            <h1 id="tecno-title" class="fw-extrabold text-primary display-4">Tecno Informativo</h1>
-            <p class="text-secondary">Boletín digital de noticias, avances tecnológicos y eventos del ISTTE.</p>
+<div class="tecno-informativo">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-ti">
+        <span>Inicio</span>
+        <span>/</span>
+        <span>Tecno Informativo</span>
+    </div>
+
+    <!-- Encabezado -->
+    <div class="informativo-header">
+        <h1 id="tecno-title">Tecno Informativo</h1>
+        <div class="title-line"></div>
+        <p>
+            Boletín digital de noticias, avances tecnológicos y eventos del Tecno.
+        </p>
+    </div>
+
+    <!-- Categorías -->
+    <div class="categorias-ti">
+        <button class="categoria-ti activa">
+            <i class="bi bi-grid"></i>
+            Todas
+        </button>
+        <button class="categoria-ti">
+            <i class="bi bi-newspaper"></i>
+            Noticias
+        </button>
+        <button class="categoria-ti">
+            <i class="bi bi-calendar-event"></i>
+            Eventos
+        </button>
+        <button class="categoria-ti">
+            <i class="bi bi-cpu"></i>
+            Tecnología
+        </button>
+        <button class="categoria-ti">
+            <i class="bi bi-building"></i>
+            Institucional
+        </button>
+    </div>
+
+    <!-- NOTICIAS -->
+    <div class="row g-4">
+        {% for item in news_items %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <article class="card noticia-card border-0 rounded-4 shadow-sm h-100 overflow-hidden">
+
+                <!-- Imagen o Video -->
+                <div class="ratio ratio-16x9 news-image-ratio">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-img-top object-fit-cover">
+                    {% elif item.video %}
+                        <video controls class="w-100 h-100">
+                            <source src="{{ item.video.url }}" type="video/mp4">
+                        </video>
+                    {% else %}
+                        <img src="{% static 'images/placeholder.png' %}" alt="placeholder" class="card-img-top object-fit-cover">
+                    {% endif %}
+                </div>
+
+                <!-- Contenido -->
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge categoria-noticia">
+                            INSTITUCIONAL
+                        </span>
+                    </div>
+
+                    <h2 class="h5 titulo-noticia">
+                        {{ item.title }}
+                    </h2>
+
+                    <p class="descripcion-noticia">
+                        {{ item.summary|default:item.content|striptags }}
+                    </p>
+
+                    <div class="noticia-footer">
+                        <small>
+                            <i class="bi bi-calendar3"></i>
+                            {{ item.published_at|default:item.created_at|date:"d M Y" }}
+                        </small>
+                    </div>
+                </div>
+
+            </article>
         </div>
+        {% empty %}
 
-        <div class="row g-4">
-            {% for item in news_items %}
-            <div class="col-12 col-md-6 col-lg-4">
-                <article class="card border-0 rounded-4 shadow-sm h-100 overflow-hidden bg-white">
-                    <div class="ratio ratio-16x9 news-image-ratio">
-                        {% if item.image %}
-                            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="card-img-top object-fit-cover">
-                        {% elif item.video %}
-                            <video controls class="w-100 h-100">
-                                <source src="{{ item.video.url }}" type="video/mp4">
-                            </video>
-                        {% else %}
-                            <img src="{% static 'images/placeholder.png' %}" alt="placeholder" class="card-img-top object-fit-cover">
-                        {% endif %}
-                    </div>
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <span class="badge bg-success bg-opacity-10 text-success fw-bold py-1 px-2 rounded-pill small">INSTITUCIONAL</span>
-                        </div>
-                        <h2 class="h5 text-primary fw-bold mb-2">{{ item.title }}</h2>
-                        <p class="small text-secondary mb-3">{{ item.description|truncatechars:120 }}</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
-                            <small class="text-muted"><i class="bi bi-calendar3 me-1"></i> {{ item.created_at|date:"d M Y" }}</small>
-                            <a href="{% url 'multimedia' %}" class="btn btn-sm btn-outline-success">Leer</a>
-                        </div>
-                    </div>
-                </article>
+        <!-- ESTADO SIN NOTICIAS -->
+        <div class="col-12">
+            <div class="estado-vacio-ti">
+                <div class="estado-icono-ti">
+                    <i class="bi bi-newspaper"></i>
+                </div>
+                <div>
+                    <span class="estado-etiqueta">
+                        PRÓXIMAMENTE
+                    </span>
+                    <h2>
+                        Nuevas noticias en camino
+                    </h2>
+                    <p>
+                        Estamos preparando nuevos contenidos para mantenerte
+                        informado sobre todo lo que sucede en nuestra institución.
+                    </p>
+                </div>
             </div>
-            {% empty %}
-            <div class="col-12 text-center py-5">
-                <div class="alert alert-info rounded-4 d-inline-block px-5">No hay noticias publicadas en el boletín informativo en este momento.</div>
-            </div>
-            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter-ti">
+        <div class="newsletter-icon-ti">
+            <i class="bi bi-envelope"></i>
+        </div>
+        <div class="newsletter-text-ti">
+            <h3>
+                ¡No te pierdas nada!
+            </h3>
         </div>
     </div>
-</section>
+
+    <!-- TEMAS DESTACADOS -->
+    <div class="temas-ti">
+        <div class="temas-titulo-ti">
+            <span></span>
+            <h2>TEMAS DESTACADOS</h2>
+            <span></span>
+        </div>
+
+        <div class="temas-grid-ti">
+            <div class="tema-ti">
+                <div class="tema-icono-ti">
+                    <i class="bi bi-mortarboard"></i>
+                </div>
+                <div>
+                    <h3>Formación de calidad</h3>
+                    <p>
+                        Programas académicos con enfoque práctico y actualizado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tema-ti">
+                <div class="tema-icono-ti">
+                    <i class="bi bi-people"></i>
+                </div>
+                <div>
+                    <h3>Innovación constante</h3>
+                    <p>
+                        Impulsamos la tecnología y el conocimiento para un futuro mejor.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tema-ti">
+                <div class="tema-icono-ti">
+                    <i class="bi bi-globe"></i>
+                </div>
+                <div>
+                    <h3>Impacto social</h3>
+                    <p>
+                        Contribuimos al desarrollo de nuestra comunidad y del país.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tema-ti">
+                <div class="tema-icono-ti">
+                    <i class="bi bi-award"></i>
+                </div>
+                <div>
+                    <h3>Excelencia institucional</h3>
+                    <p>
+                        Comprometidos con la calidad académica y la mejora continua.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}

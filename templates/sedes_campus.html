@@ -1,31 +1,110 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Sedes - Campus | ISTTE{% endblock %}
 {% block content %}
 <section class="py-5" aria-labelledby="sedes-title">
     <div class="container py-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">Sedes - Campus</li>
             </ol>
         </nav>
 
-        <div class="text-center mb-5">
-            <h1 id="sedes-title" class="fw-extrabold text-primary display-4">Sedes y Campus</h1>
-            <p class="text-secondary">Información de nuestras sedes y espacios académicos en el país.</p>
+        <div class="text-center mb-5 sede-campus-heading">
+            <p class="text-success fw-bold mb-2 text-uppercase letter-spacing-sm">Nuestra red de espacios</p>
+            <h1 id="sedes-title" class="fw-extrabold text-primary display-4"><strong>Sedes</strong> <span>y Campus</span></h1>
+            <p class="text-secondary mt-3">Estamos presentes en diferentes ciudades del Ecuador para estar más cerca de ti.</p>
         </div>
 
+        <!-- Bloques de Sedes -->
         <div class="row g-4">
-            <div class="col-12 col-md-6">
-                <div class="border rounded-4 p-4 bg-white shadow-sm h-100">
-                    <h2 class="h5 fw-bold text-primary">Campus Principal</h2>
-                    <p class="small text-secondary mb-0">Quito - Sede Rectoral, con laboratorios, aulas y áreas administrativas modernas.</p>
+            <!-- Sede La Magdalena -->
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm h-100 border-0 rounded-4">
+                    <img src="{% static 'images/sede-magdalena.webp' %}" class="card-img-top rounded-top-4 sede-campus-image" alt="Sede La Magdalena">
+                    <div class="card-body">
+                        <h2 class="h5 fw-bold text-primary">Sede La Magdalena</h2>
+                        <p class="small text-secondary mb-2">Quito - Espacio académico con aulas modernas y laboratorios especializados.</p>
+                        <p class="small"><span class="text-success">📍</span> Av. Rodrigo de Chávez y Av. La Magdalena, Quito</p>
+                        <a href="https://maps.app.goo.gl/CMGsqSFxspjHLQpW9" target="_blank" class="btn btn-outline-success btn-sm rounded-pill">Ver ubicación</a>
+                    </div>
                 </div>
             </div>
+
+            <!-- Sede Santa Elena -->
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm h-100 border-0 rounded-4">
+                    <img src="{% static 'images/sede-santa-elena.webp' %}" class="card-img-top rounded-top-4 sede-campus-image" alt="Sede Santa Elena">
+                    <div class="card-body">
+                        <h2 class="h5 fw-bold text-primary">Sede Santa Elena</h2>
+                        <p class="small text-secondary mb-2">Extensión académica para formación tecnológica en la Costa.</p>
+                        <p class="small"><span class="text-success">📍</span> Dirección completa aquí</p>
+                        <a href="https://maps.app.goo.gl/92jhViSfUHprPFaW7" target="_blank" class="btn btn-outline-success btn-sm rounded-pill">Ver ubicación</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sede Guayaquil -->
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm h-100 border-0 rounded-4">
+                    <img src="{% static 'images/sede-guayaquil.avif' %}" class="card-img-top rounded-top-4 sede-campus-image" alt="Sede Guayaquil">
+                    <div class="card-body">
+                        <h2 class="h5 fw-bold text-primary">Sede Guayaquil</h2>
+                        <p class="small text-secondary mb-2">Centro académico en la ciudad de Guayaquil.</p>
+                        <p class="small"><span class="text-success">📍</span> Dirección completa aquí</p>
+                        <a href="https://maps.app.goo.gl/8ipBSBFupDRzWV5J7" target="_blank" class="btn btn-outline-success btn-sm rounded-pill">Ver ubicación</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloques de Campus -->
+        <div class="row g-4 mt-5">
+            <!-- Campus Eloy Alfaro -->
             <div class="col-12 col-md-6">
-                <div class="border rounded-4 p-4 bg-white shadow-sm h-100">
-                    <h2 class="h5 fw-bold text-primary">Sede Santa Elena</h2>
-                    <p class="small text-secondary mb-0">Espacio de extensión académica para formación tecnológica en la Costa.</p>
+                <div class="card shadow-sm h-100 border-0 rounded-4">
+                    <img src="{% static 'images/campus-eloy-alfaro.png' %}" 
+     class="card-img-top sede-campus-image" 
+     alt="Campus Eloy Alfaro">
+                    <div class="card-body">
+
+                        <h2 class="h5 fw-bold text-primary">Campus Eloy Alfaro</h2>
+                        <p class="small text-secondary mb-2">Quito - Formación tecnológica con enfoque práctico.</p>
+                        <p class="small"><span class="text-success">📍</span> Dirección completa aquí</p>
+                        <a href="https://maps.app.goo.gl/pPZf51Hzjx5HDLvs5" target="_blank" class="btn btn-outline-success btn-sm rounded-pill">Ver ubicación</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campus Pifo -->
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm h-100 border-0 rounded-4">
+                    <img src="{% static 'images/campus-pifo.png.avif' %}" class="card-img-top rounded-top-4 sede-campus-image" alt="Campus Pifo">
+                    <div class="card-body">
+                        <h2 class="h5 fw-bold text-primary">Campus Pifo</h2>
+                        <p class="small text-secondary mb-2">Espacio académico en el sector oriental de Quito.</p>
+                        <p class="small"><span class="text-success">📍</span> Dirección completa aquí</p>
+                        <a href="https://maps.app.goo.gl/4X9Juc2z4twDapya8?g_st=aw" target="_blank" class="btn btn-outline-success btn-sm rounded-pill">Ver ubicación</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Centro de Educación Continua -->
+        <div class="row g-4 mt-5">
+            <div class="col-12">
+                <div class="card shadow-sm border-0 rounded-4">
+                    <img src="{% static 'images/cec-ambato.jpg' %}" class="card-img-top rounded-top-4 sede-campus-image" alt="Centro de Educación Continua Ambato">
+                    <div class="card-body text-center">
+                        <h2 class="h5 fw-bold text-primary">Centro de Educación Continua - Ambato</h2>
+                        <p class="small text-secondary mb-2">Formación continua para profesionales.</p>
+                        <p class="small"><span class="text-success">📍</span> Dirección completa aquí</p>
+                        <a href="{% url 'cec_tecno' %}" class="btn btn-success btn-sm rounded-pill">Conocer más</a>
+                        <a href="https://maps.app.goo.gl/2X41BFNd2ev5Hn897" target="_blank" class="btn btn-outline-success btn-sm rounded-pill">Ver ubicación</a>
+                    </div>
                 </div>
             </div>
         </div>

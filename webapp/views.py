@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.db import models
+from django.shortcuts import get_object_or_404, render
 
 PAGE_TEMPLATES = [
     'index',
@@ -27,11 +28,13 @@ PAGE_TEMPLATES = [
 
 
 def index(request):
-    from .models import MediaItem
+    from .models import MediaItem, Noticia
 
     latest_media = MediaItem.objects.filter(published=True)[:3]
+    latest_news = Noticia.objects.filter(published=True, status='publicado').order_by('-published_at')[:3]
     return render(request, 'index.html', {
         'latest_media': latest_media,
+        'latest_news': latest_news,
     })
 
 
@@ -119,13 +122,7 @@ CARRERAS_DATA = {
         'duration': '2 Años (4 Semestres)',
         'modality': 'En Línea',
         'degree': 'Técnico Superior Tecnológico en Administración de Empresas',
-        'learn': [
-            'Planificación Estratégica y PEDI corporativo',
-            'Gestión Financiera, Presupuestos y Contabilidad de Costos',
-            'Marketing Digital, Ventas y Publicidad en Redes',
-            'Dirección de Talento Humano y Clima Organizacional',
-            'Emprendimiento, Modelos de Negocio e Innovación'
-        ],
+        
         'video_url': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
         'profile': 'El profesional en Administración gestiona de forma integral y sostenible los recursos de organizaciones públicas o privadas, optimizando procesos y liderando estrategias de crecimiento en entornos digitales.',
         'malla': {
@@ -171,24 +168,82 @@ CARRERAS_DATA = {
             'Asesor de Seguridad Vial y Prevención de Riesgos de Tránsito'
         ],
         'egreso': 'El egresado demuestra destrezas superiores de conducción técnica, opera vehículos pesados y especiales con alta seguridad, respeta la normativa nacional de tránsito y posee capacidad de reacción oportuna en situaciones de emergencia vial.'
+    },
+    'enfermeria': {
+        'title': 'Enfermería',
+        'image': '/static/images/carreras/enfermeria.svg',
+        'duration': '2.5 Años (5 Semestres)',
+        'modality': 'Presencial',
+        'degree': 'Tecnólogo Superior en Enfermería',
+        
+        'video_url': 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        'profile': 'El profesional en Enfermería brinda cuidados integrales de salud a personas, familias y comunidades, aplicando conocimientos científicos, éticos y humanistas en los diferentes niveles de atención médica.',
+        'malla': {
+            'Primer Semestre': ['Anatomía y Fisiología Humana', 'Introducción a la Enfermería', 'Microbiología y Parasitología', 'Primeros Auxilios'],
+            'Segundo Semestre': ['Enfermería Básica', 'Farmacología I', 'Epidemiología', 'Salud Pública'],
+            'Tercer Semestre': ['Enfermería Médico-Quirúrgica I', 'Farmacología II', 'Nutrición y Dietética', 'Salud Mental'],
+            'Cuarto Semestre': ['Enfermería Gineco-Obstétrica', 'Enfermería Pediátrica', 'Administración en Servicios de Enfermería', 'Prácticas Hospitalarias I'],
+            'Quinto Semestre': ['Enfermería Comunitaria', 'Soporte Vital Avanzado', 'Ética y Deontología Profesional', 'Internado Rotativo de Enfermería']
+        },
+        'campo': [
+            'Hospitales y Clínicas públicas y privadas',
+            'Centros y Subcentros de Salud (Atención Primaria)',
+            'Centros Geriátricos y de Cuidado Infantil',
+            'Servicios de Salud Ocupacional en empresas',
+            'Atención de enfermería domiciliaria e independiente'
+        ],
+        'egreso': 'El egresado de Enfermería del ISTTE estará capacitado para ejecutar procedures clínicos de enfermería con precisión, administrar tratamientos prescritos, colaborar en equipos de salud en emergencias y promover hábitos de vida saludables en la población.'
     }
 }
 
 
 def carreras(request):
-    modalidad_filtro = request.GET.get('modalidad', None)
-    filtered_carreras = []
+    from .models import Carrera
     
-    for slug, info in CARRERAS_DATA.items():
-        if modalidad_filtro:
-            m = modality_slug = modalidad_filtro.lower()
-            if m == 'presencial' and 'presencial' in info['modality'].lower():
-                filtered_carreras.append((slug, info))
-            elif m == 'linea' and ('línea' in info['modality'].lower() or 'linea' in info['modality'].lower()):
-                filtered_carreras.append((slug, info))
-        else:
-            filtered_carreras.append((slug, info))
-            
+    modalidad_filtro = request.GET.get('modalidad', None)
+    
+    # Obtener todas las carreras de la base de datos
+    carreras_queryset = Carrera.objects.filter(published=True).order_by('title')
+    
+    # Filtrar por modalidad si es necesario
+    if modalidad_filtro:
+        modalidad = modalidad_filtro.lower()
+        if modalidad == 'presencial':
+            carreras_queryset = carreras_queryset.filter(modality__icontains='Presencial')
+        elif modalidad == 'linea':
+            carreras_queryset = carreras_queryset.filter(
+                models.Q(modality__icontains='Línea') | models.Q(modality__icontains='Linea') | models.Q(modality__icontains='En Línea')
+            )
+    
+    # Convertir queryset a lista de tuplas (slug, info_dict) para compatibilidad con template
+    filtered_carreras = []
+    for carrera in carreras_queryset:
+        info = {
+            'title': carrera.title,
+            'image': carrera.image.url if carrera.image else '/static/images/carreras/default.svg',
+            'duration': carrera.duration,
+            'modality': carrera.modality,
+            'degree': carrera.degree,
+            'profile': carrera.profile or carrera.description,
+            'description': carrera.description,
+            'slug': carrera.slug,
+        }
+
+        # Si en CARRERAS_DATA hay información extendida para este slug, mezclarla
+        try:
+            slug_key = carrera.slug
+            if slug_key in CARRERAS_DATA:
+                external = CARRERAS_DATA[slug_key]
+                # Añadir listas y campos ricos si no están en la DB
+                for key in ('learn', 'campo', 'malla', 'egreso', 'video_url'):
+                    if key in external and (key not in info or not info.get(key)):
+                        info[key] = external.get(key)
+        except Exception:
+            # No fallar si hay problemas con slugs o datos externos
+            pass
+
+        filtered_carreras.append((carrera.slug, info))
+
     return render(request, 'carreras.html', {
         'carreras': filtered_carreras,
         'modalidad_filtro': modalidad_filtro
@@ -202,16 +257,43 @@ def validacion_experiencia(request):
 def detalle_carreras(request, career_slug):
     from django.shortcuts import redirect
     from django.urls import reverse
+    from .models import Carrera
     
     career_slug = career_slug.lower()
-    if career_slug not in CARRERAS_DATA:
-        return redirect(reverse('carreras'))
-        
-    career_info = CARRERAS_DATA[career_slug]
-    return render(request, 'detalle_carreras.html', {
-        'career_slug': career_slug,
-        'career': career_info
-    })
+    
+    # Primero intentar buscar en la base de datos
+    try:
+        carrera = Carrera.objects.get(slug=career_slug, published=True)
+        career_info = {
+            'title': carrera.title,
+            'image': carrera.image.url if carrera.image else '/static/images/carreras/default.svg',
+            'profile_image': carrera.profile_image.url if carrera.profile_image else None,
+            'duration': carrera.duration,
+            'modality': carrera.modality,
+            'degree': carrera.degree,
+            'profile': carrera.profile or carrera.description,
+            'description': carrera.description,
+            'video_url': carrera.video_url,
+            'slug': carrera.slug,
+            'learn': carrera.learn or [],
+            'campo': carrera.campo or [],
+            'malla': carrera.malla or {},
+            'egreso': carrera.egreso or carrera.profile or '',
+        }
+        return render(request, 'detalle_carreras.html', {
+            'career_slug': career_slug,
+            'career': career_info
+        })
+    except Carrera.DoesNotExist:
+        # Si no existe en la BD, buscar en CARRERAS_DATA para compatibilidad
+        if career_slug in CARRERAS_DATA:
+            career_info = CARRERAS_DATA[career_slug]
+            return render(request, 'detalle_carreras.html', {
+                'career_slug': career_slug,
+                'career': career_info
+            })
+        else:
+            return redirect(reverse('carreras'))
 
 
 def registro_carreras(request):
@@ -255,10 +337,18 @@ def investigacion(request):
 
 
 def tecno_informativo(request):
-    from .models import MediaItem
-    latest_media = MediaItem.objects.filter(published=True)
+    from .models import Noticia
+    news_items = Noticia.objects.filter(published=True, status='publicado').order_by('-published_at')
     return render(request, 'tecno_informativo.html', {
-        'news_items': latest_media
+        'news_items': news_items
+    })
+
+
+def noticia_detalle(request, slug):
+    from .models import Noticia
+    noticia = get_object_or_404(Noticia, slug=slug, published=True, status='publicado')
+    return render(request, 'noticia_detalle.html', {
+        'noticia': noticia
     })
 
 
@@ -285,11 +375,6 @@ def presentacion_institucional(request):
 def aseguramiento_calidad(request):
     return render(request, 'aseguramiento_calidad.html')
 
-
-def gaceta_institucional(request):
-    return render(request, 'gaceta_institucional.html')
-
-
 def transparencia(request):
     return render(request, 'transparencia.html')
 
@@ -303,11 +388,13 @@ def politica_privacidad(request):
 
 
 def multimedia(request):
-    from .models import MediaItem
+    from .models import MediaItem, Noticia
 
     media_items = MediaItem.objects.filter(published=True)
+    news_items = Noticia.objects.filter(published=True, status='publicado').order_by('-published_at')
     return render(request, 'multimedia.html', {
         'media_items': media_items,
+        'news_items': news_items,
     })
 
 

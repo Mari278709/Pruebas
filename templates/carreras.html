@@ -1,4 +1,6 @@
+
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Oferta Académica | ISTTE{% endblock %}
 {% block content %}
 <section class="py-5" aria-labelledby="carreras-title">
@@ -12,7 +14,7 @@
         </nav>
         
         <div class="text-center mb-5">
-            <h1 id="carreras-title" class="fw-extrabold text-primary display-4">Carreras Tecnológicas</h1>
+            <h1 id="carreras-title" class="fw-extrabold display-4" style="font-size: 3.5rem; font-weight: 900; letter-spacing: -0.02em;">Carreras <span style="color: #0066FF;">Tecnológicas</span></h1>
             <p class="text-secondary small">
                 {% if modalidad_filtro == 'presencial' %}
                     Modalidad Presencial - Formación práctica e interactiva en laboratorios avanzados.
@@ -27,32 +29,55 @@
         <div class="row g-4">
             {% for slug, info in carreras %}
             <div class="col-12 col-md-6 col-lg-4">
-                <article class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm h-100 d-flex flex-column justify-content-between hover-lift">
+                <article class="catalog-career-card h-100 d-flex flex-column justify-content-between border-0 rounded-4 text-dark shadow-lg overflow-hidden transition-all" style="background: #F8F9FC; transition: transform 0.3s ease, box-shadow 0.3s ease; border-bottom: 5px solid var(--istte-neon-green, #20c997);" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
                     <div>
-                        <div class="career-card-media mb-3">
-                            <img src="{{ info.image }}" alt="Imagen representativa de {{ info.title }}" class="career-card-image">
+                        <!-- Imagen mejorada -->
+                        <div class="career-card-media overflow-hidden position-relative" style="height: 220px; border-radius: 16px 16px 0 0;">
+                            <img src="{{ info.image }}" alt="Imagen representativa de {{ info.title }}" class="career-card-image w-100 h-100" style="object-fit: cover; transition: transform 0.4s ease; border-radius: 16px 16px 0 0;">
                         </div>
-                        <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
-                            {% if slug == 'desarrollo-software' %}
-                                <i class="bi bi-code-slash fs-4"></i>
-                            {% elif slug == 'ciberseguridad' %}
-                                <i class="bi bi-shield-lock-fill fs-4"></i>
-                            {% elif slug == 'administracion' %}
-                                <i class="bi bi-briefcase-fill fs-4"></i>
-                            {% else %}
-                                <i class="bi bi-car-front-fill fs-4"></i>
+                        
+                        <!-- Contenido -->
+                        <div class="p-4">
+                            <!-- Título mejorado -->
+                            <h2 class="mb-2" style="font-size: 1.3rem; font-weight: 800; line-height: 1.3; color: #030D1C;">{{ info.title }}</h2>
+                            
+                            <!-- Título de grado -->
+                            {% if info.degree %}
+                            <p class="text-muted mb-3" style="font-size: 0.85rem; font-style: italic;">{{ info.degree }}</p>
                             {% endif %}
-                        </div>
-                        <h2 class="h5 fw-bold text-primary mb-2">{{ info.title }}</h2>
-                        <p class="text-secondary small mb-3">{{ info.profile|truncatechars:110 }}</p>
-                        <div class="d-flex flex-column gap-2 mb-3">
-                            <span class="small text-secondary"><i class="bi bi-clock me-1 text-success"></i><strong>Duración:</strong> {{ info.duration }}</span>
-                            <span class="small text-secondary"><i class="bi bi-laptop me-1 text-success"></i><strong>Modalidad:</strong> {{ info.modality }}</span>
+                            
+                            <!-- Descripción / Perfil -->
+                            <p class="text-secondary mb-2" style="font-size: 0.95rem; line-height: 1.5;">{{ info.profile|default:info.description|truncatechars:160 }}</p>
+
+                            <!-- ¿Qué aprenderás? (resumen) -->
+                            {% if info.learn %}
+                            <ul class="list-unstyled small text-secondary mb-3">
+                                {% for item in info.learn|slice:":3" %}
+                                <li class="d-flex align-items-start gap-2"><i class="bi bi-check-circle-fill text-success me-2 mt-1"></i>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                            
+                            <!-- Información de duración y modalidad -->
+                            <div class="d-flex flex-column gap-2 mb-4 pb-3 border-bottom">
+                                <div class="d-flex align-items-center" style="font-size: 0.9rem;">
+                                    <i class="bi bi-clock" style="color: #0066FF; margin-right: 8px; font-weight: bold;"></i>
+                                    <span class="text-dark"><strong>{{ info.duration }}</strong></span>
+                                </div>
+                                <div class="d-flex align-items-center" style="font-size: 0.9rem;">
+                                    <i class="bi bi-laptop" style="color: #0066FF; margin-right: 8px; font-weight: bold;"></i>
+                                    <span class="text-dark"><strong>Modalidad {{ info.modality }}</strong></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex gap-2 mt-2">
-                        <a href="{% url 'detalle_carreras' career_slug=slug %}" class="btn btn-sm btn-outline-primary flex-grow-1">Ver Detalles</a>
-                        <a href="{% url 'inscripcion' %}?carrera={{ slug }}" class="btn btn-sm btn-success flex-grow-1 text-white fw-bold" style="background-color: var(--istte-green-accent);">Inscribirse</a>
+                    
+                    <!-- Botones mejorados -->
+                    <div class="d-flex gap-2 px-4 pb-4">
+                        <a href="{% url 'detalle_carreras' slug %}" class="btn flex-grow-1 fw-bold" style="background-color: transparent; border: 2px solid #0066FF; color: #0066FF; padding: 0.6rem 1rem; font-size: 0.9rem; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#0066FF'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#0066FF';">
+                            <i class="bi bi-eye me-1"></i>Ver Detalles
+                        </a>
+                
                     </div>
                 </article>
             </div>

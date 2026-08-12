@@ -1,4 +1,4 @@
-Coloca aquí las imágenes de la chica y del instituto.
+
 Usa nombres como:
 - hero-girl.png
 - hero-campus.png

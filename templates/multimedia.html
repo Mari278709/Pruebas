@@ -4,68 +4,118 @@
 {% block title %}Multimedia | ISTTE{% endblock %}
 
 {% block content %}
-<section class="container py-5">
-    <div class="row justify-content-center mb-4">
-        <div class="col-12 col-lg-10 text-center">
-            <h1 class="section-title">Contenido multimedia diario</h1>
-            <p class="text-muted mb-0">Comparte fotos, videos y documentos relevantes que se actualizan todos los días para mantener informada a la comunidad.</p>
+<!-- HEADER SECTION -->
+<section class="py-5 bg-gradient-light">
+    <div class="container">
+        <div class="row justify-content-between align-items-center mb-4">
+            <div class="col-12 col-lg-8">
+                <a href="{% url 'index' %}" class="btn" style="background-color: var(--istte-neon-green, #20c997); color: white; font-weight: 700; border-radius: 25px; padding: 0.6rem 1.5rem; border: none;">
+                    ← Volver al inicio
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <a href="{% url 'index' %}" class="btn btn-contacto-nav">← Volver al inicio</a>
-            {% if request.user.is_staff %}
-                <a href="/admin/webapp/mediaitem/" class="btn btn-istte-primary">Acceder al panel multimedia</a>
-            {% endif %}
-        </div>
-    </div>
-
-    <div class="row g-4">
-        {% for item in media_items %}
-        <div class="col-12 col-md-6 col-lg-4">
-            <article class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
-                <div class="card-body p-4 d-flex flex-column">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <h2 class="h5 mb-0">{{ item.title }}</h2>
-                        {% if request.user.is_staff %}
-                        <div class="admin-actions btn-group" role="group" aria-label="Acciones admin">
-                            <a class="btn btn-sm btn-outline-secondary" href="/admin/webapp/mediaitem/{{ item.id }}/change/">Editar</a>
-                            <a class="btn btn-sm btn-outline-danger" href="/admin/webapp/mediaitem/{{ item.id }}/delete/">Eliminar</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <p class="text-secondary mb-4">{{ item.description }}</p>
-
-                    {% if item.image %}
-                        <img src="{{ item.image.url }}" class="img-fluid rounded-4 mb-4" alt="{{ item.title }}">
-                    {% endif %}
-
-                    {% if item.video %}
-                        <video controls class="w-100 rounded-4 mb-4" preload="metadata">
-                            <source src="{{ item.video.url }}" type="video/mp4">
-                            Tu navegador no soporta la reproducción de video.
-                        </video>
-                    {% endif %}
-
-                    <div class="mt-auto">
-                        <p class="small text-muted mb-1">Publicado el {{ item.created_at|date:"d M Y" }} a las {{ item.created_at|date:"H:i" }}</p>
-                        <span class="badge bg-success">Publicado</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-        {% empty %}
-        <div class="col-12">
-            <div class="alert alert-info rounded-4">No hay contenido multimedia disponible todavía. Puedes subir nuevos archivos desde el formulario de carga.</div>
-        </div>
-        {% endfor %}
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-12 text-center">
-            <a href="{% url 'upload_media' %}" class="btn btn-istte-primary btn-lg">Subir contenido multimedia</a>
+        
+        <div class="text-center mb-5">
+            <h1 style="font-size: 2.5rem; font-weight: 900; color: #0066FF; margin-bottom: 1rem;">Contenido Multimedia <span style="color: #030D1C;">Diario</span></h1>
+            <p class="text-secondary" style="font-size: 1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                Comparte fotos, videos y documentos relevantes que se actualizan todos los días para mantener informada a la comunidad.
+            </p>
         </div>
     </div>
 </section>
+
+<!-- MULTIMEDIA SECTION -->
+<section class="container py-5">
+    {% if media_items %}
+        <div class="row g-4">
+            {% for item in media_items %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="h-100 rounded-4 overflow-hidden shadow-sm" style="background: #F8F9FC; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+                    <!-- Media Preview -->
+                    <div style="height: 200px; background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); overflow: hidden; position: relative;">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% elif item.video %}
+                            <video style="width: 100%; height: 100%; object-fit: cover;" preload="metadata">
+                                <source src="{{ item.video.url }}" type="video/mp4">
+                            </video>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: white;">
+                                <i class="bi bi-play-circle-fill"></i>
+                            </div>
+                        {% else %}
+                            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999;">
+                                <i class="bi bi-file-earmark" style="font-size: 3rem;"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="p-4">
+                        <h2 style="font-size: 1.1rem; font-weight: 800; color: #030D1C; margin-bottom: 0.8rem; line-height: 1.3;">{{ item.title }}</h2>
+                        <p class="text-secondary" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">{{ item.description|truncatechars:120 }}</p>
+                        
+                        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #999;">
+                            <i class="bi bi-calendar3"></i>
+                            <span>{{ item.created_at|date:"d M Y" }}</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert rounded-4 p-4" style="background: rgba(32, 201, 151, 0.1); border: 2px solid rgba(32, 201, 151, 0.3); color: #030D1C;">
+            <i class="bi bi-info-circle me-2" style="color: var(--istte-neon-green, #20c997);"></i>
+            <strong>No hay contenido multimedia disponible</strong> - Próximamente se compartirán fotos, videos y documentos relevantes.
+        </div>
+    {% endif %}
+</section>
+
+<!-- NEWS SECTION -->
+<section class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h2 style="font-size: 2rem; font-weight: 900; color: #0066FF; margin: 0;">Noticias <span style="color: #030D1C;">Recientes</span></h2>
+        </div>
+        <a href="{% url 'tecno_informativo' %}" class="text-primary fw-bold text-decoration-none" style="font-size: 0.95rem;">Ver boletín completo →</a>
+    </div>
+    
+    {% if news_items %}
+        <div class="row g-4">
+            {% for item in news_items %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="h-100 rounded-4 overflow-hidden shadow-sm" style="background: #F8F9FC; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.05)';">
+                    <!-- News Image -->
+                    <div style="height: 180px; overflow: hidden; background: #e0e0e0;">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                            <img src="{% static 'images/placeholder.png' %}" alt="Placeholder" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% endif %}
+                    </div>
+                    
+                    <!-- News Content -->
+                    <div class="p-4 d-flex flex-column" style="flex: 1;">
+                        <h2 style="font-size: 1.1rem; font-weight: 800; color: #0066FF; margin-bottom: 0.8rem; line-height: 1.3;">{{ item.title }}</h2>
+                        <p class="text-secondary" style="font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; flex: 1;">{{ item.summary|default:item.content|striptags|truncatechars:120 }}</p>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                            <small class="text-muted"><i class="bi bi-calendar3 me-1"></i> {{ item.published_at|default:item.created_at|date:"d M Y" }}</small>
+                            <a href="{% url 'noticia_detalle' slug=item.slug %}" class="btn btn-sm" style="background: transparent; border: 2px solid #0066FF; color: #0066FF; padding: 0.4rem 0.8rem; font-weight: 700; border-radius: 20px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#0066FF'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#0066FF';">
+                                Leer
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert rounded-4 p-4" style="background: rgba(0, 102, 255, 0.1); border: 2px solid rgba(0, 102, 255, 0.3); color: #030D1C;">
+            <i class="bi bi-info-circle me-2" style="color: #0066FF;"></i>
+            <strong>No hay noticias recientes</strong> - Próximamente compartiremos las últimas actualizaciones.
+        </div>
+    {% endif %}
+</section>
+
 {% endblock %}

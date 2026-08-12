@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Investigación y Desarrollo | ISTTE{% endblock %}
+
 {% block content %}
 <section class="py-5" aria-labelledby="inv-title">
     <div class="container py-4">
@@ -11,39 +14,160 @@
             </ol>
         </nav>
 
+        <!-- Header -->
         <div class="text-center mb-5">
-            <h1 id="inv-title" class="fw-extrabold text-primary display-4">Investigación y Desarrollo</h1>
-            <p class="text-secondary">Impulsamos la investigación aplicada y la innovación tecnológica para resolver problemas reales del entorno.</p>
+            <h1 id="inv-title" class="fw-extrabold text-primary display-4">Dirección de Investigación</h1>
+            <p class="text-secondary max-w-75 mx-auto">
+                La investigación constituye el eje transformador en la formación de los estudiantes que potencializa los procesos educativos y su interacción con la sociedad, permitiéndoles ser más creativos, reflexivos y conscientes de la problemática social.
+            </p>
         </div>
 
-        <div class="row g-4">
-            <!-- Semilleros -->
+        <!-- Líneas de Investigación Institucionales -->
+        <div class="mb-5 p-4 bg-light rounded-4 shadow-sm border border-light-subtle">
+            <h2 class="h4 fw-bold text-primary mb-3">
+                <i class="bi bi-search me-2 text-success"></i>Líneas de Investigación Institucionales
+            </h2>
+            <ul class="row row-cols-1 row-cols-md-2 g-2 list-unstyled mb-0">
+                <li class="col"><i class="bi bi-check-circle-fill text-success me-2"></i>Ambiente, Sostenibilidad y desarrollo humano</li>
+                <li class="col"><i class="bi bi-check-circle-fill text-success me-2"></i>Transición energética, electromovilidad y economía circular</li>
+                <li class="col"><i class="bi bi-check-circle-fill text-success me-2"></i>Transformación e innovación digital</li>
+                <li class="col"><i class="bi bi-check-circle-fill text-success me-2"></i>Industria y Economía social</li>
+                <li class="col"><i class="bi bi-check-circle-fill text-success me-2"></i>Gestión y desarrollo tecnológico empresarial</li>
+                <li class="col"><i class="bi bi-check-circle-fill text-success me-2"></i>Salud y Sociedad</li>
+            </ul>
+        </div>
+
+        <!-- Programas y Proyectos de Investigación -->
+        <h2 class="h3 fw-bold text-primary text-center mb-4">Programas y Proyectos de Investigación</h2>
+        <div class="row g-4 mb-5">
+            <!-- Programa 1 -->
             <div class="col-12 col-md-6">
                 <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="bg-success bg-opacity-10 text-success rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                            <i class="bi bi-lightbulb fs-3"></i>
-                        </div>
-                        <h2 class="h5 fw-bold text-primary m-0">Semilleros de Investigación</h2>
-                    </div>
-                    <p class="small text-secondary m-0">
-                        Grupos colaborativos conformados por docentes y estudiantes para el diseño de prototipos robóticos, software libre, automatización y seguridad informática.
-                    </p>
+                    <h3 class="h5 fw-bold text-primary mb-3"><i class="bi bi-journal-bookmark text-success me-2"></i>Programa de Procesos Académicos</h3>
+                    <ul class="small text-secondary mb-0 ps-3">
+                        <li class="mb-2">El currículo como concepción ideológica del estereotipo de género en la educación superior técnica y tecnológica.</li>
+                        <li class="mb-2">Sistema inteligente de minería de datos universitarios en Moodle para evaluación docente y predicción de asistencia estudiantil usando inteligencia artificial.</li>
+                        <li class="mb-2">Desarrollo de habilidades básicas del pensamiento en la enseñanza científica de la educación superior.</li>
+                        <li>Fortalecimiento de la lectura mediante sistemas integrado de búsqueda y estrategias tecno-andragógicas en la Educación 5.0.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Publicaciones -->
+            <!-- Programa 2 -->
             <div class="col-12 col-md-6">
                 <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                            <i class="bi bi-file-earmark-bar-graph fs-3"></i>
-                        </div>
-                        <h2 class="h5 fw-bold text-primary m-0">Publicaciones Científicas</h2>
+                    <h3 class="h5 fw-bold text-primary mb-3"><i class="bi bi-leaf text-success me-2"></i>Desarrollo de Productos y Servicios Sostenibles</h3>
+                    <ul class="small text-secondary mb-0 ps-3">
+                        <li class="mb-2">El panorama de la inserción de vehículos eléctricos en Ecuador, brechas y oportunidades.</li>
+                        <li class="mb-2">Evaluación de los procesos e insumos utilizados en los sistemas de economía circular aplicados a la fabricación de autopartes plásticas.</li>
+                        <li class="mb-2">Diseño y fabricación de un prototipo de máquina automatizada para la obtención de filamento industrial a partir de la fundición de material PET.</li>
+                        <li>Diseño e implementación de un laboratorio de electrónica automotriz, auto sustentable mediante el uso de energía solar fotovoltaica.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Programa 3 -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h3 class="h5 fw-bold text-primary mb-3"><i class="bi bi-laptop text-success me-2"></i>Digitalización y Transformación Digital</h3>
+                    <ul class="small text-secondary mb-0 ps-3">
+                        <li class="mb-2">Desarrollo de un sistema de registro digital para la información de talleres y bodegas industriales.</li>
+                        <li>Transformando residuos tecnológicos en nuevas oportunidades.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Programa 4 -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h3 class="h5 fw-bold text-primary mb-3"><i class="bi bi-shield-check text-success me-2"></i>Seguridad del Trabajo en la Industria</h3>
+                    <ul class="small text-secondary mb-0 ps-3">
+                        <li>Análisis mediante método MEF de un asiento de transporte urbano según norma INEN 2205.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Programa 5 -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h3 class="h5 fw-bold text-primary mb-3"><i class="bi bi-graph-up-arrow text-success me-2"></i>Economía, Sociedad y Finanzas</h3>
+                    <ul class="small text-secondary mb-0 ps-3">
+                        <li class="mb-2">Impacto de la analítica de datos en las empresas modernas.</li>
+                        <li>Automatización del sistema contable aplicado a la normativa tributaria en Ecuador como herramienta para la toma de decisiones.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Programa 6 -->
+            <div class="col-12 col-md-6">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100">
+                    <h3 class="h5 fw-bold text-primary mb-3"><i class="bi bi-heart-pulse text-success me-2"></i>Desarrollo Ambiental, Salud y Sociedad</h3>
+                    <ul class="small text-secondary mb-0 ps-3">
+                        <li class="mb-2">Estrategias de cuidado integral utilizando herramientas tecnológicas para personas adultas mayores.</li>
+                        <li class="mb-2">Impacto ambiental y económico del reciclaje de aceites automotrices en Quito.</li>
+                        <li class="mb-2">Lineamientos para la conservación ambiental en la formación del ISTTE.</li>
+                        <li class="mb-2">Impacto de educación nutricional en prevención de Diabetes Mellitus tipo II en Calderón.</li>
+                        <li class="mb-2">Implementación del sistema de gestión integral de cuidado de enfermería (SGIGE).</li>
+                        <li>Eficiencia de dieta a base de forraje verde hidropónico (FVH) en cuyes en Pifo.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memorias y Eventos Científicos -->
+        <h2 class="h3 fw-bold text-primary text-center mb-4">Memorias y Eventos Científicos</h2>
+        <div class="row g-4">
+            <!-- I Jornada -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100 text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <span class="badge bg-success mb-2">MEMORIAS</span>
+                        <h4 class="h6 fw-bold text-primary">I Jornada Científica del Tecnoecuatoriano</h4>
                     </div>
-                    <p class="small text-secondary m-0">
-                        Registro de artículos, ponencias y manuales técnicos publicados por nuestro cuerpo docente en revistas indexadas y conferencias especializadas.
-                    </p>
+                    <a href="https://istte.edu.ec/wp-content/uploads/2024/10/MEMORIAS-DE-LA-I-JORNADA-CIENTIFICA-DEL-TECNO.pdf" target="_blank" class="btn btn-sm btn-outline-primary mt-3">
+                        <i class="bi bi-file-earmark-pdf me-1"></i>Ver Documento
+                    </a>
+                </div>
+            </div>
+
+            <!-- II Jornada -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100 text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <span class="badge bg-success mb-2">MEMORIAS</span>
+                        <h4 class="h6 fw-bold text-primary">II Jornada Científica del Tecnoecuatoriano</h4>
+                        <p class="small text-secondary mt-2">Conferencias magistrales y exposiciones en ciencia, tecnología e innovación.</p>
+                    </div>
+                    <a href="https://istte.edu.ec/wp-content/uploads/2024/10/MEMORIAS-DE-LA-II-JORNADA-CIENTIFICA-DEL-TECNO.pdf" target="_blank" class="btn btn-sm btn-outline-primary mt-3">
+                        <i class="bi bi-file-earmark-pdf me-1"></i>Ver Documento
+                    </a>
+                </div>
+            </div>
+
+            <!-- III Jornada -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100 text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <span class="badge bg-success mb-2">MEMORIAS</span>
+                        <h4 class="h6 fw-bold text-primary">III Jornada Científica - Sociedad 5.0</h4>
+                        <p class="small text-secondary mt-2">Articulación en IA, computación y tecnologías emergentes.</p>
+                    </div>
+                    <a href="#" target="_blank" class="btn btn-sm btn-outline-primary mt-3">
+                        <i class="bi bi-box-arrow-up-right me-1"></i>Enlace Jornada
+                    </a>
+                </div>
+            </div>
+
+            <!-- IV Jornada -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="p-4 bg-white rounded-4 border border-light-subtle shadow-sm h-100 text-center d-flex flex-column justify-content-between">
+                    <div>
+                        <span class="badge bg-success mb-2">MEMORIAS</span>
+                        <h4 class="h6 fw-bold text-primary">I Congreso Internacional & IV Jornada Científica 2025</h4>
+                    </div>
+                    <a href="#" target="_blank" class="btn btn-sm btn-outline-primary mt-3">
+                        <i class="bi bi-box-arrow-up-right me-1"></i>Enlace Jornada
+                    </a>
                 </div>
             </div>
         </div>
