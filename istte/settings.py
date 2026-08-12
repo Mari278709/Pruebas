@@ -51,14 +51,10 @@ WSGI_APPLICATION = 'istte.wsgi.application'
 
 # Configuración de base de datos para Railway (Producción) y Local (Desarrollo)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'clylyzGMkqDCUCJcrPBOoYDeuqtoJmzl',
-        'HOST': 'COPIA_AQUÍ_EL_HOST_PUBLICO',  # Ejemplo: roundhouse.proxy.rlwy.net
-        'PORT': 'COPIA_AQUÍ_EL_PUERTO_PUBLICO', # Ejemplo: 54321
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
