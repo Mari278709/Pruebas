@@ -56,8 +56,8 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'clylyzGMkqDCUCJcrPBOoYDeuqtoJmzl',
-        'HOST': 'postgres.railway.internal',
-        'PORT': '5432',
+        'HOST': 'COPIA_AQUÍ_EL_HOST_PUBLICO',  # Ejemplo: roundhouse.proxy.rlwy.net
+        'PORT': 'COPIA_AQUÍ_EL_PUERTO_PUBLICO', # Ejemplo: 54321
     }
 }
 
