@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -48,13 +49,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'istte.wsgi.application'
 
+# Configuración de base de datos para Railway (Producción) y Local (Desarrollo)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'istte_db',
-        'USER': 'istte_user',
-        'PASSWORD': 'David21a', 
-        'HOST': 'localhost',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'clylyzGMkqDCUCJcrPBOoYDeuqtoJmzl',
+        'HOST': 'postgres.railway.internal',
         'PORT': '5432',
     }
 }
