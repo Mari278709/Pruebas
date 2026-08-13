@@ -1,12 +1,14 @@
 from pathlib import Path
 import os
-import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-change-me'
+
 DEBUG = True
+
 ALLOWED_HOSTS = ['*']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -14,10 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', 
+    'django.contrib.staticfiles',
     'django_ckeditor_5',
     'webapp',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -29,7 +32,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'istte.urls'
+
 
 TEMPLATES = [
     {
@@ -47,19 +52,21 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'istte.wsgi.application'
 
-# Configuración de base de datos para Railway (Producción) y Local (Desarrollo)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'clylyzGMkqDCUCJcrPBOoYDeuqtoJmzl',
-        'HOST': 'postgres.railway.internal',
+        'NAME': 'istte_db',
+        'USER': 'istte_user',
+        'PASSWORD': 'David21a',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -76,61 +83,141 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 LANGUAGE_CODE = 'es'
+
 TIME_ZONE = 'America/Guayaquil'
+
 USE_I18N = True
+
 USE_L10N = True
+
 USE_TZ = True
 
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # ==========================================
 # CONFIGURACIÓN DE CKEDITOR 5
 # ==========================================
+
 customColorPalette = [
     {'color': 'hsl(4, 90%, 58%)', 'label': 'Rojo'},
     {'color': 'hsl(120, 75%, 60%)', 'label': 'Verde'},
     {'color': 'hsl(209, 88%, 54%)', 'label': 'Azul'},
 ]
 
+
 CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+        'toolbar': [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            'bulletedList',
+            'numberedList',
+            'blockQuote'
+        ],
     },
+
     'extends': {
         'blockToolbar': [
-            'paragraph', 'heading1', 'heading2', 'heading3',
-            'bulletedList', 'numberedList', 'blockQuote',
+            'paragraph',
+            'heading1',
+            'heading2',
+            'heading3',
+            'bulletedList',
+            'numberedList',
+            'blockQuote',
         ],
+
         'toolbar': [
-            'heading', '|', 
-            'bold', 'italic', 'underline', 'strikethrough', 'code', 'subscript', 'superscript', 'highlight', '|',
-            'link', 'uploadImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', '|',
-            'bulletedList', 'numberedList', 'todoList', '|',
-            'undo', 'redo'
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',
+            'code',
+            'subscript',
+            'superscript',
+            'highlight',
+            '|',
+            'link',
+            'uploadImage',
+            'blockQuote',
+            'insertTable',
+            'mediaEmbed',
+            'codeBlock',
+            '|',
+            'bulletedList',
+            'numberedList',
+            'todoList',
+            '|',
+            'undo',
+            'redo'
         ],
+
         'image': {
             'toolbar': [
-                'imageTextAlternative', 'toggleImageCaption', 
-                'imageStyle:inline', 'imageStyle:block', 'imageStyle:side'
+                'imageTextAlternative',
+                'toggleImageCaption',
+                'imageStyle:inline',
+                'imageStyle:block',
+                'imageStyle:side'
             ]
         },
+
         'table': {
-            'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells']
+            'contentToolbar': [
+                'tableColumn',
+                'tableRow',
+                'mergeTableCells'
+            ]
         },
+
         'heading': {
             'options': [
-                {'model': 'paragraph', 'title': 'Párrafo', 'class': 'ck-heading_paragraph'},
-                {'model': 'heading1', 'view': 'h1', 'title': 'Título 1', 'class': 'ck-heading_heading1'},
-                {'model': 'heading2', 'view': 'h2', 'title': 'Título 2', 'class': 'ck-heading_heading2'},
-                {'model': 'heading3', 'view': 'h3', 'title': 'Título 3', 'class': 'ck-heading_heading3'}
+                {
+                    'model': 'paragraph',
+                    'title': 'Párrafo',
+                    'class': 'ck-heading_paragraph'
+                },
+                {
+                    'model': 'heading1',
+                    'view': 'h1',
+                    'title': 'Título 1',
+                    'class': 'ck-heading_heading1'
+                },
+                {
+                    'model': 'heading2',
+                    'view': 'h2',
+                    'title': 'Título 2',
+                    'class': 'ck-heading_heading2'
+                },
+                {
+                    'model': 'heading3',
+                    'view': 'h3',
+                    'title': 'Título 3',
+                    'class': 'ck-heading_heading3'
+                }
             ]
         }
     }
