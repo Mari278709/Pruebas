@@ -59,10 +59,10 @@ WSGI_APPLICATION = 'istte.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'clylyzGMkqDCUCJcrPBOoYDeuqtoJmzl',
-        'HOST': 'postgres.railway.internal',
+        'NAME': 'istte_db',
+        'USER': 'istte_user',
+        'PASSWORD': 'David21a',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
