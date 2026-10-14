@@ -1,2 +1,10 @@
 /.venv
+/.env
 /__pycache__
+/staticfiles/
+/db.sqlite3
+__pycache__/
+*.py[cod]
+/mkmig_err.txt
+/mkmig_out.txt
+/srv_out.txt

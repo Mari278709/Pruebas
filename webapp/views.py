@@ -1,10 +1,4 @@
-from django.contrib import messages
-from django.db import models
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
-
-from .forms import MediaItemForm
-from .models import Carrera, MediaItem, Noticia
+from django.shortcuts import render
 
 PAGE_TEMPLATES = [
     'index',
@@ -589,6 +583,29 @@ def carreras(request):
 def validacion_experiencia(request):
     return render(request, 'validacion_experiencia.html')
 
+from django.http import JsonResponse
+
+def api_carreras(request):
+    """
+    Endpoint para que el frontend de React consuma la data de las carreras.
+    """
+    return JsonResponse({'carreras': CARRERAS_DATA})
+
+def api_media(request):
+    from .models import MediaItem
+    media = MediaItem.objects.filter(published=True).order_by('-created_at')[:3]
+    media_list = []
+    for item in media:
+        media_list.append({
+            'title': item.title,
+            'description': item.description,
+            'image_url': item.image.url if item.image else None,
+            'video_url': item.video.url if item.video else None,
+            'created_at': item.created_at.isoformat()
+        })
+    return JsonResponse({'media': media_list})
+
+
 
 def detalle_carreras(request, career_slug):
     career_slug = career_slug.lower()
@@ -782,11 +799,7 @@ def upload_media(request):
     else:
         form = MediaItemForm()
 
-    return render(
-        request,
-        'upload_media.html',
-        {
-            'form': form,
-            'success': success,
-        },
-    )
+    return render(request, 'upload_media.html', {
+        'form': form,
+        'success': success,
+    })

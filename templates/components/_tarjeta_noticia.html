@@ -1,0 +1,37 @@
+<div class="card border-0  h-100 tarjeta-noticia hover-lift" data-aos="fade-up" data-aos-delay="{{ delay|default:'0' }}">
+    <div class="row g-0 h-100">
+        <div class="col-md-4 position-relative overflow-hidden" style="min-height: 200px;">
+            <img src="{{ image_url }}" class="w-100 h-100 object-fit-cover position-absolute top-0 start-0 transition-transform" alt="{{ title }}">
+        </div>
+        <div class="col-md-8 d-flex flex-column">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="text-uppercase text-secondary fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.05em; color: var(--istte-green) !important;">{{ category }}</span>
+                    <span class="text-muted" style="font-size: 0.85rem;"><i class="bi bi-calendar3 me-1"></i> {{ date }}</span>
+                </div>
+                <h4 class="card-title fw-bold mb-3" style="color: var(--istte-ink);">
+                    <a href="{{ url }}" class="text-decoration-none stretched-link text-reset">{{ title }}</a>
+                </h4>
+                <p class="card-text text-secondary mb-0" style="font-size: 0.95rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{ excerpt }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.tarjeta-noticia.hover-lift {
+    transition: transform var(--t-base), box-shadow var(--t-base);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+.tarjeta-noticia.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--) !important;
+}
+.tarjeta-noticia .transition-transform {
+    transition: transform 0.5s ease;
+}
+.tarjeta-noticia:hover .transition-transform {
+    transform: scale(1.05);
+}
+</style>

@@ -3,7 +3,39 @@
  * Maneja el buscador predictivo de trámites y el filtrado del cronograma académico.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function() {
+    // ----------------------------------------------------
+    // PREMIUM THEME TOGGLE
+    // ----------------------------------------------------
+    const themeCheckboxes = document.querySelectorAll('.theme-switch-input');
+    
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            themeCheckboxes.forEach(cb => cb.checked = true);
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            themeCheckboxes.forEach(cb => cb.checked = false);
+        }
+    }
+
+    // Cargar preferencia
+    const savedTheme = localStorage.getItem('istte-theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    }
+
+    // Escuchar el switch
+    themeCheckboxes.forEach(cb => {
+        cb.addEventListener('change', function(e) {
+            const newTheme = e.target.checked ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('istte-theme', newTheme);
+        });
+    });
+    // ----------------------------------------------------
     // Inicializar componentes interactivos
     initPreloader();
     initSearchTramites();

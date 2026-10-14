@@ -241,7 +241,7 @@
                         {% for semestre, materias in career.malla.items %}
                         <div class="accordion-item border-0">
                             <h3 class="accordion-header">
-                                <button class="accordion-button bg-light text-primary fw-bold border-bottom {% if not forloop.first %}collapsed{% endif %}" 
+                                <button class="accordion-button bg-light text-white fw-bold border-bottom {% if not forloop.first %}collapsed{% endif %}" 
                                         type="button" 
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#collapse{{ forloop.counter }}" 
@@ -253,7 +253,7 @@
                             <div id="collapse{{ forloop.counter }}" 
                                  class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" 
                                  data-bs-parent="#mallaAccordion">
-                                <div class="accordion-body bg-white">
+                                <div class="accordion-body glass-card">
                                     <ul class="list-group list-group-flush">
                                         {% for materia in materias %}
                                         <li class="list-group-item px-0 py-2 small text-secondary d-flex align-items-center gap-2 border-0">
