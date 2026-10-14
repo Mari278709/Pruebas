@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import MediaItem
 PAGE_TEMPLATES = [
     'index',
     'autoridades',
