@@ -16,7 +16,11 @@ urlpatterns = [
     path('asociacion-graduados/', views.asociacion_graduados, name='asociacion_graduados'),
     path('soporte-tecnico/', views.soporte_tecnico, name='soporte_tecnico'),
     path('unidad-titulacion/', views.unidad_titulacion, name='unidad_titulacion'),
+    
+    # RUTA PARA LA PÁGINA CEC-TECNO Y SU FORMULARIO DE INFORMACIÓN
     path('cec-tecno/', views.cec_tecno, name='cec_tecno'),
+    path('solicitar-informacion/', views.solicitar_informacion, name='solicitar_informacion'),
+    
     path('bienestar/', views.bienestar, name='bienestar'),
     path('vinculacion/', views.vinculacion, name='vinculacion'),
     path('investigacion/', views.investigacion, name='investigacion'),

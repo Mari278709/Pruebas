@@ -14,9 +14,9 @@ Este proyecto contiene una versión Django del portal institucional del Institut
 
 ## Cómo arrancar
 
-1. Instala Django en el entorno virtual:
+1. Instala las dependencias en el mismo entorno de Python que usarás para ejecutar el servidor:
    ```bash
-   pip install django
+   pip install -r requirements.txt
    ```
 2. Aplica migraciones:
    ```bash

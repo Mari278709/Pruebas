@@ -25,7 +25,7 @@
 
     <!-- MENÚ DE NAVEGACIÓN FLOTANTE TIPO CÁPSULA (AZUL NOCHE) -->
     <header class="fixed-top w-100 top-0 start-0 pt-3 px-2 px-md-4" style="z-index: 1050;">
-        <nav class="navbar navbar-expand-lg navbar-dark mx-auto custom-pill-nav" aria-label="Navegación principal">
+            <nav class="navbar navbar-expand-xl navbar-dark mx-auto custom-pill-nav" aria-label="Navegación principal">
             <div class="container-fluid px-1 align-items-center">
                 
                 <!-- Logotipo Oficial Tecno (Más grande y ocupando el alto del contenedor) -->
@@ -83,8 +83,8 @@
                             <ul class="dropdown-menu dropdown-menu-custom border-0 shadow-lg mt-2 rounded-4" aria-labelledby="menuServicios" style="min-width: 220px;">
                                 <li><a class="dropdown-item py-2 px-3" href="{% url 'biblioteca' %}">Biblioteca</a></li>
                                 <li><a class="dropdown-item py-2 px-3" href="{% url 'portal_empleo' %}">Portal de Empleo</a></li>
-                                <li><a class="dropdown-item py-2 px-3" href="https://aulavirtual.tecnoecuatoriano.edu.ec" target="_blank" rel="noopener noreferrer">Aula Virtual</a></li>
-                                <li><a class="dropdown-item py-2 px-3" href="https://siacad.tecnoecuatoriano.edu.ec" target="_blank" rel="noopener noreferrer">SIACAD</a></li>
+                                <li><a class="dropdown-item py-2 px-3" href="https://eva.tecnovirtual.edu.ec/login/index.php" target="_blank" rel="noopener noreferrer">Aula Virtual</a></li>
+                                <li><a class="dropdown-item py-2 px-3" href="https://190.9.182.5/SIACAD_INSTITUTO/" target="_blank" rel="noopener noreferrer">SIACAD</a></li>
                                 <li><a class="dropdown-item py-2 px-3" href="{% url 'asociacion_graduados' %}">Asociación de Graduados</a></li>
                                 <li><a class="dropdown-item py-2 px-3" href="{% url 'soporte_tecnico' %}">Soporte Técnico</a></li>
                                 <li><a class="dropdown-item py-2 px-3" href="{% url 'unidad_titulacion' %}">Unidad de Titulación</a></li>
@@ -111,9 +111,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-custom border-0 shadow-lg mt-2 rounded-4" aria-labelledby="menuAdmisiones" style="min-width: 220px;">
                                 <li><a class="dropdown-item py-2 px-3" href="{% url 'proceso_admision' %}">Proceso de Admisión</a></li>
-                                <li><a class="dropdown-item py-2 px-3" href="{% url 'proceso_admision' %}#requisitos-fechas">Requisitos y Fechas</a></li>
                                 <li><a class="dropdown-item py-2 px-3" href="{% url 'becas_incentivos' %}">Becas e Incentivos</a></li>
-                                <li><a class="dropdown-item py-2 px-3" href="{% url 'inscripcion' %}">Inscripción en Línea</a></li>
                             </ul>
                         </li>
 
@@ -140,7 +138,7 @@
     </main>
 
     <!-- Botón flotante WhatsApp -->
-<a href="https://wa.me/593999999999" target="_blank" class="whatsapp-mini">
+<a href="https://wa.me/593994236149" target="_blank" class="whatsapp-mini">
     <i class="bi bi-whatsapp"></i>
     <span class="whatsapp-text">¿Necesitas ayuda? ¡Chatea con nosotros!</span>
 </a>
@@ -163,21 +161,19 @@
                     
                     <h3 class="h6 text-white mb-2 fw-bold">Síguenos en Redes Sociales</h3>
                     <div class="social-links d-flex gap-2">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook Oficial ISTTE">
+                        <a href="https://www.facebook.com/Tecnoecuatoriano" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook Oficial ISTTE">
                             <i class="bi bi-facebook" aria-hidden="true"></i>
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram Oficial ISTTE">
+                        <a href="https://www.instagram.com/tecnoecuatoriano/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram Oficial ISTTE">
                             <i class="bi bi-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok Oficial ISTTE">
+                        <a href="https://www.tiktok.com/@tecnoecuatoriano" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok Oficial ISTTE">
                             <i class="bi bi-tiktok" aria-hidden="true"></i>
                         </a>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn Oficial ISTTE">
                             <i class="bi bi-linkedin" aria-hidden="true"></i>
                         </a>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube Oficial ISTTE">
-                            <i class="bi bi-youtube" aria-hidden="true"></i>
-                        </a>
+                    
                     </div>
                 </div>
 
@@ -208,7 +204,7 @@
                 <div class="col-12 col-md-3 col-lg-2">
                     <h2 class="footer-heading">Enlaces Legales</h2>
                     <ul class="footer-links-list list-unstyled">
-                        <li class="mb-2"><a href="{% url 'aviso_legal' %}" class="footer-link small text-secondary text-decoration-none">Aviso legal</a></li>
+                        <li class="mb-2"><a href="{% url 'organigrama' %}" class="footer-link small text-secondary text-decoration-none">Aviso legal</a></li>
                         <li class="mb-2"><a href="{% url 'politica_privacidad' %}" class="footer-link small text-secondary text-decoration-none">Política de privacidad</a></li>
                         <li class="mb-2"><a href="{% url 'proceso_admision' %}" class="footer-link small text-secondary text-decoration-none">Admisiones</a></li>
                         <li class="mb-2"><a href="{% url 'carreras' %}" class="footer-link small text-secondary text-decoration-none">Oferta Académica</a></li>

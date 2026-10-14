@@ -8,27 +8,16 @@
 {% block content %}
 
 <!-- HERO SECTION CON SLIDER DE SEDES (EFECTO ACERCAMIENTO) -->
-<section class="hero-section hero-container position-relative overflow-hidden reveal-on-scroll d-flex align-items-center" aria-label="Introducción institutional">
+<section class="hero-section hero-container position-relative overflow-hidden d-flex align-items-center" aria-label="Introducción institutional">
     
-    <!-- Carousel de Fondo con las fotos de las sedes -->
-    <div id="heroSedesCarousel" class="carousel slide carousel-fade position-absolute top-0 start-0 w-100 h-100 z-0" data-bs-ride="carousel" data-bs-interval="5000">
-        <div class="carousel-inner h-100">
-            <div class="carousel-item active h-100">
-                <div class="hero-slide-bg slide-1 h-100 w-100"></div>
-            </div>
-            <div class="carousel-item h-100">
-                <div class="hero-slide-bg slide-2 h-100 w-100"></div>
-            </div>
-            <div class="carousel-item h-100">
-                <div class="hero-slide-bg slide-3 h-100 w-100"></div>
-            </div>
-        </div>
-    </div>
+    <!-- Fondo del banner principal con movimiento sutil -->
+    <div class="hero-slide-bg hero-banner-bg position-absolute top-0 start-0 w-100 h-100 z-0"
+         style="background-image: url('{% static 'images/BANNER-PRINCIPAL.jpg' %}');"></div>
 
     <div class="container position-relative z-3">
         <div class="row align-items-center gy-5">
             <!-- Izquierda: Textos y Botones -->
-            <div class="col-12 col-lg-7">
+            <div class="col-12 col-lg-7 reveal-on-scroll reveal-left">
                 <span class="badge-pulse-neon mb-4 d-inline-flex align-items-center gap-2">
                     <span class="pulse-dot"></span> ACREDITADOS POR CACES
                 </span>
@@ -50,110 +39,65 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Derecha: Tarjetas Flotantes -->
-            <div class="col-12 col-lg-5 d-flex flex-column align-items-center align-items-lg-end gap-4">
-                <!-- Stat Card 1 -->
-                <div class="glass-metric-card hero-stat-card hero-stat-card-left p-4 text-start d-flex flex-column justify-content-center">
-                    <div class="hero-stat-number text-white">15K+</div>
-                    <div class="hero-stat-caption">Graduados Exitosos</div>
-                </div>
-                
-                <!-- Stat Card 2 -->
-                <div class="glass-metric-card hero-stat-card hero-stat-card-right p-4 text-start d-flex flex-column justify-content-center">
-                    <div class="hero-stat-number text-white d-flex align-items-baseline">
-                        25<span class="text-neon-green">Años</span>
-                    </div>
-                    <div class="hero-stat-caption">Formando Líderes</div>
-                </div>
+    <!-- Métricas compactas en la parte inferior derecha del banner -->
+    <div class="container hero-stats-container position-absolute bottom-0 start-50 translate-middle-x z-3 pb-4">
+        <div class="hero-stats d-flex justify-content-end gap-3">
+            <div class="glass-metric-card hero-stat-card text-start d-flex flex-column justify-content-center">
+                <i class="bi bi-people-fill hero-stat-icon" aria-hidden="true"></i>
+                <div class="hero-stat-number text-white">15K+</div>
+                <div class="hero-stat-caption">Graduados Exitosos</div>
+            </div>
+
+            <div class="glass-metric-card hero-stat-card text-start d-flex flex-column justify-content-center">
+                <i class="bi bi-star-fill hero-stat-icon" aria-hidden="true"></i>
+                <div class="hero-stat-number text-white">25<span class="text-neon-green">Años</span></div>
+                <div class="hero-stat-caption">Formando Líderes</div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- SECCIÓN: CONQUISTA EL FUTURO (Oferta Académica con Fondo Animado) -->
-<section class="oferta-academica-section py-5 text-white reveal-on-scroll" aria-labelledby="conquista-title">
+<section class="oferta-academica-section py-5 text-white" aria-labelledby="conquista-title">
     <div class="container py-4 position-relative z-2">
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 reveal-on-scroll reveal-up">
             <span class="badge-pulse-neon mb-3">Oferta Académica</span>
             <h2 id="conquista-title" class="fw-extrabold display-5">Conquista el Futuro</h2>
             <p class="text-secondary-subtle">Elige una de nuestras carreras de alta empleabilidad y prepárate para los retos globales.</p>
         </div>
         
         <div class="row g-4">
-            <!-- Tarjeta 1: Software -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <article class="dark-career-grid-card">
-                    <div>
-                        <div class="icon-container-neon mb-4">
-                            <i class="bi bi-code-slash"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-white mb-3">Software</h3>
-                        <p class="small text-secondary-subtle mb-0">Diseña, codifica y despliega soluciones de software y plataformas web o móviles preparadas para la nube.</p>
+            {% for career in homepage_careers %}
+            <div class="col-12 col-md-6 col-lg-3 reveal-on-scroll reveal-up" data-delay="{% widthratio forloop.counter 1 100 %}">
+                <article class="dark-career-grid-card home-career-card">
+                    <img src="{{ career.image }}" alt="Imagen de {{ career.title }}" class="home-career-image">
+                    <div class="home-career-card-content">
+                        <h3 class="h4 fw-bold text-white mb-3">{{ career.title }}</h3>
+                        <p class="small text-secondary-subtle mb-0">{{ career.description|default:"Conoce nuestra oferta académica y descubre todo lo que puedes lograr."|truncatechars:170 }}</p>
+                        <a href="{% url 'detalle_carreras' career_slug=career.slug %}" class="btn-saber-mas">
+                            SABER MÁS <i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
-                    <a href="{% url 'detalle_carreras' career_slug='desarrollo-software' %}" class="btn-saber-mas">
-                        SABER MÁS <i class="bi bi-arrow-right"></i>
-                    </a>
                 </article>
             </div>
-
-            <!-- Tarjeta 2: Ciberseguridad -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <article class="dark-career-grid-card">
-                    <div>
-                        <div class="icon-container-neon mb-4">
-                            <i class="bi bi-shield-lock"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-white mb-3">Ciberseguridad</h3>
-                        <p class="small text-secondary-subtle mb-0">Protege infraestructuras críticas corporativas frente a amenazas cibernéticas y realiza auditorías de seguridad.</p>
-                    </div>
-                    <a href="{% url 'detalle_carreras' career_slug='ciberseguridad' %}" class="btn-saber-mas">
-                        SABER MÁS <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-white">Próximamente publicaremos nuestra oferta académica.</p>
             </div>
-
-            <!-- Tarjeta 3: Administración -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <article class="dark-career-grid-card">
-                    <div>
-                        <div class="icon-container-neon mb-4">
-                            <i class="bi bi-briefcase"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-white mb-3">Administración</h3>
-                        <p class="small text-secondary-subtle mb-0">Lidera equipos, optimiza procesos de negocio y formula estrategias corporativas digitales.</p>
-                    </div>
-                    <a href="{% url 'detalle_carreras' career_slug='administracion' %}" class="btn-saber-mas">
-                        SABER MÁS <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
-            </div>
-
-            <!-- Tarjeta 4: Enfermería -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <article class="dark-career-grid-card">
-                    <div>
-                        <div class="icon-container-neon mb-4">
-                            <i class="bi bi-heart-pulse"></i>
-                        </div>
-                        <h3 class="h4 fw-bold text-white mb-3">Enfermería</h3>
-                        <p class="small text-secondary-subtle mb-0">Brinda atención de salud integral y humana en hospitales, clínicas y proyectos preventivos.</p>
-                    </div>
-                    <a href="{% url 'detalle_carreras' career_slug='enfermeria' %}" class="btn-saber-mas">
-                        SABER MÁS <i class="bi bi-arrow-right"></i>
-                    </a>
-                </article>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
 <!-- SECCIÓN: NUESTRO ECOSISTEMA -->
-<section class="py-5 bg-white reveal-on-scroll" aria-labelledby="ecosistema-title">
+<section class="py-5 bg-white" aria-labelledby="ecosistema-title">
     <div class="container py-4">
         <div class="row align-items-center gy-5">
             <!-- Columna Izquierda: Información -->
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 reveal-on-scroll reveal-left">
                 <span class="ecosystem-badge text-uppercase fw-bold mb-3">Nuestro Ecosistema</span>
                 
                 <h2 id="ecosistema-title" class="ecosystem-title mb-4">
@@ -165,7 +109,7 @@
                 </p>
                 
                 <ul class="list-unstyled d-flex flex-column gap-4">
-                    <li class="d-flex align-items-start gap-3">
+                    <li class="d-flex align-items-start gap-3 reveal-on-scroll reveal-left" data-delay="100">
                         <div class="ecosystem-icon-box">
                             <i class="bi bi-check-lg text-white fw-bold ecosystem-icon"></i>
                         </div>
@@ -174,7 +118,7 @@
                             <span class="ecosystem-check-text">Aprende y experimenta en entornos simulados de vanguardia.</span>
                         </div>
                     </li>
-                    <li class="d-flex align-items-start gap-3">
+                    <li class="d-flex align-items-start gap-3 reveal-on-scroll reveal-left" data-delay="200">
                         <div class="ecosystem-icon-box">
                             <i class="bi bi-check-lg text-white fw-bold ecosystem-icon"></i>
                         </div>
@@ -183,7 +127,7 @@
                             <span class="ecosystem-check-text">Convenios y mentorías con profesionales del núcleo tecnológico mundial.</span>
                         </div>
                     </li>
-                    <li class="d-flex align-items-start gap-3">
+                    <li class="d-flex align-items-start gap-3 reveal-on-scroll reveal-left" data-delay="300">
                         <div class="ecosystem-icon-box">
                             <i class="bi bi-check-lg text-white fw-bold ecosystem-icon"></i>
                         </div>
@@ -197,7 +141,7 @@
             
             <!-- Columna Derecha: Métricas -->
             <div class="col-12 col-lg-6 d-flex flex-column gap-4 justify-content-center">
-                <div class="ecosystem-stats-card">
+                <div class="ecosystem-stats-card reveal-on-scroll reveal-right" data-delay="150">
                     <div class="d-flex align-items-center gap-3">
                         <div class="ecosystem-stats-number">+15</div>
                         <div>
@@ -207,7 +151,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-stats-card blue">
+                <div class="ecosystem-stats-card blue reveal-on-scroll reveal-right" data-delay="300">
                     <div class="d-flex align-items-center gap-3">
                         <div class="ecosystem-stats-number blue">98%</div>
                         <div>
@@ -222,7 +166,7 @@
 </section>
 
 <!-- SECCIÓN: Carrusel de Noticias -->
-<section class="news-section container py-3 reveal-on-scroll" aria-label="Noticias y multimedia recientes">
+<section class="news-section container py-3 reveal-on-scroll reveal-up" aria-label="Noticias y multimedia recientes">
     <div class="row mb-3">
         <div class="col-12 d-flex align-items-center justify-content-between">
             <h2 class="section-title mb-0">Noticias Tecno</h2>

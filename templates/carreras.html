@@ -13,7 +13,7 @@
             </ol>
         </nav>
         
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 reveal-on-scroll reveal-up">
             <h1 id="carreras-title" class="fw-extrabold display-4" style="font-size: 3.5rem; font-weight: 900; letter-spacing: -0.02em;">Carreras <span style="color: #0066FF;">Tecnológicas</span></h1>
             <p class="text-secondary small">
                 {% if modalidad_filtro == 'presencial' %}
@@ -28,8 +28,8 @@
 
         <div class="row g-4">
             {% for slug, info in carreras %}
-            <div class="col-12 col-md-6 col-lg-4">
-                <article class="catalog-career-card h-100 d-flex flex-column justify-content-between border-0 rounded-4 text-dark shadow-lg overflow-hidden transition-all" style="background: #F8F9FC; transition: transform 0.3s ease, box-shadow 0.3s ease; border-bottom: 5px solid var(--istte-neon-green, #20c997);" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)';">
+            <div class="col-12 col-md-6 col-lg-4 reveal-on-scroll reveal-up" data-delay="{% widthratio forloop.counter0 1 80 %}">
+                <article class="catalog-career-card h-100 d-flex flex-column justify-content-between border-0 rounded-4 text-dark shadow-lg overflow-hidden transition-all" style="border-bottom: 5px solid var(--istte-neon-green, #20c997);">
                     <div>
                         <!-- Imagen mejorada -->
                         <div class="career-card-media overflow-hidden position-relative" style="height: 220px; border-radius: 16px 16px 0 0;">
@@ -74,10 +74,9 @@
                     
                     <!-- Botones mejorados -->
                     <div class="d-flex gap-2 px-4 pb-4">
-                        <a href="{% url 'detalle_carreras' slug %}" class="btn flex-grow-1 fw-bold" style="background-color: transparent; border: 2px solid #0066FF; color: #0066FF; padding: 0.6rem 1rem; font-size: 0.9rem; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#0066FF'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#0066FF';">
+                        <a href="{% url 'detalle_carreras' slug %}" class="btn btn-outline-primary flex-grow-1 fw-bold py-2">
                             <i class="bi bi-eye me-1"></i>Ver Detalles
                         </a>
-                
                     </div>
                 </article>
             </div>

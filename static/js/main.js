@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializar componentes interactivos
+    initPreloader();
     initSearchTramites();
     initFilterAgenda();
     initFormValidation();
@@ -285,4 +286,25 @@ function initDarkMode() {
         // Guardar la preferencia
         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     });
+}
+
+/**
+ * Controla la pantalla de carga inicial (Preloader)
+ */
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
+    // Lógica para desvanecer el preloader
+    const fadeOutPreloader = () => {
+        setTimeout(() => {
+            preloader.classList.add('fade-out');
+        }, 350); // Pequeña demora para un efecto visual suave
+    };
+
+    if (document.readyState === 'complete') {
+        fadeOutPreloader();
+    } else {
+        window.addEventListener('load', fadeOutPreloader);
+    }
 }

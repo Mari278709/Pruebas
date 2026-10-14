@@ -1,58 +1,1326 @@
 {% extends 'base.html' %}
-{% block title %}Centro de Educación Continua | ISTTE{% endblock %}
-{% block content %}
-<section class="py-5" aria-labelledby="cec-title">
-    <div class="container py-4">
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">CEC Tecno</li>
-            </ol>
-        </nav>
+{% load static %}
 
-        <div class="text-center mb-5">
-            <h1 id="cec-title" class="fw-extrabold text-primary display-4">Centro de Educación Continua (CEC Tecno)</h1>
-            <p class="text-secondary">Cursos cortos, certificaciones profesionales y programas de capacitación abierta.</p>
+{% block title %} Educación Continua | ISTTE{% endblock %}
+
+{% block content %}
+
+<style>
+    :root {
+        --istte-blue: #0756a8;
+        --istte-blue-dark: #063d78;
+        --istte-green: #18a558;
+        --istte-green-dark: #128044;
+        --istte-light: #f5f9fc;
+        --istte-text: #243447;
+        --istte-muted: #667085;
+        --istte-border: #e7edf4;
+    }
+
+    .cec-page {
+        background:
+            radial-gradient(circle at 10% 10%, rgba(7, 86, 168, .05), transparent 25%),
+            radial-gradient(circle at 90% 30%, rgba(24, 165, 88, .05), transparent 25%),
+            #ffffff;
+    }
+
+    /* BREADCRUMB */
+    .cec-breadcrumb {
+        background: rgba(245, 249, 252, .95);
+        border: 1px solid var(--istte-border);
+        padding: 12px 18px;
+        border-radius: 14px;
+        display: inline-flex;
+        margin-bottom: 35px;
+    }
+    .cec-breadcrumb .breadcrumb { margin: 0; }
+    .cec-breadcrumb a { color: var(--istte-green); font-weight: 700; }
+
+    /* HERO */
+    .cec-hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 30px;
+        padding: 65px 45px;
+        margin-bottom: 65px;
+        background: linear-gradient(135deg, rgba(5, 64, 124, .98), rgba(7, 86, 168, .93));
+        color: white;
+        box-shadow: 0 25px 60px rgba(7, 86, 168, .18);
+    }
+    .cec-hero::before {
+        content: ""; position: absolute; width: 350px; height: 350px;
+        border-radius: 50%; background: rgba(24, 165, 88, .22);
+        right: -120px; top: -130px;
+    }
+    .cec-hero::after {
+        content: ""; position: absolute; width: 220px; height: 220px;
+        border-radius: 50%; background: rgba(255,255,255,.06);
+        left: -80px; bottom: -100px;
+    }
+    .cec-hero-content { position: relative; z-index: 2; max-width: 850px; margin: auto; }
+    .cec-hero h1 { font-size: clamp(2.3rem, 5vw, 4.3rem); font-weight: 900; line-height: 1.05; margin-bottom: 22px; }
+    .cec-hero h1 span { color: #54d98b; }
+    .cec-hero-description { font-size: 1.15rem; line-height: 1.8; color: rgba(255,255,255,.88); max-width: 750px; margin: auto; }
+    .cec-quote {
+        margin-top: 30px; padding: 25px 28px;
+        background: rgba(255,255,255,.10);
+        border-left: 4px solid #54d98b;
+        border-radius: 0 18px 18px 0; font-size: 1rem; line-height: 1.7; text-align: left;
+    }
+    .cec-quote strong { color: white; }
+
+    /* SECCIONES Y ESTADÍSTICAS */
+    .cec-section { margin-bottom: 80px; }
+    .cec-section-title { text-align: center; margin-bottom: 45px; }
+    .cec-section-title .mini-title { color: var(--istte-green); font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; font-size: .78rem; margin-bottom: 10px; }
+    .cec-section-title h2 { color: var(--istte-blue-dark); font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; margin-bottom: 12px; }
+    .cec-section-title p { color: var(--istte-muted); max-width: 720px; margin: auto; line-height: 1.7; }
+
+    .cec-stats { margin-top: -20px; margin-bottom: 75px; position: relative; z-index: 5; }
+    .cec-stat {
+        background: white; border: 1px solid var(--istte-border); border-radius: 22px;
+        padding: 28px 20px; text-align: center; height: 100%;
+        box-shadow: 0 12px 35px rgba(15, 40, 70, .07); transition: .3s ease;
+    }
+    .cec-stat:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(15, 40, 70, .12); }
+    .cec-stat-number { font-size: 2.3rem; font-weight: 900; color: var(--istte-blue); line-height: 1; margin-bottom: 10px; }
+    .cec-stat-label { color: var(--istte-muted); font-size: .9rem; font-weight: 600; }
+
+    /* TARJETAS DE PROGRAMAS CON IMAGEN */
+    .program-card {
+        position: relative; background: white; border: 1px solid var(--istte-border);
+        border-radius: 20px; padding: 0 0 20px 0; height: 100%; text-align: center;
+        box-shadow: 0 8px 25px rgba(15, 40, 70, .05); transition: all .3s ease;
+        overflow: hidden; cursor: pointer; font-family: inherit; appearance: none;
+    }
+    .program-card::before {
+        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+        background: linear-gradient(90deg, var(--istte-blue), var(--istte-green)); z-index: 2;
+    }
+    .program-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(15, 40, 70, .12); border-color: rgba(24,165,88,.2); }
+    
+    .program-card-img {
+        height: 140px; width: 100%; object-fit: cover;
+        border-top-left-radius: 19px; border-top-right-radius: 19px;
+    }
+    .program-card-body { padding: 15px; }
+    .program-card h3 { font-size: .95rem; line-height: 1.4; color: var(--istte-blue-dark); font-weight: 800; margin: 0; }
+    .program-link { margin-top: 15px; color: var(--istte-green); font-size: .78rem; font-weight: 800; opacity: 0; transform: translateY(5px); transition: .3s ease; }
+    .program-card:hover .program-link { opacity: 1; transform: translateY(0); }
+
+    /* TARJETAS DE INFORMACIÓN, FEATURES Y PLATAFORMAS */
+    .cec-info-card { position: relative; background: white; border: 1px solid var(--istte-border); border-radius: 28px; padding: 45px; margin-bottom: 35px; box-shadow: 0 15px 40px rgba(15,40,70,.06); overflow: hidden; }
+    .cec-info-card::before { content: ""; position: absolute; width: 7px; height: 100%; left: 0; top: 0; background: linear-gradient(180deg, var(--istte-blue), var(--istte-green)); }
+    .cec-info-title { display: flex; align-items: center; gap: 14px; color: var(--istte-blue-dark); font-weight: 900; margin-bottom: 18px; }
+    .cec-title-icon { width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e9f3ff, #eaf9f0); border-radius: 14px; font-size: 1.3rem; }
+    
+    .feature-box { height: 100%; padding: 22px; border-radius: 18px; background: #f7fafc; border: 1px solid #edf1f5; transition: .3s ease; }
+    .feature-box:hover { background: #ffffff; transform: translateY(-4px); box-shadow: 0 12px 30px rgba(15,40,70,.08); }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .feature-box h3 { color: var(--istte-blue-dark); font-size: .95rem; font-weight: 800; margin-bottom: 7px; }
+    .feature-box p { color: var(--istte-muted); font-size: .86rem; margin: 0; line-height: 1.6; }
+
+    .platform-item { display: flex; align-items: center; gap: 14px; height: 100%; padding: 17px; border-radius: 15px; background: white; border: 1px solid var(--istte-border); transition: .3s ease; }
+    .platform-item:hover { border-color: rgba(24,165,88,.35); box-shadow: 0 10px 25px rgba(15,40,70,.07); transform: translateY(-3px); }
+    .platform-item-icon { width: 40px; height: 40px; min-width: 40px; display: flex; align-items: center; justify-content: center; background: #edf8f2; border-radius: 11px; font-size: 1.1rem; }
+    .platform-item span { color: var(--istte-text); font-size: .9rem; line-height: 1.45; font-weight: 600; }
+
+    .cec-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--istte-green); color: white; padding: 12px 24px; border-radius: 50px; font-weight: 800; text-decoration: none; transition: .3s ease; border: none; cursor: pointer; }
+    .cec-btn:hover { background: var(--istte-green-dark); color: white; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(24,165,88,.2); }
+
+    /* MODALES DE DETALLE */
+    .program-modal .modal-content { border: 0; border-radius: 26px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.18); }
+    .program-modal .modal-header { padding: 28px 32px; color: white; background: linear-gradient(135deg, var(--istte-blue-dark), var(--istte-blue)); border: 0; }
+    .program-modal .modal-title { font-weight: 900; }
+    .program-modal .modal-body { padding: 32px; }
+    .program-modal .modal-footer { padding: 20px 32px; border-top: 1px solid #edf1f5; }
+
+    .program-info-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+    .program-info-item {
+        padding: 16px 12px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #f4f9ff 0%, #edf5ff 100%);
+        border: 1px solid rgba(7, 86, 168, 0.12);
+        min-height: 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .program-info-item small {
+        display: block;
+        color: var(--istte-blue-dark);
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+    .program-info-item strong {
+        color: var(--istte-blue-dark);
+        font-size: .95rem;
+        line-height: 1.4;
+    }
+
+    .malla-title {
+        color: var(--istte-blue-dark);
+        font-weight: 900;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .malla-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+    .malla-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #ffffff 0%, #f4f8fb 100%);
+        border: 1px solid rgba(7, 86, 168, 0.12);
+        box-shadow: 0 8px 22px rgba(15, 40, 70, 0.04);
+        min-height: 86px;
+    }
+    .malla-number {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #dff8eb, #c8efda);
+        color: var(--istte-green-dark);
+        font-weight: 900;
+        font-size: 1.05rem;
+    }
+    .malla-item strong {
+        display: block;
+        color: var(--istte-text);
+        font-size: 1.02rem;
+        line-height: 1.4;
+    }
+    .malla-item span { color: var(--istte-muted); font-size: .85rem; }
+
+    .program-modal .modal-body {
+        background: linear-gradient(180deg, #f8fbff 0%, #f5f8fb 100%);
+        padding: 20px 22px 28px;
+    }
+    .program-modal .modal-body .bg-light.border {
+        border: 1px solid rgba(7, 86, 168, 0.08) !important;
+        background: rgba(255,255,255,0.8) !important;
+        border-radius: 18px !important;
+    }
+
+    .program-modal .row.g-3.my-3 {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 20px 0 24px;
+    }
+
+    .program-modal .row.g-3.my-3 > [class*='col-'] {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .program-modal .row.g-3.my-3 > [class*='col-'] > .p-3 {
+        border-radius: 18px !important;
+        border: 1px solid rgba(7, 86, 168, 0.08) !important;
+        background: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(15, 40, 70, 0.04);
+        padding: 18px 18px 14px !important;
+    }
+
+    .program-modal .row.g-3.my-3 .h6 {
+        font-size: 1.18rem;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .program-modal .row.g-3.my-3 li {
+        font-size: 0.92rem;
+        line-height: 1.45;
+    }
+
+    @media (max-width: 991px) {
+        .program-info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 768px) {
+        .program-info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .malla-grid { grid-template-columns: 1fr; }
+    }
+
+    .fade-up { animation: fadeUp .7s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+        .cec-hero { padding: 45px 25px; border-radius: 22px; }
+        .cec-hero h1 { font-size: 2.35rem; }
+        .cec-info-card { padding: 30px 25px; border-radius: 22px; }
+        .cec-section { margin-bottom: 55px; }
+        .program-info-grid { grid-template-columns: 1fr; }
+        .program-modal .modal-body, .program-modal .modal-header, .program-modal .modal-footer { padding: 22px; }
+    }
+</style>
+
+<div class="cec-page">
+<section class="py-5" aria-labelledby="cec-title">
+<div class="container py-3">
+
+    <!-- BREADCRUMB -->
+    <nav aria-label="breadcrumb" class="cec-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-decoration-none">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Educación Continua</li>
+        </ol>
+    </nav>
+
+    <!-- HERO -->
+    <section class="cec-hero fade-up">
+        <div class="cec-hero-content text-center">
+            <h1 id="cec-title">Educación <span>Continua</span></h1>
+            <p class="cec-hero-description">
+                Fortalece tus conocimientos, desarrolla nuevas competencias con aval académico e impulsa tu perfil laboral en el Instituto Superior Tecnológico Tecnoecuatoriano.
+            </p>
+            <div class="cec-quote">
+                <strong>“Inscríbete ahora e impulsa tu carrera profesional.”</strong>
+                Los programas auxiliares y cursos continuos te permiten insertarte rápidamente en el mercado laboral con capacitación técnico-práctica especializada.
+            </div>
+        </div>
+    </section>
+
+    <!-- ALERTAS Y MENSAJES DE CONFIRMACIÓN -->
+    {% if messages %}
+        <div class="row mb-4">
+            <div class="col-12">
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                        <strong>¡Solicitud Registrada!</strong> {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- ESTADÍSTICAS -->
+    <section class="cec-stats">
+        <div class="row g-4">
+            <div class="col-6 col-lg-3">
+                <div class="cec-stat">
+                    <div class="cec-stat-number">4K+</div>
+                    <div class="cec-stat-label">Cursos y recursos formativos</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="cec-stat">
+                    <div class="cec-stat-number">99</div>
+                    <div class="cec-stat-label">Cursos especializados OCC</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="cec-stat">
+                    <div class="cec-stat-number">104</div>
+                    <div class="cec-stat-label">Cualificaciones profesionales</div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="cec-stat">
+                    <div class="cec-stat-number">20</div>
+                    <div class="cec-stat-label">Áreas temáticas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMAS DESTACADOS CON IMÁGENES -->
+    <section class="cec-section" id="programas">
+        <div class="cec-section-title">
+            <div class="mini-title">Formación profesional</div>
+            <h2>Programas Destacados</h2>
+            <p>Conoce nuestros programas de capacitación técnica y consulta información detallada, objetivos, plan de estudios, costos, pago único, derecho de certificación y formulario de inscripción.</p>
         </div>
 
-        <div class="row g-4 justify-content-center">
-            <!-- Curso 1 -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card p-4 rounded-4 bg-white shadow-sm border border-light-subtle h-100 d-flex flex-column justify-content-between hover-lift">
-                    <div>
-                        <span class="badge bg-success bg-opacity-10 text-success fw-bold py-1 px-3 rounded-pill mb-3">CURSO ABIERTO</span>
-                        <h2 class="h5 fw-bold text-primary mb-2">Fundamentos de Redes Cisco (CCNA 1)</h2>
-                        <p class="small text-secondary mb-3">Prepárate para la certificación oficial Cisco. Prácticas reales en simuladores y laboratorios físicos.</p>
+        <div class="row g-4">
+            <!-- Auxiliar de Enfermería -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <button type="button" class="program-card w-100" data-bs-toggle="modal" data-bs-target="#modalEnfermeria">
+                    <img src="{% static 'images/programas/enfermeria.jpg' %}" alt="Auxiliar de Enfermería" class="program-card-img" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&auto=format&fit=crop';">
+                    <div class="program-card-body">
+                        <h3>Auxiliar de Enfermería</h3>
+                        <div class="program-link">Ver información →</div>
                     </div>
-                    <a href="{% url 'contacto' %}" class="btn btn-sm btn-outline-primary">Solicitar Información</a>
-                </div>
+                </button>
             </div>
 
-            <!-- Curso 2 -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card p-4 rounded-4 bg-white shadow-sm border border-light-subtle h-100 d-flex flex-column justify-content-between hover-lift">
-                    <div>
-                        <span class="badge bg-success bg-opacity-10 text-success fw-bold py-1 px-3 rounded-pill mb-3">CERTIFICACIÓN</span>
-                        <h2 class="h5 fw-bold text-primary mb-2">Ofimática Avanzada y Productividad</h2>
-                        <p class="small text-secondary mb-3">Optimiza tus habilidades en Excel, Word y PowerPoint con enfoque empresarial y de gestión ágil.</p>
+            <!-- Auxiliar de Veterinaria -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <button type="button" class="program-card w-100" data-bs-toggle="modal" data-bs-target="#modalVeterinaria">
+                    <img src="{% static 'images/programas/veterinaria.jpg' %}" alt="Auxiliar de Veterinaria" class="program-card-img" onerror="this.src='https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=500&auto=format&fit=crop';">
+                    <div class="program-card-body">
+                        <h3>Auxiliar de Veterinaria</h3>
+                        <div class="program-link">Ver información →</div>
                     </div>
-                    <a href="{% url 'contacto' %}" class="btn btn-sm btn-outline-primary">Solicitar Información</a>
-                </div>
+                </button>
             </div>
 
-            <!-- Curso 3 -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card p-4 rounded-4 bg-white shadow-sm border border-light-subtle h-100 d-flex flex-column justify-content-between hover-lift">
-                    <div>
-                        <span class="badge bg-primary bg-opacity-10 text-primary fw-bold py-1 px-3 rounded-pill mb-3">PROFESIONAL</span>
-                        <h2 class="h5 fw-bold text-primary mb-2">Logística y Operaciones</h2>
-                        <p class="small text-secondary mb-3">Capacitación orientada a la supervisión y control de almacenes, flotas vehiculares y cadenas de suministro.</p>
+            <!-- Auxiliar de Farmacia -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <button type="button" class="program-card w-100" data-bs-toggle="modal" data-bs-target="#modalFarmacia">
+                    <img src="{% static 'images/programas/farmacia.jpg' %}" alt="Auxiliar de Farmacia" class="program-card-img" onerror="this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop';">
+                    <div class="program-card-body">
+                        <h3>Auxiliar de Farmacia</h3>
+                        <div class="program-link">Ver información →</div>
                     </div>
-                    <a href="{% url 'contacto' %}" class="btn btn-sm btn-outline-primary">Solicitar Información</a>
+                </button>
+            </div>
+
+            <!-- Auxiliar de Parvularia -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <button type="button" class="program-card w-100" data-bs-toggle="modal" data-bs-target="#modalParvularia">
+                    <img src="{% static 'images/programas/parvularia.jpg' %}" alt="Auxiliar de Parvularia" class="program-card-img" onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop';">
+                    <div class="program-card-body">
+                        <h3>Auxiliar de Parvularia</h3>
+                        <div class="program-link">Ver información →</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Auxiliar de Veterinaria de Equinos -->
+            <div class="col-6 col-md-4 col-lg-3 offset-lg-3">
+                <button type="button" class="program-card w-100" data-bs-toggle="modal" data-bs-target="#modalVeterinariaEquinos">
+                    <img src="{% static 'images/programas/veterinaria_equinos.jpg' %}" alt="Auxiliar de Veterinaria de Equinos" class="program-card-img" onerror="this.src='https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?w=500&auto=format&fit=crop';">
+                    <div class="program-card-body">
+                        <h3>Auxiliar de Veterinaria de Equinos</h3>
+                        <div class="program-link">Ver información →</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Mecánica de Motos -->
+            <div class="col-6 col-md-4 col-lg-3">
+                <button type="button" class="program-card w-100" data-bs-toggle="modal" data-bs-target="#modalMecanicaMotos">
+                    <img src="{% static 'images/programas/mecanica_motos.jpg' %}" alt="Mecánica de Motos" class="program-card-img" onerror="this.src='https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&auto=format&fit=crop';">
+                    <div class="program-card-body">
+                        <h3>Mecánica de Motos</h3>
+                        <div class="program-link">Ver información →</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CENTRO DE CAPACITACIÓN CONTINUA -->
+    <section class="cec-info-card">
+        <div class="cec-info-title">
+            <div class="cec-title-icon">🎓</div>
+            <h2 class="h3 mb-0">Centro de Capacitación Continua</h2>
+        </div>
+        <p class="lead">Brinda programas de formación y actualización para quienes desean ampliar sus conocimientos y habilidades con orientación práctica al sector productivo.</p>
+        <div class="row g-4 mt-3">
+            <div class="col-md-6">
+                <div class="feature-box">
+                    <div class="feature-icon">📚</div>
+                    <h3>Formación especializada</h3>
+                    <p>Programas orientados al desarrollo de competencias profesionales aplicables al entorno laboral actual.</p>
                 </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-box">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Desarrollo profesional</h3>
+                    <p>Actualiza tus conocimientos técnicos y fortalece tu Hoja de Vida con certificaciones institucionales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCACIÓN AUTÓNOMA EN LÍNEA -->
+    <section class="cec-info-card">
+        <div class="cec-info-title">
+            <div class="cec-title-icon">💻</div>
+            <h2 class="h3 mb-0">Educación Autónoma en Línea</h2>
+        </div>
+        <p class="lead">Plataforma diseñada para facilitar la formación continua mediante contenidos interactivos y accesibles en cualquier momento.</p>
+        <div class="row g-3 mt-2 mb-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="platform-item">
+                    <div class="platform-item-icon">📱</div>
+                    <span>Compatible con dispositivos móviles.</span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="platform-item">
+                    <div class="platform-item-icon">⚙️</div>
+                    <span>Compatibilidad SCORM y aulas virtuales.</span>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="platform-item">
+                    <div class="platform-item-icon">🚀</div>
+                    <span>Acceso a más de 1.000 cursos online.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+</section>
+</div>
+
+<!-- =========================================================
+     MODALES DETALLADOS CON INFORMACIÓN DE COSTOS Y DERECHO DE CERTIFICACIÓN
+========================================================== -->
+
+<!-- 1. MODAL ENFERMERÍA -->
+<div class="modal fade program-modal" id="modalEnfermeria" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="small text-white-50 mb-1">PROGRAMA DE CAPACITACIÓN AUXILIAR</div>
+                    <h2 class="modal-title h4">🩺 Auxiliar de Enfermería</h2>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="p-3 mb-4 rounded-4 bg-light border">
+                    <h4 class="h6 fw-bold text-primary">🎯 Objetivo del Programa</h4>
+                    <p class="small text-secondary mb-0">Formar auxiliares en enfermería con mención en instrumentación quirúrgica, capacitados para asistir de manera eficiente y 
+                        segura al equipo de salud en el entorno hospitalario y quirúrgico, aplicando técnicas de enfermería, normas de bioseguridad, manejo adecuado del instrumental y cuidados básicos al paciente, contribuyendo a la calidad del servicio y a la seguridad del paciente.</p>
+                </div>
+
+    <!-- TRES CUADROS PRINCIPALES -->
+    <div class="program-info-grid">
+
+        <div class="program-info-item">
+            <small>MODALIDAD:</small>
+            <strong>Presencial</strong>
+        </div>
+
+        <div class="program-info-item">
+            <small>DURACIÓN:</small>
+            <strong>6 Meses</strong>
+        </div>
+
+        <div class="program-info-item">
+            <small>HORARIO:</small>
+            <strong>Sábados:<br>08h00 a 12h00</strong>
+        </div>
+<div class="program-info-item">
+            <small>INSCRIPCION</small>
+            <strong>$50</strong>
+        </div>
+        <div class="program-info-item">
+            <small>DIFERIDO</small>
+            <strong>6 cuotas de $93</strong>
+        </div>
+        <div class="program-info-item">
+            <small>UNIFORME</small>
+            <strong>$30</strong>
+        </div>
+    </div>
+
+   
+
+                <h3 class="malla-title">📚 Plan de Estudios / Módulos</h3>
+                <div class="malla-grid">
+                    <div class="malla-item">
+                        <div class="malla-number">01</div>
+                        <div><strong>Geriatría</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">02</div>
+                        <div><strong>Materno infantil</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">03</div>
+                        <div><strong>Sistema óseo muscular</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">04</div>
+                        <div><strong>Urgencias y emergencias</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">05</div>
+                        <div><strong>Enfermería materno infantil</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">06</div>
+                        <div><strong>Fundamentos de Enfermería</strong></div>
+                    </div>
+                     <div class="malla-item">
+                        <div class="malla-number">07</div>
+                        <div><strong>Anatomia y fisologia humana</strong></div>
+                    </div>
+                     <div class="malla-item">
+                        <div class="malla-number">08</div>
+                        <div><strong>Tecnicas basicas de enfermeria</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">09</div>
+                        <div><strong>Bioseguridad en el entorno hospitalario</strong></div>
+                    </div>
+                     <div class="malla-item">
+                        <div class="malla-number">10</div>
+                        <div><strong>Instrumentación quirúrgica</strong></div>
+                    </div>
+                </div>
+
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-success">💳 Derecho de certificacion $120</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong> Seminarios Adicionales Gratuitos (Brigada de Primeros Auxilios
+                                    , Servicio al cliente, Suturas y inyectología) </strong></li>
+                                <li><strong>Credencial Estudiantil</strong></li>
+                                <li><strong>Certificaciones de entidades de Educación Superior </strong></li>
+                                 <li><strong>Ceremonia de graduación (No incluye Kit de Graduación)</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-info">📜 Certificados Incluidos</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>Certificado de Auxiliar de Enfermería con Aval Universitario</strong></li>
+                                <li><strong>Certificado de auxiliar de Enfermería con mencion en instrumentacion
+                                    quirurgica con Aval del Instituto Tecnoecuatoriano</strong></li>
+                                <li><strong>4 certificados digitales gratis otorgados por el Instituto Tecnoecuatoriano</strong></li>
+                                <li><strong>Certificado de practicas preprofesionales otorgadas por la institucion pertiente </strong></li>
+                                <li><strong>1 aval por el Ministerio de Trabajo Brigada de Primeros Auxilios</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+                <h4 class="h5 fw-bold text-dark mb-3">📋 Solicitar Información o Inscribirse</h4>
+                <form method="POST" action="{% url 'solicitar_informacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="programa" value="Auxiliar de Enfermería">
+                    <div class="row g-2">
+                        <div class="col-md-6 mb-2"><input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre Completo *" required></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="cedula" class="form-control form-control-sm" placeholder="Cédula de Identidad"></div>
+                        <div class="col-md-6 mb-2"><input type="email" name="correo" class="form-control form-control-sm" placeholder="Correo Electrónico *" required></div>
+                        <div class="col-md-6 mb-2"><input type="tel" name="telefono" class="form-control form-control-sm" placeholder="Teléfono / WhatsApp *" required></div>
+                    </div>
+                    <button type="submit" class="cec-btn w-100 justify-content-center mt-2">Enviar Solicitud</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<!-- 2. MODAL VETERINARIA -->
+<div class="modal fade program-modal" id="modalVeterinaria" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="small text-white-50 mb-1">PROGRAMA DE CAPACITACIÓN AUXILIAR</div>
+                    <h2 class="modal-title h4">🐾 Auxiliar de Veterinaria</h2>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="p-3 mb-4 rounded-4 bg-light border">
+                    <h4 class="h6 fw-bold text-primary">🎯 Objetivo del Programa</h4>
+                    <p class="small text-secondary mb-0">Formar auxiliares de veterinaria con mención en Cuidado de Animales de Compañía y de Producción, capacitados para apoyar al médico veterinario en el cuidado integral de la salud animal, la prevención de enfermedades y la aplicación de prácticas de bienestar animal, mediante el manejo responsable, la bioseguridad y el apoyo clínico, contribuyendo a la salud pública y a la seguridad alimentaria.</p>
+                </div>
+
+                <!-- TRES CUADROS PRINCIPALES Y COSTOS -->
+                <div class="program-info-grid">
+                    <div class="program-info-item">
+                        <small>MODALIDAD:</small>
+                        <strong>Presencial</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DURACIÓN:</small>
+                        <strong>4 Meses</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>HORARIO:</small>
+                        <strong>Sábados</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>INSCRIPCIÓN</small>
+                        <strong>$50</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DIFERIDO</small>
+                        <strong>4 cuotas de $115</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>UNIFORME</small>
+                        <strong>$30</strong>
+                    </div>
+                </div>
+
+                <!-- PLAN DE ESTUDIOS DETALLADO POR ÁREAS -->
+                <h3 class="malla-title">📚 Plan de Estudios</h3>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light border rounded-4 h-100">
+                            <h4 class="h6 fw-bold text-primary mb-2">Módulos generales</h4>
+                            <ul class="small text-secondary ps-3 mb-0">
+                                <li>Anatomía y fisiología de animales de producción y de compañía.</li>
+                                <li>Farmacología básica general.</li>
+                                <li>Principales enfermedades en animales de producción y compañía.</li>
+                                <li>Atención de urgencias veterinarias (Antes de la llegada del veterinario).</li>
+                                <li>Preparación de instrumental quirúrgico veterinario.</li>
+                                <li>Razas en animales de compañía y en producción (general).</li>
+                                <li>Suturas y manejo de heridas.</li>
+                                <li>Nutrición en general.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light border rounded-4 h-100">
+                            <h4 class="h6 fw-bold text-primary mb-2">Animales de compañía</h4>
+                            <ul class="small text-secondary ps-3 mb-0">
+                                <li>Administración clínica veterinaria.</li>
+                                <li>Manejo de redes sociales veterinarias, marketing.</li>
+                                <li>Manejo de clientes difíciles.</li>
+                                <li>Razas en animales de compañía (perros y gatos).</li>
+                                <li>Manejo de fichas médicas, protocolos veterinarios eutanasia.</li>
+                                <li>Fundamentos básicos de prevención (vacunación, esterilización, profilaxis).</li>
+                                <li>Peluquería canina.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light border rounded-4 h-100">
+                            <h4 class="h6 fw-bold text-primary mb-2">Animales de Producción</h4>
+                            <ul class="small text-secondary ps-3 mb-0">
+                                <li>Administración de una granja porcina, bovina y equina.</li>
+                                <li>Fundamentos nutrición animal producción bovina, cerdos y aves, nutrición animal en equinos.</li>
+                                <li>Manejo en aves de producción, engorde, productoras (pollos y pavos).</li>
+                                <li>Manejo en animales de producción y equinos.</li>
+                                <li>Razas y sus características en producción y equinos.</li>
+                                <li>Visita a granjas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DERECHO DE CERTIFICACIÓN Y CERTIFICADOS -->
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-success">💳 Derecho de certificacion $120</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>Seminarios Adicionales Gratuitos:</strong> Brigada de Primeros Auxilios, Servicio al cliente, manejo en animales de producción y peluquería canina.</li>
+                                <li><strong>Credencial Estudiantil</strong></li>
+                                <li><strong>Certificaciones de entidades de Educación Superior</strong></li>
+                                <li><strong>Ceremonia de graduación (No incluye Kit de Graduación)</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-info">📜 Certificados Incluidos</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>1. Certificado Auxiliar de Veterinaria con Aval Universitario.</strong></li>
+                                <li><strong>2. Certificado Auxiliar de Veterinaria con mención en cuidado de animales de compañía y de producción con Aval del Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>3. Certificado de prácticas preprofesionales otorgado por la institución pertinente.</strong></li>
+                                <li><strong>4. Certificados digitales gratis otorgados por el Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>5. 1 aval del Ministerio de Trabajo - Brigada de Primeros Auxilios.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+                <h4 class="h5 fw-bold text-dark mb-3">📋 Solicitar Información o Inscribirse</h4>
+                <form method="POST" action="{% url 'solicitar_informacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="programa" value="Auxiliar de Veterinaria">
+                    <div class="row g-2">
+                        <div class="col-md-6 mb-2"><input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre Completo *" required></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="cedula" class="form-control form-control-sm" placeholder="Cédula de Identidad"></div>
+                        <div class="col-md-6 mb-2"><input type="email" name="correo" class="form-control form-control-sm" placeholder="Correo Electrónico *" required></div>
+                        <div class="col-md-6 mb-2"><input type="tel" name="telefono" class="form-control form-control-sm" placeholder="Teléfono / WhatsApp *" required></div>
+                    </div>
+                    <button type="submit" class="cec-btn w-100 justify-content-center mt-2">Enviar Solicitud</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 3. MODAL FARMACIA -->
+<div class="modal fade program-modal" id="modalFarmacia" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="small text-white-50 mb-1">PROGRAMA DE CAPACITACIÓN AUXILIAR</div>
+                    <h2 class="modal-title h4">💊 Auxiliar de Farmacia</h2>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- OBJETIVO DEL PROGRAMA -->
+                <div class="p-3 mb-4 rounded-4 bg-light border">
+                    <h4 class="h6 fw-bold text-primary">🎯 Objetivo del Programa</h4>
+                    <p class="small text-secondary mb-0">Formar auxiliares de farmacia con mención en Visitador Médico, capacitados para apoyar al farmacéutico en la dispensación, control y manejo de medicamentos, así como para informar y promocionar productos farmacéuticos de manera ética
+                         y responsable, aplicando conocimientos básicos de farmacología, normativa sanitaria y atención al cliente.</p>
+                </div>
+
+                <!-- CUADROS PRINCIPALES Y COSTOS -->
+                <div class="program-info-grid">
+                    <div class="program-info-item">
+                        <small>MODALIDAD:</small>
+                        <strong>Presencial o Híbrido</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DURACIÓN:</small>
+                        <strong>4 Meses</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>HORARIO:</small>
+                        <strong>Sábados</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>INSCRIPCIÓN</small>
+                        <strong>$50</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DIFERIDO</small>
+                        <strong>4 cuotas de $80</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>UNIFORME</small>
+                        <strong>$30</strong>
+                    </div>
+                </div>
+
+                <!-- PLAN DE ESTUDIOS / MÓDULOS -->
+                <h3 class="malla-title">📚 Plan de Estudios</h3>
+                <div class="malla-grid">
+                    <div class="malla-item">
+                        <div class="malla-number">01</div>
+                        <div><strong>Conceptos básicos de farmacia</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">02</div>
+                        <div><strong>Patologías comunes</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">03</div>
+                        <div><strong>Problemas de salud respiratorios, síntomas menores, farmacología aplicada</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">04</div>
+                        <div><strong>Problemas de salud digestivos, síntomas menores, farmacología asociada</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">05</div>
+                        <div><strong>Buenas prácticas de farmacia y marketing de farmacias</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">06</div>
+                        <div><strong>Visitador médico</strong></div>
+                    </div>
+                </div>
+
+                <!-- DERECHO DE CERTIFICACIÓN Y CERTIFICADOS INCLUIDOS -->
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-success">💳 Derecho de certificación $120</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>Seminarios Adicionales Gratuitos:</strong> Brigada de Primeros Auxilios, Servicio al cliente, software farmacéutico e inyectología.</li>
+                                <li><strong>Credencial Estudiantil</strong></li>
+                                <li><strong>Certificaciones de entidades de Educación Superior</strong></li>
+                                <li><strong>Ceremonia de graduación (No incluye Kit de Graduación)</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-info">📜 Certificados Incluidos</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>1. Certificado Auxiliar de Farmacia con Aval Universitario.</strong></li>
+                                <li><strong>2. Certificado Auxiliar de Farmacia con mención en visitador médico con Aval del Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>3. Certificado de prácticas preprofesionales otorgado por la institución pertinente.</strong></li>
+                                <li><strong>4. 4 certificados digitales gratis otorgados por el Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>5. 1 aval del Ministerio de Trabajo - Diseño de almacenes, Brigada de Primeros Auxilios.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORMULARIO DE REGISTRO -->
+                <hr class="my-4">
+                <h4 class="h5 fw-bold text-dark mb-3">📋 Solicitar Información o Inscribirse</h4>
+                <form method="POST" action="{% url 'solicitar_informacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="programa" value="Auxiliar de Farmacia">
+                    <div class="row g-2">
+                        <div class="col-md-6 mb-2"><input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre Completo *" required></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="cedula" class="form-control form-control-sm" placeholder="Cédula de Identidad"></div>
+                        <div class="col-md-6 mb-2"><input type="email" name="correo" class="form-control form-control-sm" placeholder="Correo Electrónico *" required></div>
+                        <div class="col-md-6 mb-2"><input type="tel" name="telefono" class="form-control form-control-sm" placeholder="Teléfono / WhatsApp *" required></div>
+                    </div>
+                    <button type="submit" class="cec-btn w-100 justify-content-center mt-2">Enviar Solicitud</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 4. MODAL EDUCACIÓN INICIAL / PARVULARIA -->
+<div class="modal fade program-modal" id="modalParvularia" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="small text-white-50 mb-1">PROGRAMA DE CAPACITACIÓN AUXILIAR</div>
+                    <h2 class="modal-title h4">🧸 Auxiliar de Educación Inicial / Parvularia</h2>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- OBJETIVO DEL PROGRAMA -->
+                <div class="p-3 mb-4 rounded-4 bg-light border">
+                    <h4 class="h6 fw-bold text-primary">🎯 Objetivo del Programa</h4>
+                    <p class="small text-secondary mb-0">Capacitar auxiliares en educación inicial capacitados para asistir en el desarrollo integral de los niños en sus primeras etapas, aplicando técnicas pedagógicas, estrategias de estimulación temprana y herramientas lúdicas en un entorno seguro y afectivo.</p>
+                </div>
+
+                <!-- CUADROS PRINCIPALES Y COSTOS -->
+                <div class="program-info-grid">
+                    <div class="program-info-item">
+                        <small>MODALIDAD:</small>
+                        <strong>Presencial o Virtual</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DURACIÓN:</small>
+                        <strong>4 Meses</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>HORARIO:</small>
+                        <strong>Sábados</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>INSCRIPCIÓN</small>
+                        <strong>$50</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DIFERIDO</small>
+                        <strong>4 cuotas de $90</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>UNIFORME</small>
+                        <strong>$30</strong>
+                    </div>
+                </div>
+
+                <!-- PLAN DE ESTUDIOS / MÓDULOS -->
+                <h3 class="malla-title">📚 Plan de Estudios / Módulos</h3>
+                <div class="malla-grid">
+                    <div class="malla-item">
+                        <div class="malla-number">01</div>
+                        <div><strong>Perfil e importancia de la educación Parvularia</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">02</div>
+                        <div><strong>El juego como premisa en Educación Infantil</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">03</div>
+                        <div><strong>Taller de grafomotricidad (Técnicas grafo plásticas)</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">04</div>
+                        <div><strong>El arte en educación inicial (Literatura, Teatro, Títeres)</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">05</div>
+                        <div><strong>Características evolutivas y del desarrollo de los niños desde su natalidad</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">06</div>
+                        <div><strong>Estimulación Temprana</strong></div>
+                    </div>
+                </div>
+
+                <!-- DERECHO DE CERTIFICACIÓN Y CERTIFICADOS INCLUIDOS -->
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-success">💳 Derecho de certificación $120</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>Seminarios Adicionales Gratuitos:</strong> Brigada de Primeros Auxilios, Servicio al cliente, Inteligencia emocional y Estimulación temprana.</li>
+                                <li><strong>Credencial Estudiantil</strong></li>
+                                <li><strong>Certificaciones de entidades de Educación Superior</strong></li>
+                                <li><strong>Ceremonia de graduación (No incluye Kit de Graduación)</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-info">📜 Certificados Incluidos</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>1. Certificado Auxiliar de Educación Inicial con Aval Universitario.</strong></li>
+                                <li><strong>2. Certificado Auxiliar de Educación Inicial con mención en Estimulación Temprana con Aval del Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>3. Certificado de prácticas preprofesionales otorgado por la institución pertinente.</strong></li>
+                                <li><strong>4. 4 certificados digitales gratis otorgados por el Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>5. Aval del Ministerio de Trabajo - Brigadas de primeros auxilios e Inteligencia emocional.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORMULARIO DE REGISTRO -->
+                <hr class="my-4">
+                <h4 class="h5 fw-bold text-dark mb-3">📋 Solicitar Información o Inscribirse</h4>
+                <form method="POST" action="{% url 'solicitar_informacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="programa" value="Auxiliar de Educación Inicial">
+                    <div class="row g-2">
+                        <div class="col-md-6 mb-2"><input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre Completo *" required></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="cedula" class="form-control form-control-sm" placeholder="Cédula de Identidad"></div>
+                        <div class="col-md-6 mb-2"><input type="email" name="correo" class="form-control form-control-sm" placeholder="Correo Electrónico *" required></div>
+                        <div class="col-md-6 mb-2"><input type="tel" name="telefono" class="form-control form-control-sm" placeholder="Teléfono / WhatsApp *" required></div>
+                    </div>
+                    <button type="submit" class="cec-btn w-100 justify-content-center mt-2">Enviar Solicitud</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 5. MODAL VETERINARIA DE EQUINOS -->
+<div class="modal fade program-modal" id="modalVeterinariaEquinos" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="small text-white-50 mb-1">PROGRAMA DE CAPACITACIÓN AUXILIAR</div>
+                    <h2 class="modal-title h4">🐴 Auxiliar en Veterinaria de Equinos</h2>
+                    <small class="text-white-50">Con mención en Apoyo Clínico en Campo</small>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- OBJETIVO DEL PROGRAMA -->
+                <div class="p-3 mb-4 rounded-4 bg-light border">
+                    <h4 class="h6 fw-bold text-primary">🎯 Objetivo del Programa</h4>
+                    <p class="small text-secondary mb-0">Formar auxiliares de equinos con mención en Apoyo Clínico en Campo, capacitados para apoyar en el manejo sanitario, cuidado preventivo y asistencia clínica básica de equinos, aplicando conocimientos técnicos, criterios de bienestar animal y trabajo seguro en entornos rurales y de campo.</p>
+                </div>
+
+                <!-- CUADROS PRINCIPALES Y COSTOS -->
+                <div class="program-info-grid">
+                    <div class="program-info-item">
+                        <small>MODALIDAD:</small>
+                        <strong>Presencial</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DURACIÓN:</small>
+                        <strong>4 Meses</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>HORARIO:</small>
+                        <strong>Sábados</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>INSCRIPCIÓN</small>
+                        <strong>$50</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DIFERIDO</small>
+                        <strong>4 cuotas de $120</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>UNIFORME</small>
+                        <strong>$30</strong>
+                    </div>
+                </div>
+
+                <!-- PLAN DE ESTUDIOS / MÓDULOS -->
+                <h3 class="malla-title">📚 Plan de Estudios / Módulos</h3>
+                <div class="malla-grid">
+                    <div class="malla-item">
+                        <div class="malla-number">01</div>
+                        <div><strong>Casos clínicos</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">02</div>
+                        <div><strong>Nutrición animal</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">03</div>
+                        <div><strong>Emergenciología</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">04</div>
+                        <div><strong>Libertades animales y bienestar</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">05</div>
+                        <div><strong>Primeros auxilios y triajes</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">06</div>
+                        <div><strong>Farmacología</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">07</div>
+                        <div><strong>Manejo de historias clínicas e inventario ingreso a la clínica</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">08</div>
+                        <div><strong>Etología y comportamiento equino</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">09</div>
+                        <div><strong>Biología, Anatomía y Fisiología animal básica</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">10</div>
+                        <div><strong>Responsabilidades y roles de los diferentes profesionales veterinarios</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">11</div>
+                        <div><strong>Sistemas cardiorespiratorio, digestivo y musculoesquelético</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">12</div>
+                        <div><strong>Apoyo Clínico en Campo</strong></div>
+                    </div>
+                </div>
+
+                <!-- DERECHO DE CERTIFICACIÓN Y CERTIFICADOS INCLUIDOS -->
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-success">💳 Derecho de certificación $120</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>Seminarios Adicionales Gratuitos:</strong> Brigada de Primeros Auxilios, Servicio al cliente, actitud y capacidad emprendedora.</li>
+                                <li><strong>Credencial Estudiantil</strong></li>
+                                <li><strong>Certificaciones de entidades de Educación Superior</strong></li>
+                                <li><strong>Ceremonia de graduación (No incluye Kit de Graduación)</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-info">📜 Certificados Incluidos</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>1. Certificado Auxiliar de Equinos con mención en apoyo clínico en campo Aval del Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>2. Certificado de prácticas preprofesionales otorgado por la institución pertinente.</strong></li>
+                                <li><strong>3. 3 certificados digitales gratis otorgados por el Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>4. Aval del Ministerio de Trabajo - Gestión del Estrés, Brigada de Primeros Auxilios.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORMULARIO DE REGISTRO -->
+                <hr class="my-4">
+                <h4 class="h5 fw-bold text-dark mb-3">📋 Solicitar Información o Inscribirse</h4>
+                <form method="POST" action="{% url 'solicitar_informacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="programa" value="Auxiliar en Veterinaria de Equinos">
+                    <div class="row g-2">
+                        <div class="col-md-6 mb-2"><input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre Completo *" required></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="cedula" class="form-control form-control-sm" placeholder="Cédula de Identidad"></div>
+                        <div class="col-md-6 mb-2"><input type="email" name="correo" class="form-control form-control-sm" placeholder="Correo Electrónico *" required></div>
+                        <div class="col-md-6 mb-2"><input type="tel" name="telefono" class="form-control form-control-sm" placeholder="Teléfono / WhatsApp *" required></div>
+                    </div>
+                    <button type="submit" class="cec-btn w-100 justify-content-center mt-2">Enviar Solicitud</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 6. MODAL MECÁNICA DE MOTOS -->
+<div class="modal fade program-modal" id="modalMecanicaMotos" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="small text-white-50 mb-1">PROGRAMA DE CAPACITACIÓN AUXILIAR</div>
+                    <h2 class="modal-title h4">🏍️ Auxiliar de Mecánica de Motos</h2>
+                    <small class="text-white-50">Con mención en Sistemas Eléctricos y Mantenimientos Generales</small>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- OBJETIVO DEL PROGRAMA -->
+                <div class="p-3 mb-4 rounded-4 bg-light border">
+                    <h4 class="h6 fw-bold text-primary">🎯 Objetivo del Programa</h4>
+                    <p class="small text-secondary mb-0">Formar técnicos auxiliares en mecánica de motos con mención en sistemas eléctricos y mantenimientos generales, capacitados para ejecutar mantenimientos preventivos y correctivos, diagnosticar fallas mecánicas y eléctricas, y brindar soluciones técnicas en motocicletas de combustión interna y eléctricas bajo estándares de seguridad y calidad.</p>
+                </div>
+
+                <!-- CUADROS PRINCIPALES Y COSTOS -->
+                <div class="program-info-grid">
+                    <div class="program-info-item">
+                        <small>MODALIDAD:</small>
+                        <strong>Presencial</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DURACIÓN:</small>
+                        <strong>4 Meses</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>HORARIO:</small>
+                        <strong>Sábados</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>INSCRIPCIÓN</small>
+                        <strong>$50</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>DIFERIDO</small>
+                        <strong>4 cuotas de $111</strong>
+                    </div>
+                    <div class="program-info-item">
+                        <small>UNIFORME</small>
+                        <strong>$30</strong>
+                    </div>
+                </div>
+
+                <!-- PLAN DE ESTUDIOS / MÓDULOS -->
+                <h3 class="malla-title">📚 Plan de Estudios / Módulos</h3>
+                <div class="malla-grid">
+                    <div class="malla-item">
+                        <div class="malla-number">01</div>
+                        <div><strong>Introducción a la mecánica de motos y Mantenimiento Esencial</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">02</div>
+                        <div><strong>Funcionamiento y cuidado de los principales sistemas: Enfriamiento, Frenos, Transmisión y alimentación de combustible</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">03</div>
+                        <div><strong>Mantenimiento especializado: ejes, suspensión, aceleración, reglaje de válvulas motor SOHC y DOHC</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">04</div>
+                        <div><strong>Desarmado y Fundamentos del Motor de 2 y 4 tiempos</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">05</div>
+                        <div><strong>Desarmado de Motor SOHC</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">06</div>
+                        <div><strong>Desarmado de Motor DOHC</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">07</div>
+                        <div><strong>Cálculo de Cilindrada</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">08</div>
+                        <div><strong>Transmisión avanzada y diagnóstico de fallas</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">09</div>
+                        <div><strong>Sistema eléctrico y de alimentación</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">10</div>
+                        <div><strong>Electricidad y Electrónica de la Moto Moderna</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">11</div>
+                        <div><strong>Sistemas electrónicos y de control (ECU, sensores, sistemas de gestión)</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">12</div>
+                        <div><strong>Tecnologías emergentes (Motos eléctricas, híbridas, sistemas de asistencia)</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">13</div>
+                        <div><strong>Reparaciones complejas (Reemplazo de componentes internos, soldadura, ajustes finos)</strong></div>
+                    </div>
+                    <div class="malla-item">
+                        <div class="malla-number">14</div>
+                        <div><strong>Diagnóstico avanzado (Uso de scanner, análisis de datos, reparación de fallas complejas)</strong></div>
+                    </div>
+                </div>
+
+                <!-- DERECHO DE CERTIFICACIÓN Y CERTIFICADOS INCLUIDOS -->
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-success">💳 Derecho de certificación $120</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>Seminarios Adicionales Gratuitos:</strong> Brigada de Primeros Auxilios, Autodefensa, Servicio al cliente.</li>
+                                <li><strong>Manual de mecánica de motocicletas.</strong></li>
+                                <li><strong>Credencial estudiantil.</strong></li>
+                                <li><strong>Certificaciones de entidades de educación superior.</strong></li>
+                                <li><strong>Ceremonia de graduación (No incluye kit de graduación).</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 bg-white border h-100">
+                            <h4 class="h6 fw-bold text-info">📜 Certificados Incluidos</h4>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li><strong>1. Certificado Técnico en mecánica de motos con mención en sistemas eléctricos y mantenimientos generales con Aval del Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>2. Certificado de prácticas preprofesionales otorgado por la institución pertinente.</strong></li>
+                                <li><strong>3. 3 certificados digitales gratis otorgados por el Instituto Tecnoecuatoriano.</strong></li>
+                                <li><strong>4. Aval del Ministerio de Trabajo - Actitud y capacidad emprendedora.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORMULARIO DE REGISTRO -->
+                <hr class="my-4">
+                <h4 class="h5 fw-bold text-dark mb-3">📋 Solicitar Información o Inscribirse</h4>
+                <form method="POST" action="{% url 'solicitar_informacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="programa" value="Auxiliar de Mecánica de Motos">
+                    <div class="row g-2">
+                        <div class="col-md-6 mb-2"><input type="text" name="nombre" class="form-control form-control-sm" placeholder="Nombre Completo *" required></div>
+                        <div class="col-md-6 mb-2"><input type="text" name="cedula" class="form-control form-control-sm" placeholder="Cédula de Identidad"></div>
+                        <div class="col-md-6 mb-2"><input type="email" name="correo" class="form-control form-control-sm" placeholder="Correo Electrónico *" required></div>
+                        <div class="col-md-6 mb-2"><input type="tel" name="telefono" class="form-control form-control-sm" placeholder="Teléfono / WhatsApp *" required></div>
+                    </div>
+                    <button type="submit" class="cec-btn w-100 justify-content-center mt-2">Enviar Solicitud</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

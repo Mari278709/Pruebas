@@ -2,123 +2,241 @@
 {% load static %}
 {% block title %}{{ career.title }} | ISTTE{% endblock %}
 {% block content %}
-<section class="py-5" aria-labelledby="career-title">
-    <div class="container py-4">
+<section class="py-4" aria-labelledby="career-title">
+    <div class="container py-2">
         <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-success text-decoration-none">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'carreras' %}" class="text-success text-decoration-none">Carreras</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ career.title }}</li>
             </ol>
         </nav>
 
-        <!-- Cabecera de Carrera -->
-        <div class="p-3 rounded-4 text-white mb-5 career-hero position-relative overflow-hidden" style="background: linear-gradient(135deg, var(--istte-blue-darker) 0%, var(--istte-blue-sky) 100%); border-bottom: 4px solid var(--istte-green-accent);">
-            <div class="row align-items-center gy-4">
-                <div class="col-12 col-lg-8">
+        <!-- Cabecera Hero Gigante con Imagen de Fondo y Tarjeta Alineada a la Extrema Derecha -->
+        <div class="p-4 p-md-5 rounded-4 text-white mb-5 career-hero position-relative overflow-hidden shadow-lg d-flex align-items-center" 
+             style="background: linear-gradient(90deg, rgba(13, 37, 63, 0.95) 0%, rgba(13, 37, 63, 0.70) 50%, rgba(13, 37, 63, 0.20) 100%), 
+                    url('{% if career.profile_image %}{{ career.profile_image }}{% elif career.image %}{{ career.image }}{% else %}{% static 'images/carreras/desarrollo-software.svg' %}{% endif %}'); 
+                    background-size: cover; background-position: center right; min-height: 480px; border-bottom: 5px solid var(--istte-green-accent);">
+            
+            <div class="row align-items-center w-100 gy-4 position-relative m-0" style="z-index: 2;">
+                <!-- Información Principal de la Carrera -->
+                <div class="col-12 col-lg-7 col-xl-8 ps-0">
                     <span class="badge bg-success text-white py-2 px-3 fw-bold mb-3 text-uppercase">Carrera Tecnológica</span>
                     {% if career_slug == 'desarrollo-software' %}
-                    <h1 id="career-title" class="fw-extrabold display-4 mb-3">Desarrollo de <span class="title-gradient">Software</span></h1>
+                    <h1 id="career-title" class="fw-extrabold display-3 mb-3">Desarrollo de <span class="title-gradient">Software</span></h1>
                     {% else %}
-                    <h1 id="career-title" class="fw-extrabold display-4 mb-3">{{ career.title }}</h1>
+                    <h1 id="career-title" class="fw-extrabold display-3 mb-3">{{ career.title }}</h1>
                     {% endif %}
-                    <p class="lead text-secondary-subtle mb-4">
+                    
+                    <p class="lead text-light mb-4 fs-5" style="max-width: 600px; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">
                         {{ career.profile }}
                     </p>
+                    
                     <div class="d-flex flex-wrap gap-3">
-                        <div class="d-flex align-items-center gap-2 bg-white bg-opacity-10 py-2 px-3 rounded-pill">
-                            <i class="bi bi-clock-fill text-success"></i>
-                            <span class="small fw-semibold">Duración: {{ career.duration }}</span>
+                        <div class="d-flex align-items-center gap-2 bg-dark bg-opacity-50 backdrop-blur py-2 px-3 rounded-pill border border-light border-opacity-25">
+                            <i class="bi bi-clock-fill text-success fs-5"></i>
+                            <span class="fw-semibold">Duración: {{ career.duration }}</span>
                         </div>
-                        <div class="d-flex align-items-center gap-2 bg-white bg-opacity-10 py-2 px-3 rounded-pill">
-                            <i class="bi bi-laptop-fill text-success"></i>
-                            <span class="small fw-semibold">Modalidad: {{ career.modality }}</span>
+                        <div class="d-flex align-items-center gap-2 bg-dark bg-opacity-50 backdrop-blur py-2 px-3 rounded-pill border border-light border-opacity-25">
+                            <i class="bi bi-laptop-fill text-success fs-5"></i>
+                            <span class="fw-semibold">Modalidad: {{ career.modality }}</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta Unificada -->
-                <div class="col-12 col-lg-4 text-lg-end">
-                    <div class="career-cta-card bg-white text-dark rounded-4 shadow-lg p-4 text-center">
-                        <div class="card-icon mb-2">
-                            <i class="bi bi-mortarboard-fill text-success fs-2"></i>
+                <!-- Tarjeta Flotante Puesta a la Extrema Derecha y Sombrerito Centrado -->
+                <div class="col-12 col-lg-5 col-xl-4 pe-0 d-flex justify-content-end ms-auto">
+                    <div class="career-cta-card rounded-4 shadow-lg p-3 text-center border border-white border-opacity-50 ms-auto me-0" 
+                         style="background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); max-width: 270px; width: 100%;">
+                        
+                        <!-- Contenedor del icono centrado -->
+                        <div class="card-icon mb-2 d-flex justify-content-center">
+                            <div class="d-inline-flex justify-content-center align-items-center bg-success bg-opacity-10 rounded-circle text-center" 
+                                 style="width: 55px; height: 55px;">
+                                <i class="bi bi-mortarboard-fill text-success fs-3 m-0 d-flex align-items-center justify-content-center"></i>
+                            </div>
                         </div>
-                        <h3 class="h6 fw-bold text-secondary text-uppercase mb-2">TÍTULO A OBTENER:</h3>
-                        <p class="mb-4 small text-primary fw-bold">{{ career.degree }}</p>
-                        <!-- Botón dispara el Modal Bootstrap -->
-                        <button type="button" class="btn btn-success btn-lg w-100 fw-bold rounded-pill text-uppercase" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            CONOCE MÁS <i class="bi bi-arrow-right-short btn-arrow ms-1"></i>
+                        
+                        <h3 class="fw-bold text-secondary text-uppercase mb-1" style="font-size: 0.72rem; letter-spacing: 0.5px;">TÍTULO A OBTENER:</h3>
+                        <p class="mb-3 text-primary fw-extrabold small px-1">{{ career.degree }}</p>
+                        
+                        <button type="button" class="btn btn-success btn-md w-100 fw-bold rounded-pill text-uppercase py-2 shadow-sm fs-7" data-bs-toggle="modal" data-bs-target="#videoModal">
+                            CONOCE MÁS <i class="bi bi-arrow-right-short ms-1 fs-6"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row g-5">
-            <!-- Columna de Información Detallada -->
-            <div class="col-12 col-lg-8">
+        <!-- Layout Principal Balanceado en 2 Columnas -->
+        <div class="row g-4">
+            <!-- Columna Izquierda (Información Detallada) -->
+            <div class="col-12 col-lg-7 col-xl-8">
                 
-                <!-- Sección de Imagen de Presentación -->
-                <div class="mb-5">
-                    <h2 class="h4 fw-bold text-primary mb-3"><i class="bi bi-image-fill text-success me-2"></i>Presentación de la Carrera</h2>
-                    <div class="position-relative rounded-4 overflow-hidden shadow-sm border border-light-subtle" style="max-height: 400px;">
-                        <img src="{% if career.image %}{{ career.image }}{% else %}{% static 'images/carreras/desarrollo-software.svg' %}{% endif %}" alt="Presentación de {{ career.title }}" class="w-100 h-100" style="object-fit: cover; display: block;">
-                    </div>
-                </div>
-
                 <!-- ¿Qué aprenderás? -->
-                <div class="mb-5 p-4 rounded-4 bg-white shadow-sm border border-light-subtle">
-                    <h2 class="h4 fw-bold text-primary mb-3"><i class="bi bi-lightbulb-fill text-success me-2"></i>¿Qué aprenderás en esta carrera?</h2>
+                <div class="p-4 p-md-5 rounded-4 bg-white shadow-sm border border-light-subtle mb-4">
+                    <h2 class="h4 fw-bold text-primary mb-4 d-flex align-items-center">
+                        <i class="bi bi-lightbulb-fill text-success me-2 fs-3"></i>¿Qué aprenderás en esta carrera?
+                    </h2>
                     <ul class="list-unstyled mb-0 row g-3">
                         {% for item in career.learn %}
                         <li class="col-12 col-md-6 d-flex align-items-start gap-2">
-                            <i class="bi bi-check-circle-fill text-success mt-1"></i>
-                            <span class="text-secondary small">{{ item }}</span>
+                            <i class="bi bi-check-circle-fill text-success mt-1 fs-6"></i>
+                            <span class="text-secondary fw-medium">{{ item }}</span>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
 
                 <!-- Campo Ocupacional -->
-                <div class="mb-5">
-                    <h2 class="h4 fw-bold text-primary mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Campo Ocupacional</h2>
-                    <p class="text-secondary small">
+                <div class="p-4 p-md-5 rounded-4 bg-white shadow-sm border border-light-subtle mb-4">
+                    <h2 class="h4 fw-bold text-primary mb-2 d-flex align-items-center">
+                        <i class="bi bi-briefcase-fill text-success me-2 fs-3"></i>Campo Ocupacional
+                    </h2>
+                    <p class="text-secondary small mb-4">
                         Nuestros graduados se desempeñan exitosamente en una amplia gama de roles del ecosistema profesional:
                     </p>
                     <div class="row g-3">
                         {% for area in career.campo %}
                         <div class="col-12 col-md-6">
-                            <div class="badge-dark-occupational d-flex align-items-center gap-3 p-2 bg-light rounded">
-                                <i class="bi bi-arrow-right text-success"></i>
-                                <span class="small fw-semibold text-dark">{{ area }}</span>
+                            <div class="d-flex align-items-center gap-3 p-3 bg-light rounded-3 border border-light-subtle">
+                                <i class="bi bi-arrow-right text-success fs-5"></i>
+                                <span class="fw-semibold text-dark small">{{ area }}</span>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
 
-                <!-- Imagen de perfil -->
-                <div class="mb-5 p-4 rounded-4 bg-white shadow-sm border border-light-subtle">
-                    <h2 class="h4 fw-bold text-primary mb-3"><i class="bi bi-image-fill text-success me-2"></i>Imagen de la Carrera</h2>
-                    {% if career.profile_image %}
-                    <div class="position-relative rounded-4 overflow-hidden shadow-sm border border-light-subtle">
-                        <img src="{{ career.profile_image }}" alt="Imagen de {{ career.title }}" class="w-100 h-100" style="object-fit: cover; display: block; max-height: 320px;">
-                    </div>
-                    {% else %}
-                    <div class="border border-dashed rounded-4 p-4 text-center bg-light">
-                        <i class="bi bi-image text-muted fs-2 d-block mb-2"></i>
-                        <p class="mb-0 text-secondary small">Sube una imagen desde el panel de administración para esta carrera.</p>
-                    </div>
-                    {% endif %}
-                </div>
             </div>
 
-            <!-- Columna Formulario e Inscripción -->
-            <div class="col-12 col-lg-4">
+            <!-- Columna Derecha (Malla Curricular o Licencias + Formulario) -->
+            <div class="col-12 col-lg-5 col-xl-4">
+                
+                {% if career_slug == 'escuela-conduccion' and career.licencias %}
+                <!-- Información de Licencias para Escuela de Conducción -->
+                <div class="mb-4">
+                    <h2 class="h5 fw-bold text-primary mb-2"><i class="bi bi-car-front-fill text-success me-2"></i>Licencia Tipo C</h2>
+                    <div class="p-3 border border-light-subtle rounded-3 bg-white shadow-sm mb-3">
+                        <p class="small text-secondary mb-2">{{ career.licencias.licencia_c.descripcion }}</p>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-bold">Costo:</span>
+                            <span class="small text-success fw-bold">{{ career.licencias.licencia_c.costo }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-bold">Duración:</span>
+                            <span class="small">{{ career.licencias.licencia_c.duracion }}</span>
+                        </div>
+                        <hr class="my-2">
+                        <p class="small fw-bold text-secondary mb-2">Horarios:</p>
+                        <ul class="list-unstyled small text-secondary mb-2">
+                            <li>M: {{ career.licencias.licencia_c.horarios_teoricos.lunes_viernes.matutino }}</li>
+                            <li>N: {{ career.licencias.licencia_c.horarios_teoricos.lunes_viernes.nocturno }}</li>
+                            <li>FS: {{ career.licencias.licencia_c.horarios_teoricos.fines_semana }}</li>
+                        </ul>
+                        <p class="small text-secondary mb-2"><strong>Prácticas:</strong></p>
+                        <ul class="list-unstyled small text-secondary">
+                            <li>L-V: {{ career.licencias.licencia_c.horarios_practicos.lunes_viernes }}</li>
+                            <li>FS: {{ career.licencias.licencia_c.horarios_practicos.fines_semana }}</li>
+                        </ul>
+                    </div>
+
+                    <h2 class="h5 fw-bold text-primary mb-2"><i class="bi bi-car-front-fill text-success me-2"></i>Licencia Tipo C1</h2>
+                    <div class="p-3 border border-light-subtle rounded-3 bg-white shadow-sm mb-3">
+                        <p class="small text-secondary mb-2">{{ career.licencias.licencia_c1.descripcion }}</p>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-bold">Costo:</span>
+                            <span class="small text-success fw-bold">{{ career.licencias.licencia_c1.costo }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-bold">Duración:</span>
+                            <span class="small">{{ career.licencias.licencia_c1.duracion }}</span>
+                        </div>
+                        <hr class="my-2">
+                        <p class="small fw-bold text-secondary mb-2">Horarios:</p>
+                        <ul class="list-unstyled small text-secondary mb-2">
+                            <li>M: {{ career.licencias.licencia_c1.horarios_teoricos.lunes_viernes.matutino }}</li>
+                            <li>N: {{ career.licencias.licencia_c1.horarios_teoricos.lunes_viernes.nocturno }}</li>
+                            <li>FS: {{ career.licencias.licencia_c1.horarios_teoricos.fines_semana }}</li>
+                        </ul>
+                    </div>
+
+                    <h2 class="h5 fw-bold text-primary mb-2"><i class="bi bi-arrow-repeat text-success me-2"></i>Convalidación C1</h2>
+                    <div class="p-3 border border-light-subtle rounded-3 bg-white shadow-sm mb-3">
+                        <p class="small text-secondary mb-2"><strong>Requisitos:</strong></p>
+                        <ul class="list-unstyled small text-secondary mb-3">
+                            {% for req in career.licencias.convalidacion_c1.requisitos %}
+                            <li class="d-flex gap-2 mb-1"><i class="bi bi-check-circle-fill text-success"></i><span>{{ req }}</span></li>
+                            {% endfor %}
+                        </ul>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-bold">Costo:</span>
+                            <span class="small text-success fw-bold">{{ career.licencias.convalidacion_c1.costo }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="small fw-bold">Duración:</span>
+                            <span class="small">{{ career.licencias.convalidacion_c1.duracion }}</span>
+                        </div>
+                    </div>
+
+                    <h2 class="h5 fw-bold text-primary mb-2"><i class="bi bi-clipboard-check text-success me-2"></i>Exámenes</h2>
+                    <div class="row g-2 mb-3">
+                        {% for examen, costo in career.examenes_adicionales.items %}
+                        <div class="col-12 col-sm-6">
+                            <div class="p-2 border border-light-subtle rounded-3 bg-light text-center">
+                                <p class="small fw-semibold text-secondary mb-1">{{ examen }}</p>
+                                <p class="h6 fw-bold text-success mb-0">{{ costo }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <h2 class="h5 fw-bold text-primary mb-2"><i class="bi bi-file-earmark-check-fill text-success me-2"></i>Documentos</h2>
+                    <div class="p-3 border border-light-subtle rounded-3 bg-white shadow-sm">
+                        <div class="accordion accordion-flush" id="docsAccordion">
+                            <div class="accordion-item border-0">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed ps-0 pe-0 text-secondary small fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#docC">
+                                        Licencia C / C1
+                                    </button>
+                                </h3>
+                                <div id="docC" class="accordion-collapse collapse" data-bs-parent="#docsAccordion">
+                                    <div class="accordion-body ps-0 pe-0 pt-2 pb-3">
+                                        <ul class="list-unstyled small text-secondary mb-0">
+                                            {% for doc in career.licencias.licencia_c.documentos %}
+                                            <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>{{ doc }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item border-0">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed ps-0 pe-0 text-secondary small fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#docConval">
+                                        Convalidación C1
+                                    </button>
+                                </h3>
+                                <div id="docConval" class="accordion-collapse collapse" data-bs-parent="#docsAccordion">
+                                    <div class="accordion-body ps-0 pe-0 pt-2 pb-0">
+                                        <ul class="list-unstyled small text-secondary mb-0">
+                                            {% for doc in career.licencias.convalidacion_c1.documentos %}
+                                            <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i>{{ doc }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% elif career.malla %}
                 <!-- Malla Curricular (Acordeón) -->
-                <div class="mb-5">
-                    <h2 class="h4 fw-bold text-primary mb-3"><i class="bi bi-grid-3x3-gap-fill text-success me-2"></i>Malla Curricular</h2>
+                <div class="mb-4">
+                    <h2 class="h5 fw-bold text-primary mb-3 d-flex align-items-center">
+                        <i class="bi bi-grid-3x3-gap-fill text-success me-2"></i>Malla Curricular
+                    </h2>
                     <div class="accordion border border-light-subtle rounded-4 overflow-hidden shadow-sm" id="mallaAccordion">
                         {% for semestre, materias in career.malla.items %}
                         <div class="accordion-item border-0">
@@ -138,7 +256,7 @@
                                 <div class="accordion-body bg-white">
                                     <ul class="list-group list-group-flush">
                                         {% for materia in materias %}
-                                        <li class="list-group-item px-0 py-2 small text-secondary d-flex align-items-center gap-2">
+                                        <li class="list-group-item px-0 py-2 small text-secondary d-flex align-items-center gap-2 border-0">
                                             <i class="bi bi-book text-success"></i>
                                             <span>{{ materia }}</span>
                                         </li>
@@ -150,45 +268,47 @@
                         {% endfor %}
                     </div>
                 </div>
+                {% endif %}
 
                 <!-- Formulario de Contacto e Inscripción -->
-                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm position-sticky" style="top: 110px;">
-                    <h2 class="h5 fw-bold text-primary mb-2 text-center">¡Inicia tu Proceso hoy!</h2>
-                    <p class="small text-secondary text-center mb-4">Completa el formulario para recibir información de matrículas.</p>
+                <div class="p-4 border border-light-subtle rounded-4 bg-white shadow-sm">
+                    <h2 class="h5 fw-bold text-primary mb-1 text-center">¡Inicia tu Proceso hoy!</h2>
+                    <p class="small text-secondary text-center mb-3">Completa el formulario para recibir información.</p>
                     
                     <form id="form-carrera-lead" class="needs-validation" novalidate>
                         <div class="alert alert-success d-none mb-3 small" id="alert-lead-success" role="alert">
                             <i class="bi bi-check-circle-fill me-1"></i>
-                            <strong>¡Formulario enviado!</strong> Nos contactaremos a la brevedad.
+                            <strong>¡Enviado!</strong> Nos contactaremos pronto.
                         </div>
 
                         <div class="mb-3">
-                            <label for="lead-name" class="form-label small fw-bold">Nombre Completo</label>
-                            <input type="text" class="form-control form-control-sm" id="lead-name" required placeholder="Ej: Juan Pérez">
-                            <div class="invalid-feedback">Ingresa tu nombre.</div>
+                            <label for="lead-name" class="form-label small fw-bold mb-1">Nombre</label>
+                            <input type="text" class="form-control" id="lead-name" required placeholder="Tu nombre">
+                            <div class="invalid-feedback small">Requerido</div>
                         </div>
                         <div class="mb-3">
-                           <label for="lead-city" class="form-label small fw-bold">Ciudad</label>
-                              <input type="text" class="form-control form-control-sm" id="lead-city" required placeholder="Ej: Quito">
-                            <div class="invalid-feedback">Ingresa tu ciudad.</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="lead-email" class="form-label small fw-bold">Correo Electrónico</label>
-                            <input type="email" class="form-control form-control-sm" id="lead-email" required placeholder="juan@ejemplo.com">
-                            <div class="invalid-feedback">Ingresa un correo válido.</div>
+                           <label for="lead-city" class="form-label small fw-bold mb-1">Ciudad</label>
+                           <input type="text" class="form-control" id="lead-city" required placeholder="Tu ciudad">
+                            <div class="invalid-feedback small">Requerido</div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="lead-phone" class="form-label small fw-bold">Telefono</label>
-                            <input type="tel" class="form-control form-control-sm" id="lead-phone" required placeholder="Ej: 0999999999">
-                            <div class="invalid-feedback">Ingresa tu teléfono.</div>
+                            <label for="lead-email" class="form-label small fw-bold mb-1">Correo</label>
+                            <input type="email" class="form-control" id="lead-email" required placeholder="tu@correo.com">
+                            <div class="invalid-feedback small">Correo válido</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="lead-phone" class="form-label small fw-bold mb-1">Teléfono</label>
+                            <input type="tel" class="form-control" id="lead-phone" required placeholder="0999999999">
+                            <div class="invalid-feedback small">Requerido</div>
                         </div>
 
                         <input type="hidden" id="lead-career" value="{{ career.title }}">
-                        <button type="submit" class="btn btn-success w-100 py-2 mt-2 fw-bold text-white text-uppercase" style="background-color: var(--istte-green-accent);">Enviar Solicitud</button>
+                        <button type="submit" class="btn btn-success w-100 py-3 fw-bold text-white text-uppercase rounded-3 shadow-sm mt-2" style="background-color: var(--istte-green-accent);">Enviar</button>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
