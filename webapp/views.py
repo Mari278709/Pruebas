@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+from .models import MediaItem
+from .models import MediaItem, Noticia
+from .models import Autoridad, Carrera, Categoria, MediaItem, Etiqueta, Noticia, OportunidadLaboral, Sede
 PAGE_TEMPLATES = [
     'index',
     'autoridades',
