@@ -1,1 +1,4 @@
-django
+Django
+psycopg2-binary
+django-ckeditor
+Pillow
